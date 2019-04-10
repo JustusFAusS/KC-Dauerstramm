@@ -1,2 +1,6 @@
+Anmeldedaten in phpmyadmin:
 KCD
 56748
+
+Apache konfig habe ich hier her:
+https://www.bennetrichter.de/anleitungen/apache2-php7-mysql-phpmyadmin/
