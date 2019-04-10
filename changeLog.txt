@@ -1,0 +1,9 @@
+#Login
+	-Homepage /html/homepage/index.php
+	-Login		/html/registrationAndLogin/login.php
+	-Register	/html/registrationAndLogin/register.php
+	
+	-Logik		/html/registrationAndLogin/server.php
+
+	Alle Funktionen sind fertig. Anbindung an die Datenbank steht auch. Wenn ihr das Ausprobiert wird es allerdings bei euch nicht funktionieren.
+	Geht momentan nur bei mir.
