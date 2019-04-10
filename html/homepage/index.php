@@ -9,6 +9,7 @@
 	<h2>Interner Bereich:</h2>
 	<?php
   	session_start();
+	//Nutzer angemeldet?
 	if (isset($_SESSION['username'])) {
 		 echo "<p>Hallo Welt</p>";
 		//<form action="/html/registerAndLogout/server.php" method="post">
