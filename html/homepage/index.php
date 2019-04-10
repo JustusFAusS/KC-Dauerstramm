@@ -22,5 +22,9 @@
 	}
 	?>
 	<h2> Footer:</h2>
+	<h2> Links:</h2>
+	<a href="/html/registrationAndLogin/register.php">Registrieren</a><br></br>
+	<a href="/html/registrationAndLogin/login.php">Login</a><br></br>
+	<a href="/html/uploadImage/upload_image.php">Upload von Bildern</a>
  </body>
 </html>
