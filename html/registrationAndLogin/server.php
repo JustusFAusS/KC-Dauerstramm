@@ -81,4 +81,13 @@ if (isset($_POST['login_user'])) {
   }
 }
 
+//Logout USER
+if (isset($_POST['logout_user'])) {
+    session_start();
+    session_unset();
+    session_destroy();
+    header('location: /html/registrationAndLogin/login.php');
+}
+
+
 ?>
