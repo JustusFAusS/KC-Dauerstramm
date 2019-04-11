@@ -1,8 +1,8 @@
 <?php
-session_start();
+//session_start();
 
 //Includes von Funktionen
-include("functions.php"); 
+include_once("functions.php"); 
 
 //initialisierung von Variablen
 $userID = "";
