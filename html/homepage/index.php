@@ -25,6 +25,8 @@
 	<h2> Links:</h2>
 	<a href="/html/registrationAndLogin/register.php">Registrieren</a><br></br>
 	<a href="/html/registrationAndLogin/login.php">Login</a><br></br>
-	<a href="/html/uploadImage/upload_image.php">Upload von Bildern</a>
+	<a href="/html/uploadImage/upload_image.php">Upload von Bildern</a><br></br>
+	<a href="/html/homepage/image_feed.php">Image Feed (gekapselt. Normalerweise keine eigene Seite)</a>
+
  </body>
 </html>
