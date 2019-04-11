@@ -1,4 +1,4 @@
-<?php include('service_upload_image.php') ?>
+<?php include_once('service_upload_image.php') ?>
 <!DOCTYPE html>
 <html>
 <body>
