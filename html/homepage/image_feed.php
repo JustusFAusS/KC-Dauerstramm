@@ -19,17 +19,18 @@ if ( nutzer_angemeldet() ){
 	$result = mysqli_query($db, $query);
 	//$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	//If == true ? noch keine möglichkeit der Abfrage gefunden
-if ( True ) {
+	if ($result->num_rows > 0) {
 		//Es wurden Bilder gefunden
 
 		//Aufbauen der Tabelle
-		echo "<table><tbody>";
+		echo "<table border='1'><tbody>";
 		//Einzelne Zeilen einfügen
 		while($row = mysqli_fetch_assoc($result)){
 			echo "<tr>";
 			echo "<td><img src=" . $row["ImageDir"] . " alt='Bild nicht verfügbar.' width='150' height='100'></td>";
 			echo "<td>" . $row["ImageTitle"] . "</td>";
 			echo "<td>" . $row["ImageComment"] . "</td>";
+			echo "<td>" . get_user_by_id($row["UploadedBy"]) . "</td>";
 			echo "</tr>";
 		}
 		echo "</tbody></table>";
