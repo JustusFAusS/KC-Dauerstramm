@@ -1,4 +1,12 @@
-<?php include('server.php') ?>
+<?php include_once('server.php') ?>
+<?php include_once('/html/homepage/functions.php') ?>
+
+<?php
+//Automatischer verweis auf die Homepage
+	if (nutzer_angemeldet()){
+		header('location: /html/homepage/index.php');
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
