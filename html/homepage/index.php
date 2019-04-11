@@ -27,8 +27,13 @@
 	<a href="/html/registrationAndLogin/register.php">Registrieren</a><br></br>
 	<a href="/html/registrationAndLogin/login.php">Login</a><br></br>
 	<a href="/html/uploadImage/upload_image.php">Upload von Bildern</a><br></br>
-	<a href="/html/homepage/image_feed.php">Image Feed (gekapselt. Normalerweise keine eigene Seite)</a>
+	<a href="/html/homepage/image_feed.php">Image Feed (gekapselt. Normalerweise keine eigene Seite)</a><br></br>
+	<a href="/html/news/news_feed.php">News Feed (gekapselt. Normalerweise keine eigene Seite)</a><br></br>
+	<a href="/html/news/add_news.php">Hinzufügen von Nachrichten</a><br></br>
+
 	<h2>Bilder:</h2>
-	<?php include("image_feed.php");?>
+	<?php include_once("image_feed.php");?>
+	<h2>News:</h2>
+	<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/html/news/news_feed.php");?>
  </body>
 </html>
