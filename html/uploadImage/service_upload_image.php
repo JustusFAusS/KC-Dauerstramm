@@ -26,7 +26,7 @@ if (isset($_POST['save_image'])) {
 
 	//Dieser Pfad wird in der DB hinterlegt werden. Damit die Datei nicht mit dem Server Root-Path korolliert fehlt dieser
 	//Er muss anschließend ermittelt werden.
-	$target_dir_withoutRootFolder = "/resources/images/uploadedImages/" . $basename;
+	$target_dir_withoutRootFolder = "/resources/images/uploadedImages/" . $target_name;
 
 	//Auslesen der Parameter
 	$target_title = $_POST['title'];
