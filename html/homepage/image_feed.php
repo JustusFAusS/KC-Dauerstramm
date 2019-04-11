@@ -27,7 +27,7 @@ if ( nutzer_angemeldet() ){
 		//Einzelne Zeilen einfügen
 		while($row = mysqli_fetch_assoc($result)){
 			echo "<tr>";
-			echo "<td><img src=" . $row["ImageDir"] . " alt='Bild nicht verfügbar.' width='150' height='100'></td>";
+			echo "<td><img src='" . $row["ImageDir"] . "' alt='Bild nicht verfügbar.' width='150' height='100'></td>";
 			echo "<td>" . $row["ImageTitle"] . "</td>";
 			echo "<td>" . $row["ImageComment"] . "</td>";
 			echo "<td>" . get_user_by_id($row["UploadedBy"]) . "</td>";

@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+//Includes von Funktionen
+include($_SERVER['DOCUMENT_ROOT'] . "/html/homepage/functions.php"); 
+
 // initializing variables
 $username = "";
 $email    = "";
@@ -11,47 +14,51 @@ $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
-  // receive all input values from the form
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+  if (!nutzer_angemeldet()) {
+  	// receive all input values from the form
+  	$username = mysqli_real_escape_string($db, $_POST['username']);
+  	$email = mysqli_real_escape_string($db, $_POST['email']);
+  	$password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
+  	$password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
-  // form validation: ensure that the form is correctly filled ...
-  // by adding (array_push()) corresponding error unto $errors array
-  if (empty($username)) { array_push($errors, "Nutzername wurde nicht angegeben. Bitte geben Sie einen Nutzername an."); }
-  if (empty($email)) { array_push($errors, "E-mail wurde nicht angegeben. Bitte geben Sie eine E-Mail an."); }
-  if (empty($password_1)) { array_push($errors, "Bitte geben Sie ein passwort an."); }
-  if ($password_1 != $password_2) {
-	array_push($errors, "Die Passwörter stimmen nicht überein.");
-  }
+	// form validation: ensure that the form is correctly filled ...
+  	// by adding (array_push()) corresponding error unto $errors array
+  	if (empty($username)) { array_push($errors, "Nutzername wurde nicht angegeben. Bitte geben Sie einen Nutzername an."); }
+  	if (empty($email)) { array_push($errors, "E-mail wurde nicht angegeben. Bitte geben Sie eine E-Mail an."); }
+  	if (empty($password_1)) { array_push($errors, "Bitte geben Sie ein passwort an."); }
+  	if ($password_1 != $password_2) {
+		array_push($errors, "Die Passwörter stimmen nicht überein.");
+  	}
 
-  // first check the database to make sure 
-  // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
-  
-  if ($user) { // if user exists
-    if ($user['username'] === $username) {
-      array_push($errors, "Nutzername existiert schon. Bitte wählen Sie einen anderen.");
-    }
+  	// first check the database to make sure 
+  	// a user does not already exist with the same username and/or email
+  	$user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
+  	$result = mysqli_query($db, $user_check_query);
+  	$user = mysqli_fetch_assoc($result);
 
-    if ($user['email'] === $email) {
-      array_push($errors, "E-Mail schon registriert. Bitte überprüfen Sie Ihre eingaben oder melden Sie sich an.");
-    }
-  }
+	if ($user) { // if user exists
+    		if ($user['username'] === $username) {
+      			array_push($errors, "Nutzername existiert schon. Bitte wählen Sie einen anderen.");
+    	}
 
-  // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
+    	if ($user['email'] === $email) {
+      		array_push($errors, "E-Mail schon registriert. Bitte überprüfen Sie Ihre eingaben oder melden Sie sich an.");
+    	}
+	}
 
-  	$query = "INSERT INTO users (username, email, password) 
+  	// Finally, register user if there are no errors in the form
+  	if (count($errors) == 0) {
+  		$password = md5($password_1);//encrypt the password before saving in the database
+
+  		$query = "INSERT INTO users (username, email, password) 
   			  VALUES('$username', '$email', '$password')";
-  	mysqli_query($db, $query);
-  	$_SESSION['username'] = $username;
-  	$_SESSION['success'] = "Sie sind nun erfolgreich registriert und eingeloggt.";
-  	header('location: /html/homepage/index.php');
+  		mysqli_query($db, $query);
+  		$_SESSION['username'] = $username;
+  		$_SESSION['success'] = "Sie sind nun erfolgreich registriert und eingeloggt.";
+  		header('location: /html/homepage/index.php');
+  	}
+  } else {
+	array_push($errors, "Sie sind schon angemeldet. Eine Registrierung ist nicht möglich");
   }
 }
 
