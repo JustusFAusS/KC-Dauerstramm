@@ -1,5 +1,5 @@
-<div class="header">
-	<table style="margin-left: auto; margin-right: auto; width: 100%;">
+<div id="header">
+	<table id="header_table">
 		<tbody>
 			<tr>
 				<td style="width: 30%;">&nbsp;</td>

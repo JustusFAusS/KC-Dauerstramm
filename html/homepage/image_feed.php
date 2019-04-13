@@ -1,4 +1,4 @@
-<?php
+<?php 
 //session_start();
 
 //Includes von Funktionen
@@ -28,10 +28,23 @@ if ( nutzer_angemeldet() ){
 		while($row = mysqli_fetch_assoc($result)){
 			echo "<tr>";
 			echo "<td><img src='" . $row["ImageDir"] . "' alt='Bild nicht verfügbar.' width='150' height='100'></td>";
-			echo "<td>" . $row["ImageTitle"] . "</td>";
+			echo "<td>" . $row["ImageTitle"] . $row["ImageID"] . "</td>";
 			echo "<td>" . $row["ImageComment"] . "</td>";
 			echo "<td>" . get_user_by_id($row["UploadedBy"]) . "</td>";
 			echo "</tr>";
+			//Kommentare laden
+			$query_get_comments = "SELECT * FROM imageComments INNER JOIN images ON images.ImageID = imageComments.imageID WHERE imageComments.imageID = " . $row["ImageID"] . ";";
+			$comments_result = mysqli_query($db, $query_get_comments);
+			//Sind kommentare vorhanden?
+			if ($comments_result->num_rows > 0) {
+				echo "<tr><td>" . "Kommentare:" . "</td></tr>";
+				//Kommentare einblenden
+				while($comment_row = mysqli_fetch_assoc($comments_result)){
+					echo "<tr><td>" . $comment_row["message"] . "</td></tr>";
+					echo "<tr><td>" . get_user_by_id($comment_row["creationUserID"]) . "</td></tr>";
+				}
+			} 
+			echo "<tr><td>Kommentar verfassen</td></tr>";
 		}
 		echo "</tbody></table>";
 	} else {

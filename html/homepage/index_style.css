@@ -1,0 +1,26 @@
+#whole_page,body,main_content {
+	background-color:#f5f2e8;
+	border:0px;
+	margin: 0px;
+}
+
+#main_content {
+	margin: 12px;
+	margin-right:20px auto 60 px;
+}
+
+#main_page {
+	background-color:white;
+	width: 		60%;
+	padding: 5px;
+	
+}
+
+#header	{
+	background-color:yellow;
+	height: 40px;
+}
+
+#header_table {
+	width: 100%;
+}
