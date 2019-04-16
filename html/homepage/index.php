@@ -9,7 +9,6 @@
 <html>
  <head>
   	<title>Homepage</title>
-	<link rel="stylesheet" href="index_style.css">
  </head>
  <body id="body">
     <div id="whole_page">
