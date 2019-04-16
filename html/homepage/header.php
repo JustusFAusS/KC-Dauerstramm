@@ -1,11 +1,5 @@
-<!-- Includes Bootstrap-->
-<script src="/html/bootstrap/bootstrap.bundle.js"></script>
-<script src="/html/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<!--Hier darf NICHT NOCHMAL ALLES IMPORTIERT WERDEN XGADLPE-->
+<!--Führt zu fehlern!-->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <!-- Fette Schrift -->
     <a class="navbar-brand" href="/html/homepage/index.php"><img class="rounded mr-2" src="/resources/images/homepage/HomepageIcon.png" alt="" style="width:30px;">Kegelclub-Homepage</a>
@@ -33,7 +27,7 @@
                 //span "<echo class='navbar-text'>Angemeldet</span>";
                 //Dropdown
                 echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
-                echo "<a class='nav-link dropdown-toggle' href='#' id='navbardrop' data-toggle='dropdown'>" . $_SESSION['username'] . "</a>";
+                echo "<a class='nav-link dropdown-toggle' href='' id='navbardrop' data-toggle='dropdown'>" . $_SESSION['username'] . "</a>";
                 echo "<div class='dropdown-menu'>";
                 //Profil bearbeiten
                 echo "<form  method='post' class='form-inline' action='/html/registrationAndLogin/server.php'>";
