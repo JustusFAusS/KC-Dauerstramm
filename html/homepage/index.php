@@ -1,3 +1,4 @@
+<!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/html/bootstrap/bootstrap.css">
 <script src="/html/bootstrap/bootstrap.bundle.js"></script>
 <script src="/html/bootstrap/bootstrap.bundle.min.js"></script>
@@ -13,9 +14,13 @@
  <body id="body">
     <div id="whole_page">
 	    <?php include("header.php");?>
+        <!-- Seitenränder werden durch den Container festgelegt-->
         <div class="container">
+            <!-- Erste Reihe. Wenn weitere hinzukommen können mehrere Kacheln erstellt werden-->
             <div class="row">
+                <!-- Platzhalter-->
                 <div class="col-sm-1"></div>
+                <!-- Linkes Menue. Etwas groesser als das rechte-->
                 <div class="col-sm-6">
                     <div class="bg-white p-2 mb-3 mt-3">
                         <h1>Wilkommen</h1>

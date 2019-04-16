@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/html/bootstrap/bootstrap.css">
+<!-- Includes Bootstrap-->
 <script src="/html/bootstrap/bootstrap.bundle.js"></script>
 <script src="/html/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

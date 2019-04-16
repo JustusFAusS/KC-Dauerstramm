@@ -1,4 +1,5 @@
 <footer class="page-footer border-top bg-dark pt-5">
+    <!--diese DIV verhindert einen Rand am rechten Bildschirm-->    
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-1">
