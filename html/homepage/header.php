@@ -1,6 +1,8 @@
 <!--Hier darf NICHT NOCHMAL ALLES IMPORTIERT WERDEN XGADLPE-->
 <!--Führt zu fehlern!-->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <!-- Fette Schrift -->
     <a class="navbar-brand" href="/html/homepage/index.php"><img class="rounded mr-2" src="/resources/images/homepage/HomepageIcon.png" alt="" style="width:30px;">Kegelclub-Homepage</a>
     <!--Button für Handys-->    
