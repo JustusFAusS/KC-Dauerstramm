@@ -23,30 +23,56 @@ if ( nutzer_angemeldet() ){
 		//Es wurden Bilder gefunden
 
 		//Aufbauen der Tabelle
-		echo "<table border='1'><tbody>";
+		//echo "<table border='0'><tbody>";
 		//Einzelne Zeilen einfügen
 		while($row = mysqli_fetch_assoc($result)){
-			echo "<tr>";
-			echo "<td><img src='" . $row["ImageDir"] . "' alt='Bild nicht verfügbar.' width='150' height='100'></td>";
-			echo "<td>" . $row["ImageTitle"] . $row["ImageID"] . "</td>";
-			echo "<td>" . $row["ImageComment"] . "</td>";
-			echo "<td>" . get_user_by_id($row["UploadedBy"]) . "</td>";
-			echo "</tr>";
-			//Kommentare laden
-			$query_get_comments = "SELECT * FROM imageComments INNER JOIN images ON images.ImageID = imageComments.imageID WHERE imageComments.imageID = " . $row["ImageID"] . ";";
-			$comments_result = mysqli_query($db, $query_get_comments);
-			//Sind kommentare vorhanden?
-			if ($comments_result->num_rows > 0) {
-				echo "<tr><td>" . "Kommentare:" . "</td></tr>";
-				//Kommentare einblenden
-				while($comment_row = mysqli_fetch_assoc($comments_result)){
-					echo "<tr><td>" . $comment_row["message"] . "</td></tr>";
-					echo "<tr><td>" . get_user_by_id($comment_row["creationUserID"]) . "</td></tr>";
-				}
-			} 
-			echo "<tr><td>Kommentar verfassen</td></tr>";
+			//echo "<tr>";
+            echo "<div class='img-thumbnail m-1'>";
+                echo '<div class="row">';
+                    echo "<div class='col-sm-4'><img src='" . $row["ImageDir"] . "'alt='Bild nicht verfügbar' class='img-thumbnail rounded'></div>";
+			        //echo "<td rowspan ='3'><img src='" . $row["ImageDir"] . "' alt='Bild nicht verfügbar.' class='img-thumbnail'></td>";
+                    echo "<div class='col-sm-8'>";
+                        echo '<div class="row">';
+                            echo "<div class='col-sm-12'><h3>" . $row["ImageTitle"] . $row["ImageID"] . "</h3></div>";
+                        echo "</div>";	
+                        echo '<div class="row">';
+                            echo "<div class='col-sm-12'>" .  $row["ImageComment"] . "</div>";
+	                    echo "</div>";	
+                        echo '<div class="row">';	
+                            echo '<div class="col-sm-12"><p class="text-secondary">' . get_user_by_id($row["UploadedBy"]) . "</p></div>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";	
+                //echo "<td>" . $row["ImageTitle"] . $row["ImageID"] . "</td>";
+                //echo "</tr>";
+			    //echo "<tr><td>" . $row["ImageComment"] . "</td></tr>";
+			    //echo "<tr><td>" . get_user_by_id($row["UploadedBy"]) . "</td></tr>";
+			    //echo "</tr>";
+			    //Kommentare laden
+			    $query_get_comments = "SELECT * FROM imageComments INNER JOIN images ON images.ImageID = imageComments.imageID WHERE imageComments.imageID = " . $row["ImageID"] . ";";
+			    $comments_result = mysqli_query($db, $query_get_comments);
+			    //Sind kommentare vorhanden?
+			    if ($comments_result->num_rows > 0) {
+                    echo "<div class='img-thumbnail m-1'>";
+                        echo '<div class="row">';
+				            echo "<div class='col-sm-12'>" . "Kommentare:" . "</div>";
+                        echo '</div>';
+				        //Kommentare einblenden
+				        while($comment_row = mysqli_fetch_assoc($comments_result)){
+                            echo "<div class='img-thumbnail m-1'>";
+                                echo "<div class='row'>";
+					                echo "<div class='col-sm-12'>" . $comment_row["message"] . "</div>";
+                                echo '</div>';
+                                echo "<div class='row'>";
+					                echo "<div class='col-sm-12'><p class='text-secondary'>" . get_user_by_id($comment_row["creationUserID"]) . "</p></div>";
+                                echo '</div>';
+                            echo "</div>";				
+                        }
+                    echo "</div>";
+			    } 
+			echo "<div class='col-sm-12'>Kommentar verfassen</div>";
+            echo "</div>";
 		}
-		echo "</tbody></table>";
 	} else {
 		//Es wurden keine Bilder gefunden
 		//Hier kann eine schönere Ausgabe erfolgen

@@ -1,5 +1,6 @@
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/html/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script src="/html/bootstrap/bootstrap.bundle.js"></script>
 <script src="/html/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
