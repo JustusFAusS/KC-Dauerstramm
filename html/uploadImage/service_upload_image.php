@@ -31,6 +31,7 @@ if (isset($_POST['save_image'])) {
 	//Auslesen der Parameter
 	$target_title = $_POST['title'];
 	$target_comment = $_POST['comment'];
+    $uploadOk = 1;
 	//Nutzer-Login Checken
 	//Nutzer angemeldet?
         if (isset($_SESSION['username'])) {
@@ -39,24 +40,27 @@ if (isset($_POST['save_image'])) {
         		//kein Error-Handling notwendig
         		$uploadOk = 1;
     		} else {
-        		array_push($upload_errors, "Die Datei ist kein gültiges Bild.");
+                if ($uploadOk == 1) {
+        		    array_push($upload_errors, "Die Datei ist kein gültiges Bild.");
+                }
         		$uploadOk = 0;
     		}
 
 		//Existiert das Bild schon?
-		if (file_exists($target_file)) {
+		if (file_exists($target_file) && $uploadOk == 1) {
+            
 			array_push($upload_errors, "Die Datei existiert schon auf dem Server. Bitte versuchen Sie es erneut.");
 			$uploadOk = 0;
 		}
 
 		//Bildgrösse überprüfen
-		if ($_FILES["fileToUpload"]["size"] > 12000000) {
+		if ($_FILES["fileToUpload"]["size"] > 12000000 && $uploadOk == 1) {
     			array_push($upload_errors, "Das Bild ist zu groß. Bitte laden Sie ein kleineres Bild hoch.");
     			$uploadOk = 0;
 		}
 
 		//Formate aussortieren
-		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $uploadOk == 1) {
     			array_push($upload_errors,"Das Bild hat ein falsches Format. Nur JPG, JPEG, PNG & GIF sind erlaubt.");
     			$uploadOk = 0;
 		}
