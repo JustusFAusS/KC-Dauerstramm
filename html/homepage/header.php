@@ -27,11 +27,11 @@
                 //span "<echo class='navbar-text'>Angemeldet</span>";
                 //Dropdown
                 echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
-                echo "<a class='nav-link dropdown-toggle' href='' id='navbardrop' data-toggle='dropdown'>" . $_SESSION['username'] . "</a>";
+                echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>" . $_SESSION['username'] . "</a>";
                 echo "<div class='dropdown-menu'>";
                 //Profil bearbeiten
-                echo "<form  method='post' class='form-inline' action='/html/registrationAndLogin/server.php'>";
-                echo "<div class='col text-center'><button class='btn-success btn-block btn-sm mt-3' type='submit' name='logout_user'>Profil bearbeiten</button></div>";
+                echo "<form  method='post' class='form-inline' action='/html/registrationAndLogin/profile_information.php'>";
+                echo "<div class='col text-center'><button class='btn-success btn-block btn-sm mt-3' type='submit' name='redirect'>Profil bearbeiten</button></div>";
                 echo "</form>";
                 //Abmelden Button
                 echo "<form  method='post' class='form-inline' action='/html/registrationAndLogin/server.php'>";
