@@ -13,6 +13,16 @@ $pathAfterSuccess = "location: /html/homepage/index.php";
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 
 //Hier wird die Methode abgefragt
+//Aufruf einer Methode wird über das Existieren eines POST-Werts ermittelt
+
+
+//Methode:              create_penalty
+//Information:          fügt eine Strafe hinzu
+//                      Nutzer muss angemeldet sein (Fehlermeldung)
+//Parameter:            p_message   (POST)  [benoetigt, wird gepprüft]  Typ: String
+//                      p_amount    (POST)  [benoetigt, wird geprüft]   Typ: Double (punkt als Dezimaltrenner(5,2))
+//Fehler:               werden an das Array upload_errors weitergegeben
+//Ergebnis bei erfolg:  Weiterleitung an pathAfterSuccess
 if (isset($_POST['create_penalty'])) {
     if(nutzer_angemeldet()) {
         $p_message = $_POST['p_message'];
@@ -27,7 +37,7 @@ if (isset($_POST['create_penalty'])) {
                 array_push($upload_errors,"Diese Regel existiert schon");
             } else {
                 //Alles bis auf die Summe ist geprüft
-                if ($p_amount > 0) {
+                if ($p_amount > 0 && $p_amount < 1000) {
                     //Alle Prüfungen abgeschlossen
                     //Daten können in die Datenbank geschrieben werden
                     $add_penalty_queue = "INSERT INTO penalties(message, amount) VALUES ('" . $p_message . "'," . $p_amount . ");";
@@ -35,11 +45,12 @@ if (isset($_POST['create_penalty'])) {
                         //Alles hat geklappt
                         header($pathAfterSuccess);  
                     } else {
-                       array_push($upload_errors, "Technischer Fehler.");
-                       array_push($upload_errors, $add_penalty_queue);  
+                        array_push($upload_errors, "Technischer Fehler.");
+                        //Für genauere Problemanalyse
+                        //array_push($upload_errors, $add_penalty_queue);  
                     }  
                 } else {
-                    array_push($upload_errors,"Die Strafe muss > 0 sein");
+                    array_push($upload_errors,"Die Strafe zwischen 0 und 1000 liegen (2 Stellen nach dem Komma).");
                 }
             }
         } else {
