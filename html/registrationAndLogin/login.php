@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registration system PHP and MySQL</title>
+  <title>Login</title>
   <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;
@@ -141,11 +141,11 @@
 				</form>					
 			</div>
 			<div class="modal-footer">
-				<a href="#">Forgot Password?</a>
+				<a href="#">Passwort vergessen?</a>
+                <a href="#">Noch kein Konto?</a>
 			</div>
 		</div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/footer.php');?>
-</div>     
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/footer.php');?>   
 </body>
 </html>
