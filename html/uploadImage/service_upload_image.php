@@ -102,6 +102,14 @@ if (isset($_POST['save_image'])) {
 	}
 }
 
+if (isset($_POST['comment_image'])) {
+    //Hier können images kommentiert werden
+    if (isset($_GET['imageid'])) {
+        $query = "INSERT INTO `imageComments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $_POST["comment_image_comment"] . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
+        mysqli_query($db, $query);
+    }
+}
+
 
 ?>
 

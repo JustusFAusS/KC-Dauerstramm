@@ -3,6 +3,7 @@
 
 //Includes von Funktionen
 include_once("functions.php"); 
+include_once($_SERVER['DOCUMENT_ROOT'] . "/html/uploadImage/service_upload_image.php"); 
 
 //initialisierung von Variablen
 $userID = "";
@@ -68,9 +69,25 @@ if ( nutzer_angemeldet() ){
                                 echo '</div>';
                             echo "</div>";				
                         }
+                    echo "<button type='button' class='btn btn-light ml-1' data-toggle='modal' data-target='#ModalImage" . $row['ImageID'] . "'>Kommentar verfassen</button>";
                     echo "</div>";
-			    } 
-			echo "<div class='col-sm-12'>Kommentar verfassen</div>";
+			    } else { 
+                    //Hier nochmal, da der Button in dem Rahmen bleiben soll. Aber nur, wenn kommentare existieren
+                    echo "<button type='button' class='btn btn-light ml-1' data-toggle='modal' data-target='#ModalImage" . $row['ImageID'] . "'>Kommentar verfassen</button>";
+                }
+                    //Hier wird das Modal angegeben. Es wird eingeblendet, falls ein Kommentar erstellt werden soll
+                    //Dies resultiert in einem langen code. Dies ist aber vertretbar.
+                    //ToDo action anpassen (funktioniert nur auf der Homepage)
+                    echo '<form action="index.php?imageid=' . $row['ImageID'] . '" method="post">';
+                        echo '<div class="modal fade" id="ModalImage' . $row['ImageID'] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header">';
+                        echo '<h5 class="modal-title" id="exampleModalLabel">Kommentar hinzufügen</h5>';
+                        echo '<button type="button" class="close" data-dismiss="modal" aria-label="Schliessen"><span aria-hidden="true">&times;</span></button></div>';
+                        echo '<div class="modal-body">';
+                        echo '<textarea class="span5" rows="3" placeholder="Kommentar" required style="min-width: 100%" name="comment_image_comment"></textarea></div>';
+                        echo '<button type="submit" class="btn btn-primary" name="comment_image">Speichern</button>';
+                        echo '</div></div></div>';
+                    echo '</form>';
+                    //Modal ende
             echo "</div>";
 		}
 	} else {
