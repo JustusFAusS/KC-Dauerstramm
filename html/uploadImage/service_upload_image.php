@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/functions.php');
+
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
 $upload_errors = array();
@@ -104,10 +106,25 @@ if (isset($_POST['save_image'])) {
 
 if (isset($_POST['comment_image'])) {
     //Hier können images kommentiert werden
-    if (isset($_GET['imageid'])) {
-        $query = "INSERT INTO `imageComments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $_POST["comment_image_comment"] . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
-        mysqli_query($db, $query);
+    if (nutzer_angemeldet()) {
+        if (isset($_GET['imageid'])) {
+		    $getMatchedImages = "SELECT * from images where ImageID='" . $_GET['imageid'] . "';";
+		    //Query ausführen und anschließend in ein Array umwandeln
+		    $result = mysqli_query($db, $getMatchedImages);
+		    $found_images = mysqli_fetch_array($result,MYSQLI_ASSOC);
+            //Wurde eine Nutzer-ID gefunden?
+		    if (isset($found_images)) {
+                $query = "INSERT INTO `imageComments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $_POST["comment_image_comment"] . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
+            mysqli_query($db, $query);  
+            header($pathAfterSuccess);      
+            } else {
+                array_push($upload_errors, "Fehler: Das zu kommentierende Bild existiert nicht!");
+            }
+        }
+    } else {
+        array_push($upload_errors, "Fehler: Sie sind nicht angemeldet");
     }
+        
 }
 
 

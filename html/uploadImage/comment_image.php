@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Aufruf über GET. Parameter (imageid)-->
 <link rel="stylesheet" href="/html/bootstrap/bootstrap.css">
 <script src="/html/bootstrap/bootstrap.bundle.js"></script>
 <script src="/html/bootstrap/bootstrap.bundle.min.js"></script>
@@ -9,33 +10,26 @@
 <html>
 <body>
     <?php include_once('service_upload_image.php') ?>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/header.php');?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/header.php');?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/functions.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">				
-				<h4 class="modal-title">Bild Hochladen</h4>
+				<h4 class="modal-title">Bild Kommentieren</h4>
 			</div>
 			<div class="modal-body">
                 <?php include('errors.php'); ?>
-				<form action="upload_image.php" method="post" enctype="multipart/form-data">
+				<form action="/html/uploadImage/comment_image.php?imageid=<?php echo $_GET['imageid']; ?>" method="post">
 					<div class="form-group">
-						<i class="fa fa-user"></i>
-						<input type="text" name="title" class="form-control" placeholder="Titel" required="required" value="<?php echo $target_title; ?>">
-					</div>
-                    <div class="form-group">
-						<i class="fa fa-envelope"></i>
-						<input type="text" name="comment" class="form-control" placeholder="Kommentar" required="required" value="<?php echo $target_comment; ?>">
+						<textarea class="span5" rows="3" placeholder="Kommentar" required="required" style="min-width: 100%" name="comment_image_comment"></textarea>
 					</div>
 					<div class="form-group">
-						<input type="file" name="fileToUpload" id="fileToUpload">					
-					</div>
-					<div class="form-group">
-						<input type="submit" name="save_image" class="btn btn-primary btn-block btn-lg" value="Hochladen">
+						<input type="submit" name="comment_image" class="btn btn-primary btn-block btn-lg" value="Speichern">
 					</div>
 				</form>					
 			</div>
 			<div class="modal-footer">
-				<a href="login.php">Bilder können nicht gelöscht werden</a>
+				<p>Kommentare können nicht gelöscht werden</p>
 			</div>
 		</div>
     </div>
@@ -43,3 +37,7 @@
 </body>
 </html>
 
+<?php
+
+
+?>
