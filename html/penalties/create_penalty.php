@@ -9,7 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php include_once('penalty_service.php') ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
 
 <?php
 //Automatischer verweis auf die Homepage
@@ -60,7 +60,7 @@
 	}
 	.modal-login .form-control, .modal-login .btn {
 		min-height: 40px;
-		border-radius: 3px; 
+		border-radius: 3px;
 	}
 	.modal-login .hint-text {
 		text-align: center;
@@ -99,10 +99,10 @@
 </head>
 </head>
 <body>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/header.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
-			<div class="modal-header">				
+			<div class="modal-header">
 				<h4 class="modal-title">Strafe erstellen</h4>
 			</div>
 			<div class="modal-body">
@@ -119,10 +119,10 @@
 					<div class="form-group">
 						<input type="submit" name="create_penalty" class="btn btn-primary btn-block btn-lg" value="Speichern">
 					</div>
-				</form>					
+				</form>
 			</div>
 		</div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/footer.php');?>   
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
@@ -43,12 +43,12 @@ if (isset($_POST['create_penalty'])) {
                     $add_penalty_queue = "INSERT INTO penalties(message, amount) VALUES ('" . $p_message . "'," . $p_amount . ");";
                     if (mysqli_query($db, $add_penalty_queue)==1) {
                         //Alles hat geklappt
-                        header($pathAfterSuccess);  
+                        header($pathAfterSuccess);
                     } else {
                         array_push($upload_errors, "Technischer Fehler.");
                         //Für genauere Problemanalyse
-                        //array_push($upload_errors, $add_penalty_queue);  
-                    }  
+                        //array_push($upload_errors, $add_penalty_queue);
+                    }
                 } else {
                     array_push($upload_errors,"Die Strafe zwischen 0 und 1000 liegen (2 Stellen nach dem Komma).");
                 }

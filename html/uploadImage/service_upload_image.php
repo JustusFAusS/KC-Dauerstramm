@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
@@ -50,7 +50,7 @@ if (isset($_POST['save_image'])) {
 
 		//Existiert das Bild schon?
 		if (file_exists($target_file) && $uploadOk == 1) {
-            
+
 			array_push($upload_errors, "Die Datei existiert schon auf dem Server. Bitte versuchen Sie es erneut.");
 			$uploadOk = 0;
 		}
@@ -115,8 +115,8 @@ if (isset($_POST['comment_image'])) {
             //Wurde eine Nutzer-ID gefunden?
 		    if (isset($found_images)) {
                 $query = "INSERT INTO `imageComments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $_POST["comment_image_comment"] . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
-            mysqli_query($db, $query);  
-            header($pathAfterSuccess);      
+            mysqli_query($db, $query);
+            header($pathAfterSuccess);
             } else {
                 array_push($upload_errors, "Fehler: Das zu kommentierende Bild existiert nicht!");
             }
@@ -124,10 +124,8 @@ if (isset($_POST['comment_image'])) {
     } else {
         array_push($upload_errors, "Fehler: Sie sind nicht angemeldet");
     }
-        
+
 }
 
 
 ?>
-
-

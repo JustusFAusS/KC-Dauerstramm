@@ -9,10 +9,10 @@
 <html>
 <body>
     <?php include_once('service_upload_image.php') ?>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/header.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
-			<div class="modal-header">				
+			<div class="modal-header">
 				<h4 class="modal-title">Bild Hochladen</h4>
 			</div>
 			<div class="modal-body">
@@ -27,19 +27,18 @@
 						<input type="text" name="comment" class="form-control" placeholder="Kommentar" required="required" value="<?php echo $target_comment; ?>">
 					</div>
 					<div class="form-group">
-						<input type="file" name="fileToUpload" id="fileToUpload">					
+						<input type="file" name="fileToUpload" id="fileToUpload">
 					</div>
 					<div class="form-group">
 						<input type="submit" name="save_image" class="btn btn-primary btn-block btn-lg" value="Hochladen">
 					</div>
-				</form>					
+				</form>
 			</div>
 			<div class="modal-footer">
 				<a href="login.php">Bilder können nicht gelöscht werden</a>
 			</div>
 		</div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/footer.php');?>   
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
 </body>
 </html>
-

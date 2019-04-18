@@ -8,7 +8,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php include_once('server.php') ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,7 +53,7 @@
 	    }
 	    .modal-login .form-control, .modal-login .btn {
 		    min-height: 40px;
-		    border-radius: 3px; 
+		    border-radius: 3px;
 	    }
 	    .modal-login .hint-text {
 		    text-align: center;
@@ -96,11 +96,11 @@
 		            header("location: /html/registrationAndLogin/login.php");
 	            }
             ?>
-            <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/header.php');?>
+            <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
             <div class="modal-dialog modal-login">
                 <div class="modal-content">
                 </div>
-                    <div class="modal-header">				
+                    <div class="modal-header">
 				    <h4 class="modal-title">Nutzerinformationen</h4>
 			    </div>
                 <div class="modal-body">
@@ -116,17 +116,17 @@
 					    </div>
 					    <div class="form-group">
 						    <i class="fa fa-lock"></i>
-						    <input type="password" name="password_1" class="form-control" placeholder="Neues Passwort vergeben" required="required">					
+						    <input type="password" name="password_1" class="form-control" placeholder="Neues Passwort vergeben" required="required">
 					    </div>
                         <div class="form-group">
 						    <i class="fa fa-lock"></i>
-						    <input type="password" name="password_2" class="form-control" placeholder="Neues Passwort erneut eingeben" required="required">					
+						    <input type="password" name="password_2" class="form-control" placeholder="Neues Passwort erneut eingeben" required="required">
 					    </div>
 					    <div class="form-group">
 						    <input type="submit" name="update_user" class="btn btn-primary btn-block btn-lg" value="Speichern">
 					    </div>
-				    </form>					
+				    </form>
 			    </div>
             </div>
-            <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/footer.php');?> 
+            <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
     </body>

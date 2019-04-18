@@ -9,7 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php include_once('server.php') ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
 
 <?php
 //Automatischer verweis auf die Homepage
@@ -60,7 +60,7 @@
 	}
 	.modal-login .form-control, .modal-login .btn {
 		min-height: 40px;
-		border-radius: 3px; 
+		border-radius: 3px;
 	}
 	.modal-login .hint-text {
 		text-align: center;
@@ -102,7 +102,7 @@
   <!--<div class="header">
   	<h2>Login</h2>
   </div>
-	 
+
   <form method="post" action="login.php">
   	<?php include('errors.php'); ?>
   	<div class="input-group">
@@ -120,10 +120,10 @@
   		Noch nicht registriert? <a href="register.php">Sign up</a>
   	</p>
   </form>-->
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/header.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
-			<div class="modal-header">				
+			<div class="modal-header">
 				<h4 class="modal-title">Member Login</h4>
 			</div>
 			<div class="modal-body">
@@ -134,12 +134,12 @@
 					</div>
 					<div class="form-group">
 						<i class="fa fa-lock"></i>
-						<input type="password" name="password" class="form-control" placeholder="Password" required="required">					
+						<input type="password" name="password" class="form-control" placeholder="Password" required="required">
 					</div>
 					<div class="form-group">
 						<input type="submit" name="login_user" class="btn btn-primary btn-block btn-lg" value="Login">
 					</div>
-				</form>					
+				</form>
 			</div>
 			<div class="modal-footer">
 				<a href="#">Passwort vergessen?</a>
@@ -147,6 +147,6 @@
 			</div>
 		</div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/footer.php');?>   
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
 </body>
 </html>

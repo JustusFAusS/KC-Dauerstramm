@@ -10,11 +10,11 @@
 <html>
 <body>
     <?php include_once('service_upload_image.php') ?>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/header.php');?>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/functions.php');?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
-			<div class="modal-header">				
+			<div class="modal-header">
 				<h4 class="modal-title">Bild Kommentieren</h4>
 			</div>
 			<div class="modal-body">
@@ -26,14 +26,14 @@
 					<div class="form-group">
 						<input type="submit" name="comment_image" class="btn btn-primary btn-block btn-lg" value="Speichern">
 					</div>
-				</form>					
+				</form>
 			</div>
 			<div class="modal-footer">
 				<p>Kommentare können nicht gelöscht werden</p>
 			</div>
 		</div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/footer.php');?>   
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
 </body>
 </html>
 

@@ -59,7 +59,7 @@
 	}
 	.modal-login .form-control, .modal-login .btn {
 		min-height: 40px;
-		border-radius: 3px; 
+		border-radius: 3px;
 	}
 	.modal-login .hint-text {
 		text-align: center;
@@ -97,10 +97,10 @@
 </style>
 <body>
     </form>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/header.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
-			<div class="modal-header">				
+			<div class="modal-header">
 				<h4 class="modal-title">Registrieren</h4>
 			</div>
 			<div class="modal-body">
@@ -115,23 +115,23 @@
 					</div>
 					<div class="form-group">
 						<i class="fa fa-lock"></i>
-						<input type="password" name="password_1" class="form-control" placeholder="Password" required="required">					
+						<input type="password" name="password_1" class="form-control" placeholder="Password" required="required">
 					</div>
                     <div class="form-group">
 						<i class="fa fa-lock"></i>
-						<input type="password" name="password_2" class="form-control" placeholder="Password" required="required">					
+						<input type="password" name="password_2" class="form-control" placeholder="Password" required="required">
 					</div>
 					<div class="form-group">
 						<input type="submit" name="reg_user" class="btn btn-primary btn-block btn-lg" value="Register">
 					</div>
-				</form>					
+				</form>
 			</div>
 			<div class="modal-footer">
 				<a href="login.php">Schon Mitglied? Anmelden</a>
 			</div>
 		</div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/homepage/footer.php');?>   
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
 </body>
 <!-- Alte form
 <form action="register.php" method="post">
