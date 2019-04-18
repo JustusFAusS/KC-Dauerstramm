@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 18. Apr 2019 um 12:24
+-- Erstellungszeit: 18. Apr 2019 um 12:26
 -- Server-Version: 10.1.38-MariaDB
 -- PHP-Version: 7.1.26
 
@@ -21,6 +21,36 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `kcd`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `imagecomments`
+--
+
+CREATE TABLE `imagecomments` (
+  `commentID` int(11) NOT NULL,
+  `imageID` int(11) NOT NULL,
+  `message` varchar(5000) NOT NULL,
+  `creationdate` date NOT NULL,
+  `creationUserID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `imagecomments`
+--
+
+INSERT INTO `imagecomments` (`commentID`, `imageID`, `message`, `creationdate`, `creationUserID`) VALUES
+(1, 11, '[gfdsvalue-2]', '2019-04-13', 4),
+(3, 11, 'fjkldsajfdfjaölk', '2019-04-13', 4),
+(4, 12, 'fjkldsajfjlkdsajflkdsajflkjlkdsajflksamememfodsajfoiaj', '2019-04-13', 4),
+(5, 17, 'frdsfdsfdsfgfdsg', '2019-04-17', 4),
+(6, 15, 'Test', '2019-04-17', 4),
+(7, 14, 'Test', '2019-04-17', 4),
+(8, 14, 'Test', '2019-04-17', 4),
+(9, 14, 'SIEG', '2019-04-17', 4),
+(10, 11, 'Cool', '2019-04-17', 4),
+(11, 16, 'Erster Kommentar', '2019-04-17', 4);
 
 -- --------------------------------------------------------
 
@@ -50,9 +80,93 @@ INSERT INTO `images` (`ImageID`, `ImageTitle`, `ImageComment`, `ImageDir`, `Uplo
 (16, 'dvfd', 'jkhkjh', '/KCD/resources/images/uploadedImages/ab3744c4a189570216f06b5060fa72efSample.png', 4, '2019-04-17'),
 (17, 'dvfdfjlkdsajflkdsa', 'jkhkjh', '/KCD/resources/images/uploadedImages/d8ef4c9c10811f350f68e097d21cee6bSample.png', 4, '2019-04-17');
 
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `news`
+--
+
+CREATE TABLE `news` (
+  `newsID` int(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `message` varchar(10000) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `news`
+--
+
+INSERT INTO `news` (`newsID`, `title`, `message`, `date`) VALUES
+(4, 'Test', 'Messageflkjds', '2019-04-11'),
+(5, 'Titel', 'Message', '2019-04-11'),
+(6, 'Test', 'Nachricht', '2019-04-17');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `penalties`
+--
+
+CREATE TABLE `penalties` (
+  `panaltyID` int(11) NOT NULL,
+  `message` varchar(5000) NOT NULL,
+  `amount` decimal(5,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `penalties`
+--
+
+INSERT INTO `penalties` (`panaltyID`, `message`, `amount`) VALUES
+(2, 'Test', '123.12'),
+(5, 'Test2', '123.23'),
+(6, 'Test3', '0.50'),
+(7, 'Test4', '999.00');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `userpenalties`
+--
+
+CREATE TABLE `userpenalties` (
+  `userID` int(11) NOT NULL,
+  `penaltyID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(4, 'Lennart Peters', 'lennartpeters@online.de', '043cf4599e5e4bf1e48279f56ce8b7c6'),
+(5, 'TestUser1', 'test@mail.com', '202cb962ac59075b964b07152d234b70'),
+(6, 'qwertz', 'fds@fdsa.de', '81dc9bdb52d04dc20036dbd8313ed055');
+
 --
 -- Indizes der exportierten Tabellen
 --
+
+--
+-- Indizes für die Tabelle `imagecomments`
+--
+ALTER TABLE `imagecomments`
+  ADD PRIMARY KEY (`commentID`),
+  ADD KEY `users.id` (`creationUserID`) USING BTREE;
 
 --
 -- Indizes für die Tabelle `images`
@@ -62,14 +176,64 @@ ALTER TABLE `images`
   ADD KEY `UploadedBy` (`UploadedBy`);
 
 --
+-- Indizes für die Tabelle `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`newsID`);
+
+--
+-- Indizes für die Tabelle `penalties`
+--
+ALTER TABLE `penalties`
+  ADD PRIMARY KEY (`panaltyID`);
+
+--
+-- Indizes für die Tabelle `userpenalties`
+--
+ALTER TABLE `userpenalties`
+  ADD PRIMARY KEY (`userID`,`penaltyID`),
+  ADD KEY `penaltyID` (`penaltyID`) USING BTREE,
+  ADD KEY `userID` (`userID`);
+
+--
+-- Indizes für die Tabelle `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT für exportierte Tabellen
 --
+
+--
+-- AUTO_INCREMENT für Tabelle `imagecomments`
+--
+ALTER TABLE `imagecomments`
+  MODIFY `commentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT für Tabelle `images`
 --
 ALTER TABLE `images`
   MODIFY `ImageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT für Tabelle `news`
+--
+ALTER TABLE `news`
+  MODIFY `newsID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT für Tabelle `penalties`
+--
+ALTER TABLE `penalties`
+  MODIFY `panaltyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT für Tabelle `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints der exportierten Tabellen
