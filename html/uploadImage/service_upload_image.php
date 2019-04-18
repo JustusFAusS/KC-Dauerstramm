@@ -17,7 +17,7 @@ if (isset($_POST['save_image'])) {
 	//Root-Pfad des Servers
 	$base_dir = __DIR__;
 	//Pfad des Bildes auf der Platte (nur zum speichern)
-	$target_dir = $_SERVER['DOCUMENT_ROOT'] . "/resources/images/uploadedImages/";
+	$target_dir = $_SERVER['DOCUMENT_ROOT'] . "/KCD/resources/images/uploadedImages/";
 	$basename = basename($_FILES["fileToUpload"]["name"]);
 	//Hier wird ein zufälliger Hash generiert. Dadurch können gleiche Dateinamen öfter hochgeladen werden.
 	$target_name = md5(rand()) . $basename;
@@ -28,7 +28,7 @@ if (isset($_POST['save_image'])) {
 
 	//Dieser Pfad wird in der DB hinterlegt werden. Damit die Datei nicht mit dem Server Root-Path korolliert fehlt dieser
 	//Er muss anschließend ermittelt werden.
-	$target_dir_withoutRootFolder = "/resources/images/uploadedImages/" . $target_name;
+	$target_dir_withoutRootFolder = "/KCD/resources/images/uploadedImages/" . $target_name;
 
 	//Auslesen der Parameter
 	$target_title = $_POST['title'];

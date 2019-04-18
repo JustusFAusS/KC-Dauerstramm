@@ -7,7 +7,7 @@
             <div class="col-sm-10" style="text-align: center">
                 <div class="row">
                     <div class="col-12 col-md">
-                        <img class="mb-2" src="/resources/images/homepage/HomepageIcon.png" alt="" width="40" height="40">
+                        <img class="mb-2" src="/KCD/resources/images/homepage/HomepageIcon.png" alt="" width="40" height="40">
                         <small class="d-block mb-3 text-muted">Justus Falke, Marius Hilt, Lennart Peters</small>
                         <small class="d-block mb-3 text-muted">© 2018-2019</small>
                     </div>

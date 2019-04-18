@@ -4,7 +4,7 @@
     <!--Favicon-->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <!-- Fette Schrift -->
-    <a class="navbar-brand" href="/KCD/html/homepage/index.php"><img class="rounded mr-2" src="/resources/images/homepage/HomepageIcon.png" alt="" style="width:30px;">Kegelclub-Homepage</a>
+    <a class="navbar-brand" href="/KCD/html/homepage/index.php"><img class="rounded mr-2" src="/KCD/resources/images/homepage/HomepageIcon.png" alt="" style="width:30px;">Kegelclub-Homepage</a>
     <!--Button für Handys-->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
