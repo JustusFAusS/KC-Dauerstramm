@@ -6,17 +6,17 @@ session_start();
 //add_news		Fügt news hinzu							new_title,new_message
 
 //Funktionen importieren
-include($_SERVER['DOCUMENT_ROOT'] . "/html/homepage/functions.php"); 
+include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
 
 //Globale Variablen
 //Weiterleitung nach erfolg führt zu dieser Seite
-$success_page = 'location: /html/homepage/index.php';
+$success_page = 'location: /KCD/html/homepage/index.php';
 //Weiterleitung nach fehlendem Login führt zu dieser Seite
 $no_login_page = 'location: html/registrationAndLogin/login.php';
 //Datenbank
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 //Hier werden die Fehler hinterlegt
-$errors = array(); 
+$errors = array();
 
 
 //Nutzer angemeldet?

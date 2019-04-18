@@ -2,12 +2,12 @@
 session_start();
 
 //Includes von Funktionen
-include($_SERVER['DOCUMENT_ROOT'] . "/html/homepage/functions.php"); 
+include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
 
 // initializing variables
 $username = "";
 $email    = "";
-$errors = array(); 
+$errors = array();
 
 // connect to the database
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
@@ -30,7 +30,7 @@ if (isset($_POST['reg_user'])) {
 		array_push($errors, "Die Passwörter stimmen nicht überein.");
   	}
 
-  	// first check the database to make sure 
+  	// first check the database to make sure
   	// a user does not already exist with the same username and/or email
   	$user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
   	$result = mysqli_query($db, $user_check_query);
@@ -50,12 +50,12 @@ if (isset($_POST['reg_user'])) {
   	if (count($errors) == 0) {
   		$password = md5($password_1);//encrypt the password before saving in the database
 
-  		$query = "INSERT INTO users (username, email, password) 
+  		$query = "INSERT INTO users (username, email, password)
   			  VALUES('$username', '$email', '$password')";
   		mysqli_query($db, $query);
   		$_SESSION['username'] = $username;
   		$_SESSION['success'] = "Sie sind nun erfolgreich registriert und eingeloggt.";
-  		header('location: /html/homepage/index.php');
+  		header('location: /KCD/html/homepage/index.php');
   	}
   } else {
 	array_push($errors, "Sie sind schon angemeldet. Eine Registrierung ist nicht möglich");
@@ -81,7 +81,7 @@ if (isset($_POST['login_user'])) {
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "Sie sind nun eingeloggt";
-  	  header('location: /html/homepage/index.php');
+  	  header('location: /KCD/html/homepage/index.php');
   	}else {
   		array_push($errors, "Die eingegebenen Daten sind nicht korrekt.");
   	}
@@ -93,7 +93,7 @@ if (isset($_POST['logout_user'])) {
     session_start();
     session_unset();
     session_destroy();
-    header('location: /html/registrationAndLogin/login.php');
+    header('location: /KCD/html/registrationAndLogin/login.php');
 }
 
 

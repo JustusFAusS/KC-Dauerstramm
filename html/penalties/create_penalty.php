@@ -1,8 +1,8 @@
 <!-- Includes Bootstrap-->
-<link rel="stylesheet" href="/html/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<script src="/html/bootstrap/bootstrap.bundle.js"></script>
-<script src="/html/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/KCD/html/bootstrap/bootstrap.bundle.js"></script>
+<script src="/KCD/html/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -14,7 +14,7 @@
 <?php
 //Automatischer verweis auf die Homepage
 	if (nutzer_angemeldet() == false){
-		header('location: /html/homepage/index.php');
+		header('location: /KCD/html/homepage/index.php');
 	}
 ?>
 <!DOCTYPE html>
@@ -106,7 +106,7 @@
 				<h4 class="modal-title">Strafe erstellen</h4>
 			</div>
 			<div class="modal-body">
-                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/html/uploadImage/errors.php"); ?>
+                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/errors.php"); ?>
 				<form action="create_penalty.php" method="post">
 					<div class="form-group">
 						<i class="fa fa-user"></i>

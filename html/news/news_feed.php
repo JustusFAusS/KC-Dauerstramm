@@ -2,7 +2,7 @@
 session_start();
 
 //Includes von Funktionen
-include_once($_SERVER['DOCUMENT_ROOT'] . "/html/homepage/functions.php"); 
+include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
 
 
 //Variablen initialisieren

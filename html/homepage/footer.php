@@ -1,5 +1,5 @@
 <footer class="page-footer border-top bg-dark pt-5">
-    <!--diese DIV verhindert einen Rand am rechten Bildschirm-->    
+    <!--diese DIV verhindert einen Rand am rechten Bildschirm-->
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-1">
@@ -14,7 +14,7 @@
                     <div class="col-6 col-md">
                         <h5 style="color:white">Links</h5>
                         <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="/html/homepage/index.php">Homepage</a></li>
+                        <li><a class="text-muted" href="/KCD/html/homepage/index.php">Homepage</a></li>
                         <li><a class="text-muted" href="#">Regeln</a></li>
                         </ul>
                     </div>

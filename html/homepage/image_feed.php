@@ -1,9 +1,9 @@
-<?php 
+<?php
 //session_start();
 
 //Includes von Funktionen
-include_once("functions.php"); 
-include_once($_SERVER['DOCUMENT_ROOT'] . "/html/uploadImage/service_upload_image.php"); 
+include_once("functions.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/service_upload_image.php");
 
 //initialisierung von Variablen
 $userID = "";
@@ -35,15 +35,15 @@ if ( nutzer_angemeldet() ){
                     echo "<div class='col-sm-7'>";
                         echo '<div class="row">';
                             echo "<div class='col-sm-12'><h3>" . $row["ImageTitle"] . "</h3></div>";
-                        echo "</div>";	
+                        echo "</div>";
                         echo '<div class="row">';
                             echo "<div class='col-sm-12'>" .  $row["ImageComment"] . "</div>";
-	                    echo "</div>";	
-                        echo '<div class="row">';	
+	                    echo "</div>";
+                        echo '<div class="row">';
                             echo '<div class="col-sm-12"><p class="text-secondary">' . get_user_by_id($row["UploadedBy"]) . "</p></div>";
                         echo "</div>";
                     echo "</div>";
-                echo "</div>";	
+                echo "</div>";
 			    //Kommentare laden
 			    $query_get_comments = "SELECT * FROM imageComments INNER JOIN images ON images.ImageID = imageComments.imageID WHERE imageComments.imageID = " . $row["ImageID"] . ";";
 			    $comments_result = mysqli_query($db, $query_get_comments);
@@ -62,15 +62,15 @@ if ( nutzer_angemeldet() ){
                                 echo "<div class='row'>";
 					                echo "<div class='col-sm-12'><p class='text-secondary'>" . get_user_by_id($comment_row["creationUserID"]) . "</p></div>";
                                 echo '</div>';
-                            echo "</div>";				
+                            echo "</div>";
                         }
-                    echo '<form action="/html/uploadImage/comment_image.php?imageid=' . $row['ImageID'] . '" method="post">';
+                    echo '<form action="/KCD/html/uploadImage/comment_image.php?imageid=' . $row['ImageID'] . '" method="post">';
                     echo "<button type='submit' class='btn btn-light ml-1' data-toggle='modal' data-target='#ModalImage" . $row['ImageID'] . "'>Kommentar verfassen</button>";
                     echo "</form>";
                     echo "</div>";
-			    } else { 
+			    } else {
                     //Hier nochmal, da der Button in dem Rahmen bleiben soll. Aber nur, wenn kommentare existieren
-                    echo '<form action="/html/uploadImage/comment_image.php?imageid=' . $row['ImageID'] . '" method="post">';
+                    echo '<form action="/KCD/html/uploadImage/comment_image.php?imageid=' . $row['ImageID'] . '" method="post">';
                     echo "<button type='submit' class='btn btn-light ml-1'>Kommentar verfassen</button>";
                     echo "</form>";
                 }

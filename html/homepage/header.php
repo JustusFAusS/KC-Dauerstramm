@@ -4,8 +4,8 @@
     <!--Favicon-->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <!-- Fette Schrift -->
-    <a class="navbar-brand" href="/html/homepage/index.php"><img class="rounded mr-2" src="/resources/images/homepage/HomepageIcon.png" alt="" style="width:30px;">Kegelclub-Homepage</a>
-    <!--Button für Handys-->    
+    <a class="navbar-brand" href="/KCD/html/homepage/index.php"><img class="rounded mr-2" src="/resources/images/homepage/HomepageIcon.png" alt="" style="width:30px;">Kegelclub-Homepage</a>
+    <!--Button für Handys-->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,11 +32,11 @@
                 echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>" . $_SESSION['username'] . "</a>";
                 echo "<div class='dropdown-menu'>";
                 //Profil bearbeiten
-                echo "<form  method='post' class='form-inline' action='/html/registrationAndLogin/profile_information.php'>";
+                echo "<form  method='post' class='form-inline' action='/KCD/html/registrationAndLogin/profile_information.php'>";
                 echo "<div class='col text-center'><button class='btn-success btn-block btn-sm mt-3' type='submit' name='redirect'>Profil bearbeiten</button></div>";
                 echo "</form>";
                 //Abmelden Button
-                echo "<form  method='post' class='form-inline' action='/html/registrationAndLogin/server.php'>";
+                echo "<form  method='post' class='form-inline' action='/KCD/html/registrationAndLogin/server.php'>";
                 echo "<div class='col text-center'><button class='btn btn-outline-secondary btn-block btn-sm' type='submit' name='logout_user'>Abmelden</button></div>";
                 echo "</form>";
                 echo "</div></li></ul>";
@@ -44,15 +44,15 @@
                 //Nicht Angemeldet
                 //echo "<span class='navbar-text'>Nicht angemeldet</span>";
                 //echo "<li class='nav-item'>";
-                echo "<form class='form-inline my-2 my-lg-0' action='/html/registrationAndLogin/login.php'>";
-                //echo "<a class='nav-link' href='/html/registrationAndLogin/login.php' data-target='#myModal' data-toggle='modal'>Registieren</a>";
+                echo "<form class='form-inline my-2 my-lg-0' action='/KCD/html/registrationAndLogin/login.php'>";
+                //echo "<a class='nav-link' href='/KCD/html/registrationAndLogin/login.php' data-target='#myModal' data-toggle='modal'>Registieren</a>";
                 echo "<button class='btn btn-outline-secondary mr-1 ml-1' type='submit'>Anmelden</button>";
                 echo "</form>";
                 //echo "</li>";
                 //Button Registrieren
                 //echo "<li class='nav-item'>";
-                echo "<form class='form-inline my-2 my-lg-0' action='/html/registrationAndLogin/register.php'>";
-                //echo "<a class='nav-link' href='/html/registrationAndLogin/register.php' data-target='#myModal' data-toggle='modal'>Registieren</a>";
+                echo "<form class='form-inline my-2 my-lg-0' action='/KCD/html/registrationAndLogin/register.php'>";
+                //echo "<a class='nav-link' href='/KCD/html/registrationAndLogin/register.php' data-target='#myModal' data-toggle='modal'>Registieren</a>";
                 echo "<button class='btn btn-success mr-1 ml-1' type='submit'>Registrieren</button>";
                 echo "</form>";
                 //echo "</li>";
