@@ -1,4 +1,4 @@
 <?php
 	//Weiterleitung an die Homepage
-	header('location: /html/homepage/index.php');
+	header('location: /KCD/html/homepage/index.php');
 ?>
