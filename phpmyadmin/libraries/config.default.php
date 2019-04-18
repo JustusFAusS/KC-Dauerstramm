@@ -3220,3 +3220,5 @@ $cfg['DefaultTransformations']['TextImageLink'] = array(null, 100, 50);
  * @global array $cfg['DefaultTransformations']['TextLink']
  */
 $cfg['DefaultTransformations']['TextLink'] = array(null, null, null);
+
+$cfg['AllowUserDropDatabase'] = true;
