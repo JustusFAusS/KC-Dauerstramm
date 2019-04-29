@@ -1,7 +1,7 @@
 <?php
-session_start();
-
 include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+start_session();
+
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
