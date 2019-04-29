@@ -23,10 +23,12 @@
         <!-- Nutzerinterface (angemeldet etc)-->
         <?php
 	        //Includes von Funktionen
-	        include_once("functions.php");
+	        include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+            //Damit die aktuelle Session gefunden wurde
+            start_session();
 		    if (nutzer_angemeldet()) {
                 //Angemeldet
-                //span "<echo class='navbar-text'>Angemeldet</span>";
+                //echo <span class='navbar-text'>Angemeldet</span>";
                 //Dropdown
                 echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
                 echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>" . $_SESSION['username'] . "</a>";

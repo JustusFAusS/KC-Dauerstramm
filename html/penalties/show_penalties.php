@@ -34,11 +34,20 @@
                 <!-- Platzhalter-->
                 <div class="col-sm-1"></div>
                 <!-- Linkes Menue. Etwas groesser als das rechte-->
-                <div class="col-sm-6">
-                    <div class="bg-white p-2 mb-3 mt-3">
+                <div class="col-sm-11">
+                    <div class="bg-white p-2 mt-3">
                         <h1>Strafenübersicht:</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Platzhalter-->
+                <div class="col-sm-1"></div>
+                <!-- Linkes Menue. Etwas groesser als das rechte-->
+                <div class="col-sm-6">
+                    <div class="bg-white p-2 mb-3">
                         <h2>Offene Strafen:</h2>
-                        <div class="list-group">
+                        <div class="list-group mb-3">
                           <a href="#" class="list-group-item list-group-item-action">
                              <div class="row">
                                     <div class="col-sm-8">
@@ -127,23 +136,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 mb-3 mt-3">
+                <div class="col-sm-4 mb-3">
                         <div class="bg-white p-2">
-                            <h1>Zusammenfassung:</h1>
-                            <ul class="list-group">
-                              <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Unbezahlt
-                                <span class="badge badge-primary badge-pill">14</span>
-                              </li>
-                              <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Bezahlt
-                                <span class="badge badge-primary badge-pill">2</span>
-                              </li>
-                              <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Gesamt
-                                <span class="badge badge-primary badge-pill">15</span>
-                              </li>
-                            </ul>
+                            <h2>Zusammenfassung:</h2>
+                            <div class="list-group">
+                              <a href="#" class="list-group-item list-group-item-action">
+                                 <div class="row">
+                                        <div class="col-sm-6">Unbezahlt</div>
+                                        <div class="col-sm-3">200,00€</div>
+                                        <div class="col-sm-3"><span class="badge badge-primary badge-pill">14</span></div>
+                                </div>
+                              </a>
+                              <a href="#" class="list-group-item list-group-item-action">
+                                 <div class="row">
+                                        <div class="col-sm-6">Bezahlt</div>
+                                        <div class="col-sm-3">500,00€</div>
+                                        <div class="col-sm-3"><span class="badge badge-primary badge-pill">14</span></div>
+                                </div>
+                              </a>
+                              <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+                                 <div class="row">
+                                        <div class="col-sm-6">Gesamt</div>
+                                        <div class="col-sm-3">700,00€</div>
+                                        <div class="col-sm-3"><span class="badge badge-primary badge-pill">14</span></div>
+                                </div>
+                              </a>
+                            </div>
                         </div>
                 </div>
                 <div class="col-sm-1"></div>
