@@ -109,7 +109,7 @@
                 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/errors.php"); ?>
 				<form action="create_penalty.php" method="post">
 					<div class="form-group">
-						<i class="fa fa-user"></i>
+						<i class="fa fa-font"></i>
 						<input type="text" name="p_message" class="form-control" placeholder="Grund" required="required">
 					</div>
                     <div class="form-group">
