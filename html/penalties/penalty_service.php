@@ -45,7 +45,8 @@ if (isset($_POST['create_penalty'])) {
                         //Alles hat geklappt
                         header($pathAfterSuccess);
                     } else {
-                        array_push($upload_errors, "Technischer Fehler.");
+                        array_push($upload_errors, "Technischer Fehler. (Datenbank-Fehler)");
+                        array_push($upload_errors,$p_message,$p_amount);
                         //Für genauere Problemanalyse
                         //array_push($upload_errors, $add_penalty_queue);
                     }
