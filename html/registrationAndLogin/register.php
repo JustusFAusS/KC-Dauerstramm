@@ -101,6 +101,7 @@
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
+                <?php include('error.php') ?>
 				<h4 class="modal-title">Registrieren</h4>
 			</div>
 			<div class="modal-body">

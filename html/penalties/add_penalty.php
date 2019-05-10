@@ -118,7 +118,7 @@
                     //Nutzer schon vorher selektiert?
                     if(in_array($actu_user['id'],$selected_users)) { 
                         //Nutzer kann in die Tabelle geschrieben werden
-                        $save_penalty_quiery = "Insert INTO userpenalties (userID,penaltyID,date) VALUES ('" . $actu_user['id'] . "','" . $selected_penalty['penaltyID'] . "',NOW());";
+                        $save_penalty_quiery = "Insert INTO userpenalties (userID,penaltyID,date,ispayed) VALUES ('" . $actu_user['id'] . "','" . $selected_penalty['penaltyID'] . "',NOW(),false);";
                         if (mysqli_query($db, $save_penalty_quiery)== 0)
                         {
                             //Datenbankfehler
@@ -179,6 +179,8 @@
                                                     if (isset($selected_penalty))
                                                     {
                                                         echo "<option onChange='add_penalty.submit()'  value=" . $selected_penalty["penaltyID"] . ">" . $selected_penalty['message'] . "</option>";
+                                                    } else {
+                                                        echo "<option onChange='add_penalty.submit()'> Strafe wählen</option>";
                                                     }
                                                     while ($actu_penalty = mysqli_fetch_assoc($penalties))
                                                     {
