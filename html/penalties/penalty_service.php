@@ -6,6 +6,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
 $upload_errors = array();
+$errors = array();
 //Welche Seite nach Erfolg aufgerufen werden soll
 $pathAfterSuccess = "location: /KCD/html/homepage/index.php";
 
@@ -61,5 +62,5 @@ if (isset($_POST['create_penalty'])) {
     } else {
         array_push($upload_errors,"Bitte melden Sie sich zunächst an");
     }
-}
+} 
 ?>

@@ -10,7 +10,7 @@
 
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
 
-<?php include_once('penalty_service.php') ?>
+<?php include('penalty_service.php') ?>
 <?php
     //Automatischer verweis auf die Homepage
 	if (nutzer_angemeldet() == false){
