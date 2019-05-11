@@ -7,6 +7,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/service_upload_i
 
 //initialisierung von Variablen
 $userID = "";
+start_session();
 
 //connect to the database
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
@@ -45,7 +46,7 @@ if ( nutzer_angemeldet() ){
                     echo "</div>";
                 echo "</div>";
 			    //Kommentare laden
-			    $query_get_comments = "SELECT * FROM imageComments INNER JOIN images ON images.ImageID = imageComments.imageID WHERE imageComments.imageID = " . $row["ImageID"] . ";";
+			    $query_get_comments = "SELECT * FROM imagecomments INNER JOIN images ON images.ImageID = imagecomments.imageID WHERE imagecomments.imageID = " . $row["ImageID"] . ";";
 			    $comments_result = mysqli_query($db, $query_get_comments);
 			    //Sind kommentare vorhanden?
 			    if ($comments_result->num_rows > 0) {

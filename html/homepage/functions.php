@@ -4,7 +4,7 @@
 //Verhindert Fehlermeldungen
 function start_session()
 {
-    if (session_status == PHP_SESSION_DISABLED)
+    if (session_status() !== PHP_SESSION_ACTIVE)
     {
         session_start();
     }

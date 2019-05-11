@@ -1,7 +1,7 @@
 <?php
-session_start();
-
 include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+start_session();
+
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
@@ -17,7 +17,7 @@ if (isset($_POST['save_image'])) {
 	//Root-Pfad des Servers
 	$base_dir = __DIR__;
 	//Pfad des Bildes auf der Platte (nur zum speichern)
-	$target_dir = $_SERVER['DOCUMENT_ROOT'] . "/KCD/resources/images/uploadedImages/";
+	$target_dir = $_SERVER['DOCUMENT_ROOT'] . "KCD/resources/images/uploadedImages/";
 	$basename = basename($_FILES["fileToUpload"]["name"]);
 	//Hier wird ein zufälliger Hash generiert. Dadurch können gleiche Dateinamen öfter hochgeladen werden.
 	$target_name = md5(rand()) . $basename;
@@ -114,9 +114,9 @@ if (isset($_POST['comment_image'])) {
 		    $found_images = mysqli_fetch_array($result,MYSQLI_ASSOC);
             //Wurde eine Nutzer-ID gefunden?
 		    if (isset($found_images)) {
-                $query = "INSERT INTO `imageComments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $_POST["comment_image_comment"] . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
-            mysqli_query($db, $query);
-            header($pathAfterSuccess);
+                $query = "INSERT INTO `imagecomments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $_POST["comment_image_comment"] . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
+                mysqli_query($db, $query);
+                header($pathAfterSuccess);
             } else {
                 array_push($upload_errors, "Fehler: Das zu kommentierende Bild existiert nicht!");
             }

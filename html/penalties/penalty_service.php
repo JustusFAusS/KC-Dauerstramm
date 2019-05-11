@@ -6,6 +6,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
 $upload_errors = array();
+$errors = array();
 //Welche Seite nach Erfolg aufgerufen werden soll
 $pathAfterSuccess = "location: /KCD/html/homepage/index.php";
 
@@ -23,6 +24,7 @@ $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 //                      p_amount    (POST)  [benoetigt, wird geprüft]   Typ: Double (punkt als Dezimaltrenner(5,2))
 //Fehler:               werden an das Array upload_errors weitergegeben
 //Ergebnis bei erfolg:  Weiterleitung an pathAfterSuccess
+
 if (isset($_POST['create_penalty'])) {
     if(nutzer_angemeldet()) {
         $p_message = $_POST['p_message'];
@@ -45,7 +47,8 @@ if (isset($_POST['create_penalty'])) {
                         //Alles hat geklappt
                         header($pathAfterSuccess);
                     } else {
-                        array_push($upload_errors, "Technischer Fehler.");
+                        array_push($upload_errors, "Technischer Fehler. (Datenbank-Fehler)");
+                        array_push($upload_errors,$p_message,$p_amount);
                         //Für genauere Problemanalyse
                         //array_push($upload_errors, $add_penalty_queue);
                     }
@@ -59,5 +62,41 @@ if (isset($_POST['create_penalty'])) {
     } else {
         array_push($upload_errors,"Bitte melden Sie sich zunächst an");
     }
+} 
+
+if(nutzer_angemeldet()) {
+    //Nun muss überprüft werden, ob eine Strafe gelöscht oder bezahlt wird
+    if (isset($_POST['b_pay']))
+    {
+        //Bezahlen einer Strafe
+        $pay_bill_queue = "UPDATE userpenalties SET ispayed = true WHERE userpenaltyid = " . $_POST['b_pay'] . ".;";
+        if (mysqli_query($db, $pay_bill_queue)==1) {
+            //Hat alles geklappt
+        } else {
+            array_push($errors,"Technischer Fehler bei der Datenbankabfrage.");
+        }
+    } elseif (isset($_POST['b_del'])) {
+        //Löschen einer Strafe
+        $pay_del_queue = "DELETE FROM userpenalties WHERE userpenaltyid = " . $_POST['b_del'] . ".;";
+        if (mysqli_query($db, $pay_del_queue)==1) {
+            //Hat alles geklappt
+            
+        } else {
+            array_push($errors,"Technischer Fehler bei der Datenbankabfrage.");
+        }
+    } elseif (isset($_POST['b_unpay'])) {
+        //Löschen einer Strafe
+        $pay_undel_queue = "UPDATE userpenalties SET ispayed = false WHERE userpenaltyid = " . $_POST['b_unpay'] . ".;";
+        if (mysqli_query($db, $pay_undel_queue)==1) {
+            //Hat alles geklappt
+            
+        } else {
+            array_push($errors,"Technischer Fehler bei der Datenbankabfrage.");
+        }
+    } else {
+        array_push($errors,"Ungültigen Button gedrückt. Bitte laden Sie die Seite neu.");
+    }
+} else {
+    array_push($errors,"Bitte melden Sie sich zunächst an.");
 }
 ?>

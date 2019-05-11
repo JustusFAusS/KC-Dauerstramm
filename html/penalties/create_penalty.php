@@ -20,7 +20,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Strafenmanagement</title>
   <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;
@@ -109,12 +109,12 @@
                 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/errors.php"); ?>
 				<form action="create_penalty.php" method="post">
 					<div class="form-group">
-						<i class="fa fa-user"></i>
+						<i class="fa fa-font"></i>
 						<input type="text" name="p_message" class="form-control" placeholder="Grund" required="required">
 					</div>
                     <div class="form-group">
                         <i class="fa fa-money"></i>
-                        <input type="text" name ="p_amount" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Strafe in € (z.B. '1.25')" required="required">
+                        <input type="number" step="0.01" name ="p_amount" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Strafe in € (z.B. '1.25')" required="required">
                     </div>
 					<div class="form-group">
 						<input type="submit" name="create_penalty" class="btn btn-primary btn-block btn-lg" value="Speichern">
