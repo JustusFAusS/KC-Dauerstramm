@@ -1,5 +1,15 @@
 <?php
 
+//Startet die Session nur, wenn noch keine Session vorhanden ist
+//Verhindert Fehlermeldungen
+function start_session()
+{
+    if (session_status == PHP_SESSION_DISABLED)
+    {
+        session_start();
+    }
+}
+
 function nutzer_angemeldet()
 {
    	if (isset($_SESSION['username'])) {
