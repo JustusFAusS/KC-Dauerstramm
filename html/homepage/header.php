@@ -23,12 +23,12 @@
                 //Includes von Funktionen
 	            include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
                 start_session();
-                //Hier werden die Links zu den Administratoren und den Kassenwarten angezeigt
-                //Das kann nur geschehen, wenn der Nutzer angemeldet ist
-                $userID = get_userid_by_username($_SESSION['username']);
-                //connect to the database
-                $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
                 if (nutzer_angemeldet()) {
+                    //Hier werden die Links zu den Administratoren und den Kassenwarten angezeigt
+                    //Das kann nur geschehen, wenn der Nutzer angemeldet ist
+                    $userID = get_userid_by_username($_SESSION['username']);
+                    //connect to the database
+                    $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
                     //Nutzer angemeldet
                     if (checkAdminPermissions($userID,$db))
                     {
