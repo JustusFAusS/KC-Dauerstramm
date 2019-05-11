@@ -60,4 +60,26 @@ function get_email_by_userid($user_id)
 		return ( "Kein user gefunden. |" . $user_id ."|" . $result->num_rows . "|" );
 	}
 }
+
+function checkAdminPermissions($userID, $db){
+  $queryUserPermissions= "SELECT * FROM userpermissions";
+  $resultUserPermissions = mysqli_query($db, $queryUserPermissions);
+  while($rowUserPermissions = mysqli_fetch_assoc($resultUserPermissions)){
+    if($rowUserPermissions["userID"]==$userID && $rowUserPermissions["permissionID"]==1){
+      return true;
+    }
+  }
+  return false;
+}
+
+function checkKassenwartPermissions($userID, $db){
+  $queryUserPermissions= "SELECT * FROM userpermissions";
+  $resultUserPermissions = mysqli_query($db, $queryUserPermissions);
+  while($rowUserPermissions = mysqli_fetch_assoc($resultUserPermissions)){
+    if($rowUserPermissions["userID"]==$userID && $rowUserPermissions["permissionID"]==2){
+      return true;
+    }
+  }
+  return false;
+}
 ?>

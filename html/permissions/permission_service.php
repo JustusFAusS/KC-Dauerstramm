@@ -5,15 +5,56 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
-$upload_errors = array();
-//Welche Seite nach Erfolg aufgerufen werden soll
-$pathAfterSuccess = "location: /KCD/html/homepage/index.php";
+$errors = array();
+$success = array();
 
 // connect to the database
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 
 if (isset($_POST['btn_permission'])) {
     if(nutzer_angemeldet()) {
-      echo "Du hast Aktualisieren gedrückt";
-    }
+      if (isset($_POST['btn_permission'])){
+
+
+        // Zunaechst alle Datensaetze der Tabelle userpermissions loeschen
+        $sqlDeleteAdmin = "DELETE FROM userpermissions WHERE permissionID =1";
+        if (mysqli_query($db, $sqlDeleteAdmin)==1){
+          // Alles hat geklappt
+        } else {
+          array_push($errors, "Technischer Fehler");
+        }
+        $sqlDeleteKassenwart = "DELETE FROM userpermissions WHERE permissionID =2";
+        if (mysqli_query($db, $sqlDeleteKassenwart)==1){
+          // Alles hat geklappt
+        } else {
+          array_push($errors, "Technischer Fehler");
+        }
+
+        // Nun Tabelleninhalt anhand ausgelesener Checkboxen neu aufbauen
+        if (isset($_POST['Admin'])){
+          foreach ($_POST['Admin'] as $id):
+            $sqlInsertAdmin = "INSERT INTO userpermissions VALUES ($id, 1)";
+            if(mysqli_query($db, $sqlInsertAdmin)==1){
+              // Alles hat geklappt
+            } else {
+              array_push($errors, "Technischer Fehler");
+            }
+          endforeach;
+        }
+
+        if (isset($_POST['Kassenwart'])){
+          foreach ($_POST['Kassenwart'] as $id):
+            $sqlInsertKassenwart = "INSERT INTO userpermissions VALUES ($id, 2)";
+            if(mysqli_query($db, $sqlInsertKassenwart)==1){
+              // Alles hat geklappt
+            } else {
+              array_push($errors, "Technischer Fehler");
+            }
+          endforeach;
+
+          array_push($success, "Berechtigungen wurden angepasst!");
+      }
+
+      }
   }
+}
