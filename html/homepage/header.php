@@ -16,9 +16,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="/KCD/html/homepage/images.php">Bilder</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link 3</a>
-            </li>
             <?php 
                 //Includes von Funktionen
 	            include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
