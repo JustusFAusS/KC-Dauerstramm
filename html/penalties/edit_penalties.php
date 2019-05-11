@@ -10,17 +10,18 @@
 
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+include("penalty_service.php");
 start_session(); 
-$errors = array();
 //Welche Seite nach Erfolg aufgerufen werden soll
 $pathAfterSuccess = "location: /KCD/html/homepage/index.php";
+
 
 // connect to the database
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 if(nutzer_angemeldet()) {
     //Nutzer-ID holen
     $user_id = get_userid_by_username($_SESSION['username']);
-    $get_all_penalties_queue = "SELECT penalties.message,penalties.amount,userpenalties.ispayed,userpenalties.date,users.username FROM penalties INNER JOIN userpenalties ON userpenalties.penaltyID = penalties.penaltyID INNER JOIN users ON users.id = userpenalties.userID ;";
+    $get_all_penalties_queue = "SELECT penalties.message,penalties.amount,userpenalties.ispayed,userpenalties.date,users.username,userpenalties.userpenaltyid FROM penalties INNER JOIN userpenalties ON userpenalties.penaltyID = penalties.penaltyID INNER JOIN users ON users.id = userpenalties.userID ;";
     //Zu errechnende Summen        
     $sum_payed_count = 0;
     $sum_unpayed_count = 0;
@@ -29,22 +30,22 @@ if(nutzer_angemeldet()) {
     $sum_unpayed_amount = 0.00;
     $sum_total_amount = 0.00;
     //Zu errechnende Strafen-Arrays
-    $arr_payed = array();
-    $arr_unpayed = array();
 
     if ($all_penalties_db_result = mysqli_query($db, $get_all_penalties_queue)) {
+        $arr_payed = array();
+        $arr_unpayed = array();
         //Hier ist kein Fehler bei der DB-Abfrage aufgetreten
         //Alle gefundenen Strafen durchlaufen
         $l_amount = 0.00;
         while($row = mysqli_fetch_assoc($all_penalties_db_result)){
             $l_amount = $row['amount'];
             $sum_total_count = $sum_total_count +1;
-
-            $l_penalty[] = array(  'message' => $row['message'], 
+            $l_penalty = array(  'message' => $row['message'], 
                                 'amount'   => $row['amount'], 
                                 'ispayed'  => $row['ispayed'],
                                 'date'  => $row['date'],
-                                'user'  => $row['username']);
+                                'user'  => $row['username'],
+                                'id'    => $row['userpenaltyid']);
             if ($row['ispayed']) {
                 $sum_total_amount = $sum_total_amount + $l_amount;
                 $sum_payed_count = $sum_payed_count + 1;
@@ -85,68 +86,106 @@ if(nutzer_angemeldet()) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
  </head>
  <body id="body">
-    <div id="whole_page">
-	    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
-        <!-- Seitenränder werden durch den Container festgelegt-->
-        <div class="container">
-            <!-- Erste Reihe. Wenn weitere hinzukommen können mehrere Kacheln erstellt werden-->
-            <div class="row">
-                <!-- Platzhalter-->
-                <div class="col-sm-1"></div>
-                <!-- Linkes Menue. Etwas groesser als das rechte-->
-                <div class="col-sm-11">
-                    <div class="bg-white p-2 mt-3">
-                        <?php include("errors.php"); ?>
-                        <h1>Strafenübersicht:</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Platzhalter-->
-                <div class="col-sm-1"></div>
-                <!-- Linkes Menue. Etwas groesser als das rechte-->
-                <div class="col-sm-11">
-                    <div class="bg-white p-2 mb-3">
-                        <h2>Offene Strafen:</h2>
-                        <div class="list-group mb-3">
-                          <?php
-                                foreach($arr_unpayed AS $nr => $penalty) {
-                                    echo '<a class="list-group-item list-group-item">';
-                                    echo '<div class="row">';
-                                    echo '<div class="col-sm-5">';
-                                    echo '<h5>' . $penalty[$nr]['message'] . '</h5>';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-2">';
-                                    echo '<h5>' . $penalty[$nr]['user'] . '</h5>';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-1">';
-                                    echo $penalty[$nr]['amount'] . '€';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-2">';
-                                    echo $penalty[$nr]['date'];
-                                    echo '</div>';
-                                    echo '<div class="col-sm-1">';
-                                    echo '<button type="button" class="btn btn-success"><i class="fa fa-check-square-o fa" aria-hidden="true"></i></button>';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-1">';
-                                    echo '<button type="button" class="btn btn-danger"><i class="fa fa-trash fa" aria-hidden="true"></i></button>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                    echo '</a>';
-                                }
-                                echo '<a href="#" class="list-group-item list-group-item-action list-group-item-dark">';
-                                echo '<div class="row">';
-                                echo '<div class="col-sm-7"><h5>' . "Summe" . '</h5></div>';
-                                echo '<div class="col-sm-2"><h5>' . $sum_unpayed_amount . '€</h5></div>';
-                                echo '<div class="col-sm-3"></div>';
-                                echo '</div></a>';
-                          ?>
+    <!-- Die ganze Seite ist eine Form -->
+    <form action="edit_penalties.php" method="post" name="edit_penalty">
+        <div id="whole_page">
+	        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+            <!-- Seitenränder werden durch den Container festgelegt-->
+            <div class="container">
+                <!-- Erste Reihe. Wenn weitere hinzukommen können mehrere Kacheln erstellt werden-->
+                <div class="row">
+                    <!-- Platzhalter-->
+                    <div class="col-sm-1"></div>
+                    <!-- Linkes Menue. Etwas groesser als das rechte-->
+                    <div class="col-sm-11">
+                        <div class="bg-white p-2 mt-3">
+                            <?php include("errors.php"); ?>
+                            <h1>Strafenübersicht:</h1>
                         </div>
                     </div>
                 </div>
-                <!-- Platzhalter-->
-                <div class="col-sm-1"></div>
-            </div>
+                <div class="row">
+                    <!-- Platzhalter-->
+                    <div class="col-sm-1"></div>
+                    <!-- Linkes Menue. Etwas groesser als das rechte-->
+                    <div class="col-sm-11">
+                        <div class="bg-white p-2 mb-3">
+                            <h2>Offene Strafen:</h2>
+                            <div class="list-group mb-3">
+                              <?php
+                                    foreach($arr_unpayed AS $nr) {
+                                        echo '<a class="list-group-item list-group-item">';
+                                        echo '<div class="row">';
+                                        echo '<div class="col-sm-5">';
+                                        echo '<h5>' . $nr['message'] . '</h5>';
+                                        echo '</div>';
+                                        echo '<div class="col-sm-2">';
+                                        echo '<h5>' . $nr['user'] . '</h5>';
+                                        echo '</div>';
+                                        echo '<div class="col-sm-1">';
+                                        echo $nr['amount'] . '€';
+                                        echo '</div>';
+                                        echo '<div class="col-sm-2">';
+                                        echo $nr['date'];
+                                        echo '</div>';
+                                        echo '<div class="col-sm-1">';
+                                        echo '<button type="submit" class="btn btn-success" name="b_pay" value="' . $nr['id'] . '"><i class="fa fa-check-square-o fa" aria-hidden="true"></i></button>';
+                                        echo '</div>';
+                                        echo '<div class="col-sm-1">';
+                                        echo '<button type="submit" class="btn btn-danger" name="b_del" value="' . $nr['id'] . '"><i class="fa fa-trash fa" aria-hidden="true"></i></button>';
+                                        echo '</div>';
+                                        echo '</div>';
+                                        echo '</a>';
+                                    }
+                                    echo '<a href="#" class="list-group-item list-group-item-action list-group-item-dark">';
+                                    echo '<div class="row">';
+                                    echo '<div class="col-sm-7"><h5>' . "Summe" . '</h5></div>';
+                                    echo '<div class="col-sm-2"><h5>' . $sum_unpayed_amount . '€</h5></div>';
+                                    echo '<div class="col-sm-3"></div>';
+                                    echo '</div></a>';
+                              ?>
+                            </div>
+                            <h2>Bezahlte Strafen:</h2>
+                            <div class="list-group">
+                            <?php
+                                    foreach($arr_payed AS $nr) {
+                                        echo '<a class="list-group-item list-group-item">';
+                                        echo '<div class="row">';
+                                        echo '<div class="col-sm-5">';
+                                        echo '<h5>' . $nr['message'] . '</h5>';
+                                        echo '</div>';
+                                        echo '<div class="col-sm-2">';
+                                        echo '<h5>' . $nr['user'] . '</h5>';
+                                        echo '</div>';
+                                        echo '<div class="col-sm-1">';
+                                        echo $nr['amount'] . '€';
+                                        echo '</div>';
+                                        echo '<div class="col-sm-2">';
+                                        echo $nr['date'];
+                                        echo '</div>';
+                                        echo '<div class="col-sm-1">';
+                                        echo '<button type="submit" class="btn btn-warning" name="b_unpay" value="' . $nr['id'] . '"><i class="fa fa-recycle fa" aria-hidden="true"></i></button>';
+                                        echo '</div>';
+                                        echo '<div class="col-sm-1">';
+                                        echo '<button type="submit" class="btn btn-danger" name="b_del" value="' . $nr['id'] . '"><i class="fa fa-trash fa" aria-hidden="true"></i></button>';
+                                        echo '</div>';
+                                        echo '</div>';
+                                        echo '</a>';
+                                    }
+                                    echo '<a href="#" class="list-group-item list-group-item-action list-group-item-dark">';
+                                    echo '<div class="row">';
+                                    echo '<div class="col-sm-7"><h5>' . "Summe" . '</h5></div>';
+                                    echo '<div class="col-sm-2"><h5>' . $sum_payed_amount . '€</h5></div>';
+                                    echo '<div class="col-sm-3"></div>';
+                                    echo '</div></a>';
+                              ?>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Platzhalter-->
+                    <div class="col-sm-1"></div>
+                </div>
+        </form>
         </div>
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
  </body>

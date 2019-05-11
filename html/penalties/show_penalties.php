@@ -40,7 +40,7 @@ if(nutzer_angemeldet()) {
             $l_amount = $row['amount'];
             $sum_total_count = $sum_total_count +1;
 
-            $l_penalty[] = array(  'message' => $row['message'], 
+            $l_penalty = array(  'message' => $row['message'], 
                                 'amount'   => $row['amount'], 
                                 'ispayed'  => $row['ispayed'],
                                 'date'  => $row['date']);
@@ -109,17 +109,17 @@ if(nutzer_angemeldet()) {
                         <h2>Offene Strafen:</h2>
                         <div class="list-group mb-3">
                           <?php
-                                foreach($arr_unpayed AS $nr => $penalty) {
+                                foreach($arr_unpayed AS $nr) {
                                     echo '<a href="#" class="list-group-item list-group-item-action">';
                                     echo '<div class="row">';
                                     echo '<div class="col-sm-7">';
-                                    echo '<h5>' . $penalty[$nr]['message'] . '</h5>';
+                                    echo '<h5>' . $nr['message'] . '</h5>';
                                     echo '</div>';
                                     echo '<div class="col-sm-2">';
-                                    echo $penalty[$nr]['amount'] . '€';
+                                    echo $nr['amount'] . '€';
                                     echo '</div>';
                                     echo '<div class="col-sm-3">';
-                                    echo '<small>' . $penalty[$nr]['date'] . '</small>';
+                                    echo '<small>' . $nr['date'] . '</small>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</a>';
@@ -135,17 +135,17 @@ if(nutzer_angemeldet()) {
                         <h2>Bezahlte Strafen:</h2>
                         <div class="list-group">
                         <?php
-                                foreach($arr_payed AS $nr => $penalty) {
+                                foreach($arr_payed AS $nr) {
                                     echo '<a href="#" class="list-group-item list-group-item-action">';
                                     echo '<div class="row">';
                                     echo '<div class="col-sm-7">';
-                                    echo '<h5>' . $penalty[$nr]['message'] . '</h5>';
+                                    echo '<h5>' . $nr['message'] . '</h5>';
                                     echo '</div>';
                                     echo '<div class="col-sm-2">';
-                                    echo $penalty[$nr]['amount'] . '€';
+                                    echo $nr['amount'] . '€';
                                     echo '</div>';
                                     echo '<div class="col-sm-3">';
-                                    echo '<small>' . $penalty[$nr]['date'] . '</small>';
+                                    echo '<small>' . $nr['date'] . '</small>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</a>';
