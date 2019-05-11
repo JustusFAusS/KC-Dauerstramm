@@ -32,12 +32,10 @@
                         //Nutzer hat Admin-Rechte. Es können die Links des Admins angezeigt werden
                         //Dropdown
                         echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
-                        echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>" . "Verwaltung" . "</a>";
+                        echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>" . "Administration" . "</a>";
                         echo "<div class='dropdown-menu'>";
                         //show permisstions 
-                        echo "<form  method='post' class='form-inline' action='/KCD/html/permissions/show_permission.php'>";
-                        echo "<div class='col text-center'><button class='btn-success btn-block btn-sm mt-3' type='submit' name='redirect'>Rechte verwalten</button></div>";
-                        echo "</form>";
+                        echo '<a class="dropdown-item" href="/KCD/html/permissions/show_permission.php">Rechte verwalten</a>';
                         echo "</div></li></ul>";
                     }
                     //Dropdown Strafen
