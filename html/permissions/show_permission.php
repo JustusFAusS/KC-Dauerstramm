@@ -29,7 +29,7 @@
   <div class="container mt-3">
   <h2>Nutzerberechtigungen</h2>
   <p>Hier können die Nutzerberechtigungen verwaltet werden:</p>
-	<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/registrationAndLogin/errors.php"); ?>
+	<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
   <table class="table table-striped">
     <thead>
       <tr>
