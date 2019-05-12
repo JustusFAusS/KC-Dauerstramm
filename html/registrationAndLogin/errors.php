@@ -9,12 +9,15 @@
 <?php  endif ?>
 
 
-<?php  if (count($success) > 0) : ?>
-  <div class="success">
-  	<?php foreach ($success as $suc) : ?>
-      <div class="alert alert-success" role="alert">
-  	  <?php echo $suc ?>
-      </div>
-  	<?php endforeach ?>
-  </div>
-<?php  endif ?>
+<?php
+  if (isset($success)) {  
+    if (count($success) > 0) {
+        echo "<div class='success'>";
+  	    foreach ($success as $suc) {
+            echo '<div class="alert alert-success" role="alert">';
+  	        echo $suc;
+            echo '</div>';
+        }
+    }
+}
+?>

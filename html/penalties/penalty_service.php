@@ -93,8 +93,6 @@ if(nutzer_angemeldet()) {
         } else {
             array_push($errors,"Technischer Fehler bei der Datenbankabfrage.");
         }
-    } else {
-        array_push($errors,"Ungültigen Button gedrückt. Bitte laden Sie die Seite neu.");
     }
 } else {
     array_push($errors,"Bitte melden Sie sich zunächst an.");
