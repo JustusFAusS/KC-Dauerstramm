@@ -16,7 +16,26 @@
 	if (nutzer_angemeldet() == false){
 		header('location: /KCD/html/homepage/index.php');
 	}
+    //Hier werden die für die Seite notwendigen Informationen generiert
+    $all_penalties = array();
+
+    // connect to the database
+    $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
+
+    //Alle Strafen in ein Array speichern
+    $get_all_penalties_query = "SELECT * FROM penalties;";
+    $get_all_penalties_query_result = mysqli_query($db, $get_all_penalties_query);
+    //Die Datenbankabfrage hat funktioniert
+    if (isset($get_all_penalties_query_result)) {
+        //Alles hat geklappt
+        // Die Daten sind nun in dem Array get_all_penalties_result gespeichert
+    } else {
+        //Keine Daten gefunden
+        array_push($errors,"Es sind keine Strafen vorhanden. Bitte tragen Sie zunächst eine Strafe ein");
+    }
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,7 +129,17 @@
 				<form action="delete_penalty.php" method="post">
 					<div class="form-group">
                             <select class="form-control mb-3" id="sel1" name="groupbox" onChange='del_penalty.submit()'>
-                            <option onChange='add_penalty.submit()'>Strafe wählen</option>
+                                                    <?php
+                                                    if (isset($get_all_penalties_query_result))
+                                                    {
+                                                        while (($actu_penalty = mysqli_fetch_assoc($get_all_penalties_query_result)))
+                                                        {
+                                                            echo "<option onChange='add_penalty.submit()' value=" . $actu_penalty["penaltyID"] . ">" . $actu_penalty['message'] . "</option>";      
+                                                        }
+                                                    } else {
+                                                        echo "<option onChange='del_penalty.submit()'>Keine Strafe vorhanden</option>";
+                                                    }
+                                                     ?>
                     </div>
 					<div class="form-group">
 						<input type="submit" name="del_penalty" class="btn-warning btn-block btn-lg" value="Strafe Löschen">

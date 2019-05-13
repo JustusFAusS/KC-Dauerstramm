@@ -102,7 +102,28 @@ if(nutzer_angemeldet()) {
 if (isset($_POST['del_penalty'])) {
     if(nutzer_angemeldet()) {
         if (checkKassenwartPermissions(get_userid_by_username($_SESSION['username']),$db)) {
-            array_push($success,"Funktioniert soweit.");
+            //Es müssen mehrere Abfragen getätigt werden, damit die Strafe problemlos gelöscht werden kann
+            $check_for_existing_penalties = "SELECT * FROM userpenalties WHERE userpenalties.penaltyID = '" . $_POST['groupbox'] . "';";
+            $check_for_existing_penalties_result = mysqli_query($db, $check_for_existing_penalties);
+            $rowcount = mysqli_num_rows($check_for_existing_penalties_result);
+            if ($rowcount > 0) {
+                array_push($errors,"Diese Strafe ist schon einem Nutzer zugeordnet. Bitte löschen Sie diese Zuordnung, bevor sie fortfahren. Dieser Vorgang wurde abgebrochen");
+            } else {
+                $check_if_penalty_exists_query = "SELECT * FROM penalties WHERE penaltyID = '". $_POST['groupbox'] . "';";
+                $check_if_penalty_exists_result = mysqli_query($db, $check_if_penalty_exists_query);
+                $rowcount = mysqli_num_rows($check_if_penalty_exists_result);
+                if ($rowcount > 0) {
+                    $del_selected_penalty_queue = "DELETE FROM penalties WHERE penaltyID = '". $_POST['groupbox'] . "';";
+                    if (mysqli_query($db, $del_selected_penalty_queue) == 1) {
+                        //Alles hat geklappt. Die Seite kann erneut geladen werden
+                        array_push($success,"Die ausgewählte Strafe wurde erfolgreich gelöscht!");
+                    } else {
+                        array_push($errors,"Technischer Fehler innerhalb der Datenbank. Die Strafe konnte nicht gelöscht werden.");
+                    }
+                } else {
+                    array_push($errors,"Die ausgewählte Strafe existiert nicht. Bitte laden Sie diese Seite erneut");
+                }
+            }
         } else {
             array_push($errors,"Sie haben nicht genügend Rechte. Ihre Anfrage wird nicht bearbeitet.");
         }
