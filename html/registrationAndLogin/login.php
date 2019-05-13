@@ -126,6 +126,7 @@
 			<div class="modal-header">
 				<h4 class="modal-title">Member Login</h4>
 			</div>
+                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 			<div class="modal-body">
 				<form action="login.php" method="post">
 					<div class="form-group">
