@@ -27,6 +27,8 @@
         $sum_penalties = 0.00;
         $num_penalties = 0;
         $num_users = 0;
+        $is_first_run = isset($_POST['save_settings']);
+
         if(!(isset($selected_users)))
         {
             $selected_users = array();
@@ -132,6 +134,13 @@
             } else {
                 array_push($errors, "Speichern nicht möglich. Bitte lösen Sie die Fehlermeldungen");  
             }
+        }
+        
+        //Hier werden alle Error_Nachrichten gelöscht, wenn die Form nicht durch den Speichern-Dialog aufgerufen wird
+        if (!($is_first_run))
+        {
+            $success = $errors;
+            $errors = array();
         }  
     }
 ?>
@@ -157,7 +166,7 @@
                     <div class="col-sm-11">
                         <div class="bg-white p-2 mt-3">
                             <h1>Strafe Eintragen:</h1>
-                            <?php include("errors.php"); ?>
+                            <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
                         </div>
                     </div>
                 </div>
