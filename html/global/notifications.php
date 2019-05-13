@@ -6,9 +6,9 @@ Benachrichtigungstext hinterlegt werden -->
 // Ausgabe von Erfolgsmeldungen
   if (isset($errors)) {
     if (count($errors) > 0) {
-        echo "<div class='success'>";
+        echo "<div class='danger'>";
   	    foreach ($errors as $error) {
-            echo '<div class="alert alert-success" role="alert">';
+            echo '<div class="alert alert-danger" role="alert">';
   	        echo $error;
             echo '</div>';
         }

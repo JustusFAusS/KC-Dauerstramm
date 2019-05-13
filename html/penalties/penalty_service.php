@@ -5,13 +5,14 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
-$upload_errors = array();
 $errors = array();
-//Welche Seite nach Erfolg aufgerufen werden soll
-$pathAfterSuccess = "location: /KCD/html/homepage/index.php";
-
+$errors = array();
+$success = array();
 // connect to the database
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
+
+//Erfolgsmeldungen
+
 
 //Hier wird die Methode abgefragt
 //Aufruf einer Methode wird über das Existieren eines POST-Werts ermittelt
@@ -22,8 +23,8 @@ $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 //                      Nutzer muss angemeldet sein (Fehlermeldung)
 //Parameter:            p_message   (POST)  [benoetigt, wird gepprüft]  Typ: String
 //                      p_amount    (POST)  [benoetigt, wird geprüft]   Typ: Double (punkt als Dezimaltrenner(5,2))
-//Fehler:               werden an das Array upload_errors weitergegeben
-//Ergebnis bei erfolg:  Weiterleitung an pathAfterSuccess
+//Fehler:               werden an das Array errors weitergegeben
+//Ergebnis bei erfolg:  Ausgabe einer Meldung
 
 if (isset($_POST['create_penalty'])) {
     if(nutzer_angemeldet()) {
@@ -36,7 +37,7 @@ if (isset($_POST['create_penalty'])) {
             $found_penalties = mysqli_fetch_array($result,MYSQLI_ASSOC);
             if (isset($found_penalties)) {
                 //Es wurde schon eine gleichnaige Regel gefunden
-                array_push($upload_errors,"Diese Regel existiert schon");
+                array_push($errors,"Diese Regel existiert schon");
             } else {
                 //Alles bis auf die Summe ist geprüft
                 if ($p_amount > 0 && $p_amount < 1000) {
@@ -45,22 +46,22 @@ if (isset($_POST['create_penalty'])) {
                     $add_penalty_queue = "INSERT INTO penalties(message, amount) VALUES ('" . $p_message . "'," . $p_amount . ");";
                     if (mysqli_query($db, $add_penalty_queue)==1) {
                         //Alles hat geklappt
-                        header($pathAfterSuccess);
+                        array_push($success,"Die Strafe wurde erfolgreich eingetragen");
                     } else {
-                        array_push($upload_errors, "Technischer Fehler. (Datenbank-Fehler)");
-                        array_push($upload_errors,$p_message,$p_amount);
+                        array_push($errors, "Technischer Fehler. (Datenbank-Fehler)");
+                        array_push($errors,$p_message,$p_amount);
                         //Für genauere Problemanalyse
-                        //array_push($upload_errors, $add_penalty_queue);
+                        //array_push($errors, $add_penalty_queue);
                     }
                 } else {
-                    array_push($upload_errors,"Die Strafe zwischen 0 und 1000 liegen (2 Stellen nach dem Komma).");
+                    array_push($errors,"Die Strafe zwischen 0 und 1000 liegen (2 Stellen nach dem Komma).");
                 }
             }
         } else {
-            array_push($upload_errors,"Bitte tätigen Sie alle nötigen Eingaben");
+            array_push($errors,"Bitte tätigen Sie alle nötigen Eingaben");
         }
     } else {
-        array_push($upload_errors,"Bitte melden Sie sich zunächst an");
+        array_push($errors,"Bitte melden Sie sich zunächst an");
     }
 } 
 
