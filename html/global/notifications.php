@@ -12,6 +12,7 @@ Benachrichtigungstext hinterlegt werden -->
   	        echo $error;
             echo '</div>';
         }
+        echo "</div>";
     }
 }
 ?>
@@ -26,6 +27,7 @@ Benachrichtigungstext hinterlegt werden -->
   	        echo $suc;
             echo '</div>';
         }
+        echo "</div>";
     }
 }
 ?>
@@ -40,6 +42,7 @@ Benachrichtigungstext hinterlegt werden -->
   	        echo $info;
             echo '</div>';
         }
+        echo "</div>";
     }
 }
 ?>
