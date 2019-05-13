@@ -98,4 +98,16 @@ if(nutzer_angemeldet()) {
 } else {
     array_push($errors,"Bitte melden Sie sich zunächst an.");
 }
+
+if (isset($_POST['del_penalty'])) {
+    if(nutzer_angemeldet()) {
+        if (checkKassenwartPermissions(get_userid_by_username($_SESSION['username']),$db)) {
+            array_push($success,"Funktioniert soweit.");
+        } else {
+            array_push($errors,"Sie haben nicht genügend Rechte. Ihre Anfrage wird nicht bearbeitet.");
+        }
+    } else {
+        array_push($errors,"Sie sind nicht angemeldet.");
+    }
+}
 ?>
