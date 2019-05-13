@@ -100,11 +100,11 @@
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
-            <?php include('errors.php') ?>
 			<div class="modal-header">
 				<h4 class="modal-title">Registrieren</h4>
 			</div>
 			<div class="modal-body">
+                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 				<form action="register.php" method="post">
 					<div class="form-group">
 						<i class="fa fa-user"></i>
