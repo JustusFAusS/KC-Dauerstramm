@@ -4,7 +4,7 @@
     <!--Favicon-->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <!-- Fette Schrift -->
-    <a class="navbar-brand" href="/KCD/html/homepage/index.php"><img class="rounded mr-2" src="/KCD/resources/images/homepage/HomepageIcon.png" alt="" style="width:30px;">Kegelclub-Homepage</a>
+    <a class="navbar-brand" href="/KCD/index.php"><img class="rounded mr-2" src="/KCD/resources/images/homepage/HomepageIcon.png" alt="" style="width:30px;">Kegelclub-Homepage</a>
     <!--Button für Handys-->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/KCD/html/homepage/images.php">Bilder</a>
             </li>
-            <?php 
+            <?php
                 //Includes von Funktionen
 	            include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
                 start_session();
@@ -34,7 +34,7 @@
                         echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
                         echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>" . "Administration" . "</a>";
                         echo "<div class='dropdown-menu'>";
-                        //show permisstions 
+                        //show permisstions
                         echo '<a class="dropdown-item" href="/KCD/html/permissions/show_permission.php">Rechte verwalten</a>';
                         echo "</div></li></ul>";
                     }
