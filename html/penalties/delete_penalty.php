@@ -8,19 +8,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<?php include_once('server.php') ?>
+<?php include_once('penalty_service.php') ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
 
 <?php
 //Automatischer verweis auf die Homepage
-	if (nutzer_angemeldet()){
+	if (nutzer_angemeldet() == false){
 		header('location: /KCD/html/homepage/index.php');
 	}
+    //Hier werden die für die Seite notwendigen Informationen generiert
+    $all_penalties = array();
+
+    // connect to the database
+    $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
+
+    //Alle Strafen in ein Array speichern
+    $get_all_penalties_query = "SELECT * FROM penalties;";
+    $get_all_penalties_query_result = mysqli_query($db, $get_all_penalties_query);
+    //Die Datenbankabfrage hat funktioniert
+    if (isset($get_all_penalties_query_result)) {
+        //Alles hat geklappt
+        // Die Daten sind nun in dem Array get_all_penalties_result gespeichert
+    } else {
+        //Keine Daten gefunden
+        array_push($errors,"Es sind keine Strafen vorhanden. Bitte tragen Sie zunächst eine Strafe ein");
+    }
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Strafenmanagement</title>
   <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;
@@ -99,52 +118,34 @@
 </head>
 </head>
 <body>
-  <!--<div class="header">
-  	<h2>Login</h2>
-  </div>
-
-  <form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
-  	<div class="input-group">
-  		<label>Nutzername</label>
-  		<input type="text" name="username" >
-  	</div>
-  	<div class="input-group">
-  		<label>Passwort</label>
-  		<input type="password" name="password">
-  	</div>
-  	<div class="input-group">
-  		<button type="submit" class="btn" name="login_user">Anmelden</button>
-  	</div>
-  	<p>
-  		Noch nicht registriert? <a href="register.php">Sign up</a>
-  	</p>
-  </form>-->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Member Login</h4>
+				<h4 class="modal-title">Strafe löschen</h4>
 			</div>
-                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 			<div class="modal-body">
-				<form action="login.php" method="post">
+                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
+				<form action="delete_penalty.php" method="post">
 					<div class="form-group">
-						<i class="fa fa-user"></i>
-						<input type="text" name="username" class="form-control" placeholder="Username" required="required">
-					</div>
+                            <select class="form-control mb-3" id="sel1" name="groupbox" onChange='del_penalty.submit()'>
+                                                    <?php
+                                                    if (isset($get_all_penalties_query_result))
+                                                    {
+                                                        while (($actu_penalty = mysqli_fetch_assoc($get_all_penalties_query_result)))
+                                                        {
+                                                            echo "<option onChange='add_penalty.submit()' value=" . $actu_penalty["penaltyID"] . ">" . $actu_penalty['message'] . "</option>";      
+                                                        }
+                                                    } else {
+                                                        echo "<option onChange='del_penalty.submit()'>Keine Strafe vorhanden</option>";
+                                                    }
+                                                     ?>
+                    </div>
 					<div class="form-group">
-						<i class="fa fa-lock"></i>
-						<input type="password" name="password" class="form-control" placeholder="Password" required="required">
-					</div>
-					<div class="form-group">
-						<input type="submit" name="login_user" class="btn btn-primary btn-block btn-lg" value="Login">
+						<input type="submit" name="del_penalty" class="btn-warning btn-block btn-lg" value="Strafe Löschen">
 					</div>
 				</form>
 			</div>
-			<div class="modal-footer">
-				<a href="#">Passwort vergessen?</a>
-                <a href="#">Noch kein Konto?</a>
 			</div>
 		</div>
     </div>

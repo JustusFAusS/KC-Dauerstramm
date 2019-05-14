@@ -106,7 +106,7 @@
 				<h4 class="modal-title">Strafe erstellen</h4>
 			</div>
 			<div class="modal-body">
-                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/errors.php"); ?>
+                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 				<form action="create_penalty.php" method="post">
 					<div class="form-group">
 						<i class="fa fa-font"></i>
