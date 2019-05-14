@@ -5,7 +5,7 @@ start_session();
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
-$upload_errors = array();
+$errors = array();
 //Welche Seite nach Erfolg aufgerufen werden soll
 $pathAfterSuccess = "location: /KCD/html/homepage/index.php";
 
@@ -43,7 +43,7 @@ if (isset($_POST['save_image'])) {
         		$uploadOk = 1;
     		} else {
                 if ($uploadOk == 1) {
-        		    array_push($upload_errors, "Die Datei ist kein gültiges Bild.");
+        		    array_push($errors, "Die Datei ist kein gültiges Bild.");
                 }
         		$uploadOk = 0;
     		}
@@ -51,25 +51,25 @@ if (isset($_POST['save_image'])) {
 		//Existiert das Bild schon?
 		if (file_exists($target_file) && $uploadOk == 1) {
 
-			array_push($upload_errors, "Die Datei existiert schon auf dem Server. Bitte versuchen Sie es erneut.");
+			array_push($errors, "Die Datei existiert schon auf dem Server. Bitte versuchen Sie es erneut.");
 			$uploadOk = 0;
 		}
 
 		//Bildgrösse überprüfen
 		if ($_FILES["fileToUpload"]["size"] > 12000000 && $uploadOk == 1) {
-    			array_push($upload_errors, "Das Bild ist zu groß. Bitte laden Sie ein kleineres Bild hoch.");
+    			array_push($errors, "Das Bild ist zu groß. Bitte laden Sie ein kleineres Bild hoch.");
     			$uploadOk = 0;
 		}
 
 		//Formate aussortieren
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $uploadOk == 1) {
-    			array_push($upload_errors,"Das Bild hat ein falsches Format. Nur JPG, JPEG, PNG & GIF sind erlaubt.");
+    			array_push($errors,"Das Bild hat ein falsches Format. Nur JPG, JPEG, PNG & GIF sind erlaubt.");
     			$uploadOk = 0;
 		}
 
 		//Unbekannte Fehler?
 		if ($uploadOk == 0) {
-			array_push($upload_errors,"Der upload wurde abgebrochen!");
+			array_push($errors,"Der upload wurde abgebrochen!");
 		} else {
 			//Speichern des Bildes
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -89,18 +89,18 @@ if (isset($_POST['save_image'])) {
 					mysqli_query($db, $query);
 					$_SESSION['success'] = "Das Bild wurde hochgeladen";
 				} else {
-					array_push($upload_errors,"Fehler bei der Abfrage. Kein Nutzer gefunden.");
+					array_push($errors,"Fehler bei der Abfrage. Kein Nutzer gefunden.");
 				}
 			} else {
-        			array_push($upload_errors,"Es ist ein unbekannter Fehler aufgetreten (IO-Fehler). Bitte versuchen Sie es erneut.");
+        			array_push($errors,"Es ist ein unbekannter Fehler aufgetreten (IO-Fehler). Bitte versuchen Sie es erneut.");
     			}
         	}
 		//Nach erfolg an die Homepage verweisen
-		if (count($upload_errors) == 0) {
+		if (count($errors) == 0) {
 			header($pathAfterSuccess);
 		}
 	} else {
-		array_push($upload_errors, "Fehler: Nicht angemeldet!");
+		array_push($errors, "Fehler: Nicht angemeldet!");
 	}
 }
 
@@ -118,11 +118,11 @@ if (isset($_POST['comment_image'])) {
                 mysqli_query($db, $query);
                 header($pathAfterSuccess);
             } else {
-                array_push($upload_errors, "Fehler: Das zu kommentierende Bild existiert nicht!");
+                array_push($errors, "Fehler: Das zu kommentierende Bild existiert nicht!");
             }
         }
     } else {
-        array_push($upload_errors, "Fehler: Sie sind nicht angemeldet");
+        array_push($errors, "Fehler: Sie sind nicht angemeldet");
     }
 
 }
