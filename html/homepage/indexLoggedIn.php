@@ -12,6 +12,17 @@
 
 <html>
  <head>
+   <style type="text/css">
+   .jumbotron{
+background-image: url('/KCD/html/homepage/HomepageBild4.jpeg');
+background-size:auto 100% ;
+background-repeat: no-repeat;
+ background-position: 95% center;
+
+ height: 300;
+}
+
+</style>
   	<title>Homepage</title>
     <meta charset="utf-8">
 </head>
@@ -27,28 +38,35 @@ if (nutzer_angemeldet() == false){
 <?php include("header.php");?>
 
 
-  <div class="jumbotron" >
-  <div class="container" style="height: 75px;">
-  <h1>Du bist jetzt eingeloggt!</h1>
-  <p>Schau Dich um, es gibt viel zu entdecken...</p>
+  <div class="jumbotron" style="background-color: #e0cccc;">
+  <div class="container">
+  <h1>Willkommen im internen Bereich!</h1>
+  <p>Du bist jetzt eingeloggt...</p>
   </div>
 </div>
+
 
 
 <div class="row">
     <!-- Platzhalter-->
     <div class="col-sm-1"></div>
-    <!-- Linkes Menue. Etwas groesser als das rechte-->
+    <!-- Linkes Menue. -->
     <div class="col-sm-5">
         <div class="bg-white p-2 mb-3 mt-3">
     <h2>Was ist neu?</h2>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/image_feed.php");?>
+    <?php
+    // Anzeigen der neusten 5 Bilder aus dem Bilder-Feed
+    include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/image_feed_newest3ForHomepage.php");
+    ?>
+    <form action='/KCD/html/homepage/images.php' method="post">
+    <input type="submit" name="btn_mehrAnzeigen" class="btn btn-primary" value="Mehr anzeigen">
+  </from>
     </div>
   </div>
 <div class="col-sm-5 mb-3 mt-3">
 <div class="bg-white p-2">
     <h2>Mein Deckel</h2>
-    Hier eine Strafenübersicht
+  <?php include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/penalties/sum_only_includable.php");?>
 </div>
 <div class="bg-white p-2">
     <h2>Terminübersicht</h2>
