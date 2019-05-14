@@ -16,6 +16,13 @@
     <meta charset="utf-8">
 </head>
 <body id="body">
+
+<?php
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+start_session();
+if (nutzer_angemeldet() == false){
+		header('location: /KCD/index.php');
+  }  ?>
    <div id="whole_page">
 <?php include("header.php");?>
 
