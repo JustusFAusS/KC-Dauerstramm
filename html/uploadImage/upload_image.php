@@ -13,10 +13,10 @@
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Bild Hochladen</h4>
+				<h4 class="modal-title">Bild hochladen</h4>
 			</div>
 			<div class="modal-body">
-                <?php include('errors.php'); ?>
+                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 				<form action="upload_image.php" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<i class="fa fa-user"></i>
@@ -28,6 +28,7 @@
 					</div>
 					<div class="form-group">
 						<input type="file" name="fileToUpload" id="fileToUpload">
+                        <p> (Bilder sind nicht Optional) </p>
 					</div>
 					<div class="form-group">
 						<input type="submit" name="save_image" class="btn btn-primary btn-block btn-lg" value="Hochladen">
