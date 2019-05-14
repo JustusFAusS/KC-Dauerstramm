@@ -58,6 +58,7 @@
                             <h1>[Nutzername]</h1>
                             <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
                         </div>
+                        <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/penalties/sum_only_includable.php");?>
                 </div>
                 <div class="col-sm-1"></div>
             </div>
