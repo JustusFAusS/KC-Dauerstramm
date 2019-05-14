@@ -14,7 +14,7 @@
 <?php
 //Automatischer verweis auf die Homepage
 	if (nutzer_angemeldet() == false){
-		header('location: /KCD/html/homepage/index.php');
+		header('location: /KCD/index.php');
 	}
 ?>
 <!DOCTYPE html>

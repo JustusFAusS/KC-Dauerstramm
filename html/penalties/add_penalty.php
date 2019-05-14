@@ -14,11 +14,11 @@
 <?php
     //Automatischer verweis auf die Homepage
 	if (nutzer_angemeldet() == false){
-		header('location: /KCD/html/homepage/index.php');
+		header('location: /KCD/index.php');
 	} else {
         //Hier werden alle Werte für die Seite berechnet
 
-        $pathAfterSuccess = "location: /KCD/html/homepage/index.php";
+        $pathAfterSuccess = "location: /KCD/index.php";
         $user_id= get_userid_by_username($_SESSION['username']);
         $penalties;
         $num_penalties = 0;
@@ -32,7 +32,7 @@
         if(!(isset($selected_users)))
         {
             $selected_users = array();
-        } 
+        }
         $num_selected_users = -1;
         $all_users;
         //$selected_penalty;
@@ -48,14 +48,14 @@
         //Penalties auswerten
         $penalties = mysqli_query($db, $quiery_get_penalties);
         $num_penalties = $penalties->num_rows;
-        
+
         //Nutzer auswerten
         $all_users = mysqli_query($db, $quiery_get_user);
         $num_users = $all_users->num_rows;
 
         //Ausgewählte Nutzer auswerten
         if ($num_users > 0)
-        { 
+        {
             $actu_user_num = 0;
             $num_selected_users = 0;
             while ($num_users > $actu_user_num -1) {
@@ -88,7 +88,7 @@
                 if(isset($selected_penalty))
                 {
                     //Wenn hier keiner gefunden wurde liegt ein Fehler im System vor. Eine Strafe ist in der Dropdown-Liste vorhanden. Eine Passende ID zu dieser
-                    //Strafe existiert aber nicht. Dieser Fall kann nur durch einen Programmfehler hervorgerufen werden. 
+                    //Strafe existiert aber nicht. Dieser Fall kann nur durch einen Programmfehler hervorgerufen werden.
                 } else {
                   array_push($errors, "Technischer Fehler: fefcfdfb5cc88c336d959ff94b979099. Inkonsestente Daten!");
                 }
@@ -98,7 +98,7 @@
         } else {
             array_push($errors, "Es sind keine Strafen vorhanden. Bitte fügen Sie zunächst Strafen hinzu!");
         }
-        
+
         //Summe Schulden berechnen
         if (isset($selected_penalty) && ($num_selected_users > 0))
         {
@@ -118,7 +118,7 @@
                 while ($actu_user = mysqli_fetch_assoc($all_users))
                 {
                     //Nutzer schon vorher selektiert?
-                    if(in_array($actu_user['id'],$selected_users)) { 
+                    if(in_array($actu_user['id'],$selected_users)) {
                         //Nutzer kann in die Tabelle geschrieben werden
                         $save_penalty_quiery = "Insert INTO userpenalties (userID,penaltyID,date,ispayed) VALUES ('" . $actu_user['id'] . "','" . $selected_penalty['penaltyID'] . "',NOW(),false);";
                         if (mysqli_query($db, $save_penalty_quiery)== 0)
@@ -130,18 +130,18 @@
                         }
                     }
                 }
-                
+
             } else {
-                array_push($errors, "Speichern nicht möglich. Bitte lösen Sie die Fehlermeldungen");  
+                array_push($errors, "Speichern nicht möglich. Bitte lösen Sie die Fehlermeldungen");
             }
         }
-        
+
         //Hier werden alle Error_Nachrichten gelöscht, wenn die Form nicht durch den Speichern-Dialog aufgerufen wird
         if (!($is_first_run))
         {
             $success = $errors;
             $errors = array();
-        }  
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -209,7 +209,7 @@
                                         {
                                             //Nutzer schon vorher selektiert?
                                             $tmp = "";
-                                            if(in_array($actu_user['id'],$selected_users)) { 
+                                            if(in_array($actu_user['id'],$selected_users)) {
                                                 $tmp = "checked";
                                             }
                                             echo '<div class="img-thumbnail m-1"><div class="form-check"><label class="form-check-label">';
@@ -240,7 +240,7 @@
                                   <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
                                      <div class="row">
                                             <div class="col-sm-12">
-                                                <button type="submit" name="save_settings" class="btn btn-danger btn-block">Strafen Speichern</button>    
+                                                <button type="submit" name="save_settings" class="btn btn-danger btn-block">Strafen Speichern</button>
                                             </div>
                                     </div>
                                   </a>

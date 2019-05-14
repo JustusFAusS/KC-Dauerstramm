@@ -14,7 +14,7 @@
 <?php
 //Automatischer verweis auf die Homepage
 	if (nutzer_angemeldet() == false){
-		header('location: /KCD/html/homepage/index.php');
+		header('location: /KCD/index.php');
 	}
     //Hier werden die für die Seite notwendigen Informationen generiert
     $all_penalties = array();
@@ -134,7 +134,7 @@
                                                     {
                                                         while (($actu_penalty = mysqli_fetch_assoc($get_all_penalties_query_result)))
                                                         {
-                                                            echo "<option onChange='add_penalty.submit()' value=" . $actu_penalty["penaltyID"] . ">" . $actu_penalty['message'] . "</option>";      
+                                                            echo "<option onChange='add_penalty.submit()' value=" . $actu_penalty["penaltyID"] . ">" . $actu_penalty['message'] . "</option>";
                                                         }
                                                     } else {
                                                         echo "<option onChange='del_penalty.submit()'>Keine Strafe vorhanden</option>";
