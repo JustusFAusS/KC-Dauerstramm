@@ -12,8 +12,8 @@
 
 <?php include('penalty_service.php') ?>
 <?php
-    //Automatischer verweis auf die Homepage
-	if (nutzer_angemeldet() == false){
+    //Automatischer verweis auf die Homepage, wenn die Rechte nicht ausreichen oder der Nutzer nicht angemeldet ist
+	if (nutzer_angemeldet() == false || checkKassenwartPermissions(get_userid_by_username($_SESSION['username']), $db) == false){
 		header('location: /KCD/index.php');
 	} else {
         //Hier werden alle Werte für die Seite berechnet

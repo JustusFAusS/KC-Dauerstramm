@@ -13,7 +13,7 @@
 
 <?php
 //Automatischer verweis auf die Homepage
-	if (nutzer_angemeldet() == false){
+	if (nutzer_angemeldet() == false || checkKassenwartPermissions(get_userid_by_username($_SESSION['username']), $db) == false){
 		header('location: /KCD/index.php');
 	}
     //Hier werden die für die Seite notwendigen Informationen generiert

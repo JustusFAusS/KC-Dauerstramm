@@ -18,7 +18,7 @@ $pathAfterSuccess = "location: /KCD/index.php";
 
 // connect to the database
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
-if(nutzer_angemeldet()) {
+if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SESSION['username']), $db) == false) {
     //Nutzer-ID holen
     $user_id = get_userid_by_username($_SESSION['username']);
     $get_all_penalties_queue = "SELECT penalties.message,penalties.amount,userpenalties.ispayed,userpenalties.date,users.username,userpenalties.userpenaltyid FROM penalties INNER JOIN userpenalties ON userpenalties.penaltyID = penalties.penaltyID INNER JOIN users ON users.id = userpenalties.userID ;";
@@ -68,13 +68,13 @@ if(nutzer_angemeldet()) {
     }
 } else {
     //Nutzer ist nicht angemeldet
-    array_push($errors,"Sie sind nicht angemeldet. Eine Afrage kann nicht getätigt werden.");
+    array_push($errors,"Sie sind nicht angemeldet oder besitzen nicht die nötigen Rechte. Eine Abfrage kann nicht getätigt werden.");
 }
 ?>
 
 <?php
 //Automatischer verweis auf die Homepage
-	if (nutzer_angemeldet() == false){
+	if (nutzer_angemeldet() == false || checkKassenwartPermissions(get_userid_by_username($_SESSION['username']), $db) == false){
 		header('location: /KCD/index.php');
 	}
 ?>

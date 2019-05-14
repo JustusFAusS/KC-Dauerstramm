@@ -104,32 +104,63 @@ if (isset($_POST['change_user'])) {
         // receive all input values from the form
         $username = mysqli_real_escape_string($db, $_POST['username']);
         $email = mysqli_real_escape_string($db, $_POST['email']);
+        $password_0 = mysqli_real_escape_string($db, $_POST['password_0']);
         $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
         $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
-        if ($password_1 != $password_2) {
+
+        //Gucken, ob der Nutzer das richtige alte Passwort eingegeben hat
+      	$password_0_hash = md5($password_0);
+      	$query = "SELECT * FROM users WHERE username='" . $_SESSION['username'] . "' AND password='$password_0_hash'";
+      	$results = mysqli_query($db, $query);
+  	    if (mysqli_num_rows($results) == 0) {
+            array_push($errors, "Das alte Passwort ist nicht korrekt");
+        }
+
+        $change_pass = (!(!isset($_POST['password_1']) || trim($_POST['password_1']) == ''));
+        $change_name = (!(!isset($_POST['username']) || trim($_POST['username']) == ''));
+        $change_mail = (!(!isset($_POST['email']) || trim($_POST['email']) == ''));
+
+        if (($password_1 != $password_2) && $change_pass) {
 		    array_push($errors, "Die Passwörter stimmen nicht überein.");
   	    }
-
+        echo $change_name;
+        if (!($change_name))
+        {
+            //Wenn der Name nicht geändert werden soll muss er aus der DB eingelesen werden
+            $username = $_SESSION['username'];
+            echo "gfkjdslf";
+        }
+        if (!($change_mail))
+        {
+            echo "fjdskl";
+            //Wenn die Mail nicht geändert werden soll muss er aus der DB eingelesen werden
+            $email = get_email_by_userid(get_userid_by_username($_SESSION['username']));
+        }
         // form validation: ensure that the form is correctly fill OR email='$email' LIMIT 1";
-        $result = mysqli_query($db, $user_check_query);
-        $user = mysqli_fetch_assoc($result);
+      	$user_check_query = "SELECT * FROM users WHERE username='" . $username . "' OR email='$email' LIMIT 1";
+      	$result = mysqli_query($db, $user_check_query);
+      	$user = mysqli_fetch_assoc($result);
 
-        if ($user) { // if user exists
-            //Nutzer exestiert garnicht
-            array_push($errors, "Der Nutzer existiert nicht. Bitte melden Sie sich ab!");
-        } else {
-            if ($user['username'] === $username) {
+        if (!($user)) { // if user exists
+            if (($user['username'] === $username) && $change_name) {
           			array_push($errors, "Nutzername existiert schon. Bitte wählen Sie einen anderen.");
-	        }
-
-	        if ($user['email'] === $email) {
+            }
+            if (($user['email'] === $email) && $change_mail) {
           		array_push($errors, "E-Mail schon registriert. Bitte überprüfen Sie Ihre eingaben oder melden Sie sich an.");
-	        }
+            }
+        } else {
+            //Nutzer exestiert garnicht
+            //Das ist gut, da neue Daten gesetzt werden
         }
 
         // Finally, update user if there are no errors in the form
         if (count($errors) == 0) {
-	        $password = md5($password_1);//encrypt the password before saving in the database
+            if ($change_pass)
+            {
+                $password = md5($password_1);//encrypt the password before saving in the database
+            } else {
+                $password = $password_0_hash;
+            }
 
 	        $query = "UPDATE users SET username = '". $username . "', email = '" . $email. "', password = '" . $password . "' WHERE username='". $_SESSION['username'] . "';";
 	        mysqli_query($db, $query);

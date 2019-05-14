@@ -14,7 +14,19 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/KCD/html/homepage/images.php">Bilder</a>
+                <?php 
+                    //Includes von Funktionen
+	                include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+                    start_session();
+                    if (nutzer_angemeldet()) {
+                        echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
+                        echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>Bilder</a>";
+                        echo "<div class='dropdown-menu'>";
+                        echo "<a class='dropdown-item' href='/KCD/html/homepage/images.php'>Bilder-Feed</a>";
+                        echo "<a class='dropdown-item' href='/KCD/html/uploadImage/upload_image.php'>Bilder hochladen</a>";
+                        echo "</div></li></ul>";
+                    }
+                ?>
             </li>
             <?php
                 //Includes von Funktionen
