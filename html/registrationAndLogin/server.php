@@ -180,7 +180,7 @@ if (isset($_POST['change_user'])) {
         if(checkAdminPermissions(get_userid_by_username($_SESSION['username']),$db) == true)
         {
             //Rechte sind da, der Nutzer ist angemeldet
-            if (isset($_POST[['password_old']) && isset($_POST['password_new_0']) && isset($_POST['password_new_0']) ) {
+            if (isset($_POST['password_old']) && isset($_POST['password_new_0']) && isset($_POST['password_new_0']) ) {
                 $pass_old = mysqli_real_escape_string($db, $_POST['password_old']);
                 $pass_old_hash = md5($pass_old);
                 $pass_new_1 = mysqli_real_escape_string($db, $_POST['password_new_1']);
