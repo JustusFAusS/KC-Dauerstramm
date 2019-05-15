@@ -22,9 +22,8 @@
                         <h5 style="color:white">About</h5>
                         <ul class="list-unstyled text-small">
                         <li><a class="text-muted" >Team</a></li>
-                        <li><a class="text-muted" >Locations</a></li>
-                        <li><a class="text-muted" >Privacy</a></li>
-                        <li><a class="text-muted" >Terms</a></li>
+                        <li><a class="text-muted" href="/KCD/html/privacy/privacy.php">Datenschutzerklärung</a></li>
+                        <li><a class="text-muted" href="/KCD/html/privacy/privacy.php">Disclaimer</a></li>
                         </ul>
                     </div>
                 </div>

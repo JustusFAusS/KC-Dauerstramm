@@ -77,9 +77,8 @@
             start_session();
 		    if (nutzer_angemeldet()) {
                 //Angemeldet
-                //echo <span class='navbar-text'>Angemeldet</span>";
                 //Dropdown
-                echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
+                echo "<ul class='navbar-nav'><li class='nav-item dropdown mr-3'>";
                 echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>" . $_SESSION['username'] . "</a>";
                 echo "<div class='dropdown-menu'>";
                 //Profil bearbeiten
@@ -93,20 +92,13 @@
                 echo "</div></li></ul>";
         	} else {
                 //Nicht Angemeldet
-                //echo "<span class='navbar-text'>Nicht angemeldet</span>";
-                //echo "<li class='nav-item'>";
                 echo "<form class='form-inline my-2 my-lg-0' action='/KCD/html/registrationAndLogin/login.php'>";
-                //echo "<a class='nav-link' href='/KCD/html/registrationAndLogin/login.php' data-target='#myModal' data-toggle='modal'>Registieren</a>";
                 echo "<button class='btn btn-outline-secondary mr-1 ml-1' type='submit'>Anmelden</button>";
                 echo "</form>";
-                //echo "</li>";
                 //Button Registrieren
-                //echo "<li class='nav-item'>";
                 echo "<form class='form-inline my-2 my-lg-0' action='/KCD/html/registrationAndLogin/register.php'>";
-                //echo "<a class='nav-link' href='/KCD/html/registrationAndLogin/register.php' data-target='#myModal' data-toggle='modal'>Registieren</a>";
                 echo "<button class='btn btn-success mr-1 ml-1' type='submit'>Registrieren</button>";
                 echo "</form>";
-                //echo "</li>";
         	}
 	    ?>
     </div>
