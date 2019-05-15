@@ -120,7 +120,7 @@
 					</div>
                     <div class="form-group">
 						<i class="fa fa-lock"></i>
-						<input type="password" name="password_2" class="form-control" placeholder="Password" required="required">
+						<input type="password" name="password_2" class="form-control" placeholder="Password bestätigen" required="required">
 					</div>
                     <div class="form-group">
 						<i class="fa fa-lock"></i>
