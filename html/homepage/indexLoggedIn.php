@@ -14,7 +14,7 @@
  <head>
    <style type="text/css">
    .jumbotron{
-background-image: url('/KCD/html/homepage/HomepageBild4.jpeg');
+background-image: url('/KCD/resources/images/homepage/HomepageBild4.jpeg');
 background-size:auto 100% ;
 background-repeat: no-repeat;
  background-position: 95% center;
