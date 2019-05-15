@@ -11,9 +11,9 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
 include("penalty_service.php");
-start_session(); 
+start_session();
 //Welche Seite nach Erfolg aufgerufen werden soll
-$pathAfterSuccess = "location: /KCD/html/homepage/index.php";
+$pathAfterSuccess = "location: /KCD/index.php";
 
 
 // connect to the database
@@ -22,7 +22,7 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
     //Nutzer-ID holen
     $user_id = get_userid_by_username($_SESSION['username']);
     $get_all_penalties_queue = "SELECT penalties.message,penalties.amount,userpenalties.ispayed,userpenalties.date,users.username,userpenalties.userpenaltyid FROM penalties INNER JOIN userpenalties ON userpenalties.penaltyID = penalties.penaltyID INNER JOIN users ON users.id = userpenalties.userID ;";
-    //Zu errechnende Summen        
+    //Zu errechnende Summen
     $sum_payed_count = 0;
     $sum_unpayed_count = 0;
     $sum_total_count = 0;
@@ -40,8 +40,8 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
         while($row = mysqli_fetch_assoc($all_penalties_db_result)){
             $l_amount = $row['amount'];
             $sum_total_count = $sum_total_count +1;
-            $l_penalty = array(  'message' => $row['message'], 
-                                'amount'   => $row['amount'], 
+            $l_penalty = array(  'message' => $row['message'],
+                                'amount'   => $row['amount'],
                                 'ispayed'  => $row['ispayed'],
                                 'date'  => $row['date'],
                                 'user'  => $row['username'],
@@ -75,7 +75,7 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
 <?php
 //Automatischer verweis auf die Homepage
 	if (nutzer_angemeldet() == false || checkKassenwartPermissions(get_userid_by_username($_SESSION['username']), $db) == false){
-		header('location: /KCD/html/homepage/index.php');
+		header('location: /KCD/index.php');
 	}
 ?>
 <!DOCTYPE html>

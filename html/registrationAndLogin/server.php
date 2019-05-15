@@ -56,7 +56,7 @@ if (isset($_POST['reg_user'])) {
   		mysqli_query($db, $query);
   		$_SESSION['username'] = $username;
   		$_SESSION['success'] = "Sie sind nun erfolgreich registriert und eingeloggt.";
-  		header('location: /KCD/html/homepage/index.php');
+  		header('location: /KCD/index.php');
   	}
   } else {
 	array_push($errors, "Sie sind schon angemeldet. Eine Registrierung ist nicht möglich");
@@ -82,7 +82,7 @@ if (isset($_POST['login_user'])) {
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "Sie sind nun eingeloggt";
-  	  header('location: /KCD/html/homepage/index.php');
+  	  header('location: /KCD/index.php');
   	}else {
   		array_push($errors, "Die eingegebenen Daten sind nicht korrekt.");
   	}
@@ -147,7 +147,7 @@ if (isset($_POST['change_user'])) {
             }
             if (($user['email'] === $email) && $change_mail) {
           		array_push($errors, "E-Mail schon registriert. Bitte überprüfen Sie Ihre eingaben oder melden Sie sich an.");
-            }  		
+            }
         } else {
             //Nutzer exestiert garnicht
             //Das ist gut, da neue Daten gesetzt werden
