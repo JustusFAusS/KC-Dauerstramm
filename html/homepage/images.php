@@ -28,8 +28,8 @@
                 <div class="col-sm-3 p-2 mt-3">
                     <form action="images.php" method="get" name="style">
                         <div class="btn-group pull-right">
-                            <button type="submit" class="btn btn-primary" name="style" value="1"><i class="fa fa-photo" style="font-size:36px"></i></button>
-                            <button type="submit" class="btn btn-primary" name="style" value="2"><i class="fa fa-newspaper-o" style="font-size:36px"></i></button>
+                            <button type="submit" data-toggle="tooltip" title="Bilderansicht" class="btn btn-primary" name="style" value="1"><i class="fa fa-photo" style="font-size:36px"></i></button>
+                            <button type="submit" data-toggle="tooltip" title="Kommentare anzeigen"class="btn btn-primary" name="style" value="2"><i class="fa fa-newspaper-o" style="font-size:36px"></i></button>
                         </div>
                     </form>
                 </div>
@@ -59,3 +59,10 @@
         <?php include("footer.php");?>
  </body>
 </html>
+
+<!-- Hier werden die Tooltips angezeigt-->
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>

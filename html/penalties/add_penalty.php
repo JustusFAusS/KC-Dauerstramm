@@ -90,7 +90,7 @@
                     //Wenn hier keiner gefunden wurde liegt ein Fehler im System vor. Eine Strafe ist in der Dropdown-Liste vorhanden. Eine Passende ID zu dieser
                     //Strafe existiert aber nicht. Dieser Fall kann nur durch einen Programmfehler hervorgerufen werden.
                 } else {
-                  array_push($errors, "Technischer Fehler: fefcfdfb5cc88c336d959ff94b979099. Inkonsestente Daten!");
+                  array_push($errors, "Fehlerhafte Strafe ausgewählt");
                 }
             } else {
                 array_push($errors, "Bitte wählen Sie eine Strafe aus der Dropdown-Liste aus.");

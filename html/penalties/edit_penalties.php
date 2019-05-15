@@ -129,10 +129,10 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
                                         echo $nr['date'];
                                         echo '</div>';
                                         echo '<div class="col-sm-1">';
-                                        echo '<button type="submit" class="btn btn-success" name="b_pay" value="' . $nr['id'] . '"><i class="fa fa-check-square-o fa" aria-hidden="true"></i></button>';
+                                        echo '<button type="submit" data-toggle="tooltip" title="Strafe bezahlen" class="btn btn-success" name="b_pay" value="' . $nr['id'] . '"><i class="fa fa-check-square-o fa" aria-hidden="true"></i></button>';
                                         echo '</div>';
                                         echo '<div class="col-sm-1">';
-                                        echo '<button type="submit" class="btn btn-danger" name="b_del" value="' . $nr['id'] . '"><i class="fa fa-trash fa" aria-hidden="true"></i></button>';
+                                        echo '<button type="submit" data-toggle="tooltip" title="Strafe löschen" class="btn btn-danger" name="b_del" value="' . $nr['id'] . '"><i class="fa fa-trash fa" aria-hidden="true"></i></button>';
                                         echo '</div>';
                                         echo '</div>';
                                         echo '</a>';
@@ -164,10 +164,10 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
                                         echo $nr['date'];
                                         echo '</div>';
                                         echo '<div class="col-sm-1">';
-                                        echo '<button type="submit" class="btn btn-warning" name="b_unpay" value="' . $nr['id'] . '"><i class="fa fa-recycle fa" aria-hidden="true"></i></button>';
+                                        echo '<button type="submit" data-toggle="tooltip" title="Status auf unbezahlt setzen" class="btn btn-warning" name="b_unpay" value="' . $nr['id'] . '"><i class="fa fa-recycle fa" aria-hidden="true"></i></button>';
                                         echo '</div>';
                                         echo '<div class="col-sm-1">';
-                                        echo '<button type="submit" class="btn btn-danger" name="b_del" value="' . $nr['id'] . '"><i class="fa fa-trash fa" aria-hidden="true"></i></button>';
+                                        echo '<button type="submit" data-toggle="tooltip" title="Srafe löschen" class="btn btn-danger" name="b_del" value="' . $nr['id'] . '"><i class="fa fa-trash fa" aria-hidden="true"></i></button>';
                                         echo '</div>';
                                         echo '</div>';
                                         echo '</a>';
@@ -190,3 +190,10 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
  </body>
 </html>
+
+<!-- Hier werden die Tooltips angezeigt-->
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
