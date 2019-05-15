@@ -173,4 +173,55 @@ if (isset($_POST['change_user'])) {
       }
 }
 
+//Change User Informations
+// REGISTER USER
+if (isset($_POST['change_user'])) {
+    if (nutzer_angemeldet()== false) {
+        if(checkAdminPermissions(get_userid_by_username($_SESSION['username']),$db) == true)
+        {
+            //Rechte sind da, der Nutzer ist angemeldet
+            if (isset($_POST[['password_old']) && isset($_POST['password_new_0']) && isset($_POST['password_new_0']) ) {
+                $pass_old = mysqli_real_escape_string($db, $_POST['password_old']);
+                $pass_old_hash = md5($pass_old);
+                $pass_new_1 = mysqli_real_escape_string($db, $_POST['password_new_1']);
+                $pass_new_1_hash = md5($pass_new_1);
+                $pass_new_0 = mysqli_real_escape_string($db, $_POST['password_new_0']);
+                $pass_new_0_hash = md5($pass_new_0);
+
+                if ($pass_new_1 === $pass_new_0) {
+                    $queue_get_master = "SELECT * FROM Values WHERE Name = 'MasterPass' AND Value = '". $pass_old_hash . "';";
+                    $result = mysqli_query($db, $queue_get_master);
+      	            $key = mysqli_fetch_assoc($result);
+
+                    if (!($key)) { // key ist richtig
+                        if ( pass_new_1_hash === pass_new_0_hash)
+                        {
+                            $queue_update_master = "UPDATE Values SET Value = '" . "' WHERE Name = 'MasterPass'";
+                            if (mysqli_query($db, $queue_get_master)== 1)
+                            {
+                                array_push($success, "Änderungen erfolgreich übernommen");
+                            } else {
+                                array_push($errors, "Technischer Fehler");
+                            }
+                        } else {
+                            //Komischer Fehler (SQL-Injection??)
+                            array_push($errors, "Bitte geben Sie valide Zeichen ein");
+                        }
+                    } else {
+                        array_push($errors, "Das eingegebene Master-Passwort ist falsch");
+                    }
+                } else {
+                    array_push($errors, "Die beiden angegebenen Passwörter stimmen nicht überein.");
+                }
+            } else {
+                array_push($errors, "Sie haben nicht alle benötigten Werte angegeben.");
+            }
+        } else {
+            array_push($errors, "Sie haben nicht die erforderlichen Rechte um diese Akion auszuführen!");
+        }
+    } else {
+        array_push($errors, "Sie sind nicht angemeldet. Eine Änderung der Daten ist nicht möglich");
+    }
+}
+
 ?>
