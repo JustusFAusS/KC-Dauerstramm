@@ -8,13 +8,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<?php include_once('server.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/registrationAndLogin/server.php') ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
 
 <?php
 //Automatischer verweis auf die Homepage
-	if (nutzer_angemeldet()){
-		header('location: /KCD/html/homepage/index.php');
+	if (nutzer_angemeldet() == false){
+		header('location: /KCD/index.php');
 	}
 ?>
 <!DOCTYPE html>
@@ -91,36 +91,15 @@
 </head>
 </head>
 <body>
-  <!--<div class="header">
-  	<h2>Login</h2>
-  </div>
-
-  <form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
-  	<div class="input-group">
-  		<label>Nutzername</label>
-  		<input type="text" name="username" >
-  	</div>
-  	<div class="input-group">
-  		<label>Passwort</label>
-  		<input type="password" name="password">
-  	</div>
-  	<div class="input-group">
-  		<button type="submit" class="btn" name="login_user">Anmelden</button>
-  	</div>
-  	<p>
-  		Noch nicht registriert? <a href="register.php">Sign up</a>
-  	</p>
-  </form>-->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">Masterpasswort setzen</h4>
 			</div>
-                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
+            <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 			<div class="modal-body">
-				<form action="login.php" method="post">
+				<form action="permission_set_master.php" method="post">
 					<div class="form-group">
 						<i class="fa fa-lock"></i>
 						<input type="password" name="password_old" class="form-control" placeholder="Altes Master-Passwort" required="required">
@@ -134,7 +113,7 @@
 						<input type="password" name="password_new_1" class="form-control" placeholder="Master-Passwort bestätigen" required="required">
 					</div>
 					<div class="form-group">
-						<input type="submit" name="login_user" class="btn btn-warning btn-block btn-lg" value="Bestätigen">
+						<input type="submit" name="change_master" class="btn btn-warning btn-block btn-lg" value="Bestätigen">
 					</div>
 				</form>
 			</div>

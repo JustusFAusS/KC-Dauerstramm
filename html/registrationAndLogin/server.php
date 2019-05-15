@@ -21,15 +21,27 @@ if (isset($_POST['reg_user'])) {
   	$email = mysqli_real_escape_string($db, $_POST['email']);
   	$password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   	$password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+    $password_master = mysqli_real_escape_string($db, $_POST['password_master']);
+    $password_master_hash = md5($password_master);
 
 	// form validation: ensure that the form is correctly filled ...
   	// by adding (array_push()) corresponding error unto $errors array
   	if (empty($username)) { array_push($errors, "Nutzername wurde nicht angegeben. Bitte geben Sie einen Nutzername an."); }
   	if (empty($email)) { array_push($errors, "E-mail wurde nicht angegeben. Bitte geben Sie eine E-Mail an."); }
   	if (empty($password_1)) { array_push($errors, "Bitte geben Sie ein passwort an."); }
+    if (empty($password_master_hash)) { array_push($errors, "Bitte geben Sie ein Master-Passwort ein."); }
   	if ($password_1 != $password_2) {
 		array_push($errors, "Die Passwörter stimmen nicht überein.");
   	}
+
+    //Master-Passwort Checken
+    $queue_get_master = "SELECT * FROM Variables WHERE Name = 'MasterPass' AND currentvalue = '". $password_master_hash . "';";
+    $result_get_master = mysqli_query($db, $queue_get_master);
+    $key_found = mysqli_fetch_assoc($result_get_master);
+
+    if (!($key_found)) { // key ist nicht richtig
+        array_push($errors, "Das Master-Passwort ist nicht gültig. Registrierung nicht möglich" . $password_master_hash);
+    }
 
   	// first check the database to make sure
   	// a user does not already exist with the same username and/or email
@@ -46,6 +58,7 @@ if (isset($_POST['reg_user'])) {
       		array_push($errors, "E-Mail schon registriert. Bitte überprüfen Sie Ihre eingaben oder melden Sie sich an.");
     	}
 	}
+
 
   	// Finally, register user if there are no errors in the form
   	if (count($errors) == 0) {
@@ -175,8 +188,8 @@ if (isset($_POST['change_user'])) {
 
 //Change User Informations
 // REGISTER USER
-if (isset($_POST['change_user'])) {
-    if (nutzer_angemeldet()== false) {
+if (isset($_POST['change_master'])) {
+    if (nutzer_angemeldet()) {
         if(checkAdminPermissions(get_userid_by_username($_SESSION['username']),$db) == true)
         {
             //Rechte sind da, der Nutzer ist angemeldet
@@ -188,16 +201,16 @@ if (isset($_POST['change_user'])) {
                 $pass_new_0 = mysqli_real_escape_string($db, $_POST['password_new_0']);
                 $pass_new_0_hash = md5($pass_new_0);
 
-                if ($pass_new_1 === $pass_new_0) {
-                    $queue_get_master = "SELECT * FROM Values WHERE Name = 'MasterPass' AND Value = '". $pass_old_hash . "';";
+                if ($pass_new_1 == $pass_new_0) {
+                    $queue_get_master = "SELECT * FROM Variables WHERE Name = 'MasterPass' AND currentvalue = '". $pass_old_hash . "';";
                     $result = mysqli_query($db, $queue_get_master);
       	            $key = mysqli_fetch_assoc($result);
 
-                    if (!($key)) { // key ist richtig
-                        if ( pass_new_1_hash === pass_new_0_hash)
+                    if ($key) { // key ist richtig
+                        if ( $pass_new_1_hash == $pass_new_0_hash)
                         {
-                            $queue_update_master = "UPDATE Values SET Value = '" . "' WHERE Name = 'MasterPass'";
-                            if (mysqli_query($db, $queue_get_master)== 1)
+                            $queue_update_master = "UPDATE Variables SET currentvalue = '" . $pass_new_1_hash . "' WHERE Name = 'MasterPass'";
+                            if (mysqli_query($db, $queue_update_master)== 1)
                             {
                                 array_push($success, "Änderungen erfolgreich übernommen");
                             } else {

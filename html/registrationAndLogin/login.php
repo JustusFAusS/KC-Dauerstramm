@@ -142,9 +142,9 @@
 					</div>
 				</form>
 			</div>
-			<div class="modal-footer">
+            <div class="modal-footer">
 				<a href="#">Passwort vergessen?</a>
-                <a href="#">Noch kein Konto?</a>
+                <a href="register.php">Noch kein Konto?</a>
 			</div>
 		</div>
     </div>

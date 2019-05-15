@@ -122,11 +122,18 @@
 						<i class="fa fa-lock"></i>
 						<input type="password" name="password_2" class="form-control" placeholder="Password" required="required">
 					</div>
+                    <div class="form-group">
+						<i class="fa fa-lock"></i>
+						<input type="password" name="password_master" class="form-control" placeholder="Master-Passwort" required="required">
+					</div>
 					<div class="form-group">
 						<input type="submit" name="reg_user" class="btn btn-primary btn-block btn-lg" value="Register">
 					</div>
 				</form>
 			</div>
+            <div class="modal-footer">
+                <p>Das Master-Passwort wird von dem Administrator vergeben.</p><br>
+            </div>
 			<div class="modal-footer">
 				<a href="login.php">Schon Mitglied? Anmelden</a>
 			</div>
