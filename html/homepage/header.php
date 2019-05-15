@@ -49,6 +49,7 @@
                         //show permisstions
                         echo '<a class="dropdown-item" href="/KCD/html/permissions/show_permission.php">Rechte verwalten</a>';
                         echo '<a class="dropdown-item" href="/KCD/html/permissions/permission_set_master.php">Master-Passwort ändern</a>';
+                        echo '<a class="dropdown-item" href="/KCD/html/permissions/change_user_pass.php">Nutzer-Passwort ändern</a>';
                         echo "</div></li></ul>";
                     }
                     //Dropdown Strafen

@@ -143,9 +143,11 @@
 				</form>
 			</div>
             <div class="modal-footer">
-				<a href="#">Passwort vergessen?</a>
                 <a href="register.php">Noch kein Konto?</a>
 			</div>
+            <div class="modal-footer">
+				<p>Passwort vergessen? Dann lassen Sie es sich von einem Administrator zurücksetzen. Aus sicherheitsgründen ist dies hier nicht möglich</p>
+            </div>
 		</div>
     </div>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>

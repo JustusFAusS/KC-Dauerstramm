@@ -2,7 +2,7 @@
 session_start();
 
 //Includes von Funktionen
-include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
 
 // initializing variables
 $username = "";
@@ -187,7 +187,7 @@ if (isset($_POST['change_user'])) {
 }
 
 //Change User Informations
-// REGISTER USER
+// REGISTER USER 
 if (isset($_POST['change_master'])) {
     if (nutzer_angemeldet()) {
         if(checkAdminPermissions(get_userid_by_username($_SESSION['username']),$db) == true)
@@ -228,6 +228,64 @@ if (isset($_POST['change_master'])) {
                 }
             } else {
                 array_push($errors, "Sie haben nicht alle benötigten Werte angegeben.");
+            }
+        } else {
+            array_push($errors, "Sie haben nicht die erforderlichen Rechte um diese Akion auszuführen!");
+        }
+    } else {
+        array_push($errors, "Sie sind nicht angemeldet. Eine Änderung der Daten ist nicht möglich");
+    }
+}
+
+//change User password
+if (isset($_POST['change_user_pass'])) {
+    if (nutzer_angemeldet()) {
+        if(checkAdminPermissions(get_userid_by_username($_SESSION['username']),$db) == true)
+        {
+            //Rechte sind da, der Nutzer ist angemeldet
+            $user_id = mysqli_real_escape_string($db, $_POST['selected_user']);
+            $password_0 = mysqli_real_escape_string($db, $_POST['password_new_0']);
+            $password_1 = mysqli_real_escape_string($db, $_POST['password_new_1']);
+            $password_m = mysqli_real_escape_string($db, $_POST['password_master']);
+            $password_m_hash = md5($password_m);
+            $password_0_hash = md5($password_0);
+            if ($user_id != "nothingSelected") {
+                if ((!empty($password_0)) || (!empty($password_1)) || (!empty($password_m)) || (!empty($user_id))) {
+                    if ($password_0 == $password_1) {
+                        $queue_get_master = "SELECT * FROM Variables WHERE Name = 'MasterPass' AND currentvalue = '". $password_m_hash . "';";
+                        $result = mysqli_query($db, $queue_get_master);
+          	            $key = mysqli_fetch_assoc($result);
+                        
+                        if ($key) { // key ist richtig
+                            //Alles bis auf den Nutzer getestet
+                          	$user_check_query = "SELECT * FROM users WHERE id='" . $user_id . "'";
+                            $result = mysqli_query($db, $user_check_query);
+                            $user = mysqli_fetch_assoc($result);
+                            if ($user) { // if user exists
+                                if(checkAdminPermissions($user_id,$db) == false) {
+                                    $queue_update_pass = "UPDATE users SET password = '" . $password_0_hash . "' WHERE id = '" . $user_id . "';";
+                                    if (mysqli_query($db, $queue_update_pass) == 1) {
+                                        array_push($success, "Daten erfolgreich aktualisiert!");
+                                    } else {
+                                        array_push($errors, "Fehler bei einer Datenbankabfrage");
+                                    }
+                                } else {
+                                    array_push($errors, "Dieser Nutzer ist ein Administrator. Das Passwort von Administratoren kann nicht zurückgesetzt werden.");
+                                }
+                            } else {
+                                array_push($errors, "Technischer Fehler. Zugehöriger Nutzer konnte nicht ermittelt werden. Bitte laden Sie die Seite neu.");
+                            }
+                        } else {
+                            array_push($errors, "Master-Passwort ist nicht richtig");
+                        }
+                    } else {
+                        array_push($errors, "Die Passwörter stimmen nicht überein");
+                    }
+                } else {
+                    array_push($errors, "Bitte geben Sie alle nötigen Daten an!");
+                }
+            } else {
+                array_push($errors, "Bitte suchen sie sich einen Nutzer aus");
             }
         } else {
             array_push($errors, "Sie haben nicht die erforderlichen Rechte um diese Akion auszuführen!");
