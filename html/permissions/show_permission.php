@@ -15,7 +15,7 @@
 <?php
 //Automatischer verweis auf die Homepage, falls unangemeldeter Nutzer oder Nutzer nicht Admin
 	if (nutzer_angemeldet() == false || checkAdminPermissions(get_userid_by_username($_SESSION['username']), $db) ==false){
-		header('location: /KCD/html/homepage/index.php');
+		header('location: /KCD/index.php');
 	}
 ?>
 <!DOCTYPE html>
