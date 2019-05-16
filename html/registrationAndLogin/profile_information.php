@@ -1,5 +1,6 @@
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script src="/KCD/html/bootstrap/bootstrap.bundle.js"></script>
 <script src="/KCD/html/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -110,7 +111,7 @@
 						        <input type="text" name="username" class="form-control" placeholder="<?php echo $_SESSION['username']; ?>">
 					        </div>
                             <div class="form-group">
-						        <i class="fa fa-user"></i>
+						        <i class="fa fa-envelope"></i>
 						        <input type="email" name="email" class="form-control" placeholder="<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
                                                                                                          echo get_email_by_userid(get_userid_by_username($_SESSION['username'])); ?>">
 					        </div>

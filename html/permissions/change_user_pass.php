@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<?php include_once('server.php') ?>
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -12,15 +8,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/registrationAndLogin/server.php') ?>
+
 <?php
 //Automatischer verweis auf die Homepage
-	if (nutzer_angemeldet()){
+	if (nutzer_angemeldet() == false){
 		header('location: /KCD/index.php');
 	}
 ?>
-
+<!DOCTYPE html>
+<html>
 <head>
-<style type="text/css">
+  <title>Login</title>
+  <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;
 	}
@@ -70,14 +71,6 @@
 		top: -5px;
 		right: -5px;
 	}
-	.modal-login .btn {
-		background: #00ce81;
-		border: none;
-		line-height: normal;
-	}
-	.modal-login .btn:hover, .modal-login .btn:focus {
-		background: #00bf78;
-	}
 	.modal-login .modal-footer {
 		background: #ecf0f1;
 		border-color: #dee4e7;
@@ -95,76 +88,57 @@
 		margin: 100px auto;
 	}
 </style>
+</head>
+</head>
 <body>
-    </form>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Registrieren</h4>
+				<h4 class="modal-title">Nutzerpasswort ändern</h4>
 			</div>
+            <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 			<div class="modal-body">
-                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
-				<form action="register.php" method="post">
-					<div class="form-group">
-						<i class="fa fa-user"></i>
-						<input type="text" name="username" class="form-control" placeholder="Username" required="required">
-					</div>
+				<form action="change_user_pass.php" method="post">
                     <div class="form-group">
-						<i class="fa fa-envelope"></i>
-						<input type="email" name="email" class="form-control" placeholder="E-Mail" required="required">
-					</div>
-					<div class="form-group">
+                        <i class="fa fa-user"></i>
+                        <select class="form-control" id="gb1" name="selected_user">
+                            <option value="nothingSelected">Wählen Sie einen Nutzer</option>
+                            <?php
+                                $queryUser = "SELECT * FROM users";
+                                $resultUser = mysqli_query($db, $queryUser);
+                                if ($resultUser->num_rows > 0) {
+                                    while($rowUser = mysqli_fetch_assoc($resultUser)){
+                                        echo "<option value='" . $rowUser['id'] . "'>". $rowUser['username'] ."</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>Keine Nutzer da</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
 						<i class="fa fa-lock"></i>
-						<input type="password" name="password_1" class="form-control" placeholder="Password" required="required">
+						<input type="password" name="password_new_0" class="form-control" placeholder="Neues Passwort" required="required">
 					</div>
                     <div class="form-group">
 						<i class="fa fa-lock"></i>
-						<input type="password" name="password_2" class="form-control" placeholder="Password bestätigen" required="required">
+						<input type="password" name="password_new_1" class="form-control" placeholder="Neues Passwort bestätigen" required="required">
 					</div>
-                    <div class="form-group">
+					<div class="form-group">
 						<i class="fa fa-lock"></i>
 						<input type="password" name="password_master" class="form-control" placeholder="Master-Passwort" required="required">
 					</div>
 					<div class="form-group">
-						<input type="submit" name="reg_user" class="btn btn-primary btn-block btn-lg" value="Register">
+						<input type="submit" name="change_user_pass" class="btn btn-warning btn-block btn-lg" value="Bestätigen">
 					</div>
 				</form>
 			</div>
-            <div class="modal-footer">
-                <p>Das Master-Passwort wird von dem Administrator vergeben.</p><br>
-            </div>
 			<div class="modal-footer">
-				<a href="login.php">Schon Mitglied? Anmelden</a>
+				<a href="#">Das zurücksetzen von Admin-Passwörtern ist hier aus sicherheitsgründen nicht gestattet.</a>
 			</div>
 		</div>
     </div>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
 </body>
-<!-- Alte form
-<form action="register.php" method="post">
-	<?php include('errors.php'); ?>
-  	<div class="input-group">
-  	  <label>Username</label>
-  	  <input type="text" name="username" value="<?php echo $username; ?>">
-  	</div>
-  	<div class="input-group">
-  	  <label>Email</label>
-  	  <input type="email" name="email" value="<?php echo $email; ?>">
-  	</div>
-  	<div class="input-group">
-  	  <label>Password</label>
-  	  <input type="password" name="password_1">
-  	</div>
-  	<div class="input-group">
-  	  <label>Confirm password</label>
-  	  <input type="password" name="password_2">
-  	</div>
-  	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Register</button>
-  	</div>
-  	<p>
-  		Already a member? <a href="login.php">Sign in</a>
-  	</p>
-</form>-->
 </html>
