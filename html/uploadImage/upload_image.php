@@ -36,7 +36,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="login.php">Bilder können nicht gelöscht werden</a>
+				<a href="login.php">Bilder können von dir und allen Administratoren gelöscht werden</a>
 			</div>
 		</div>
     </div>

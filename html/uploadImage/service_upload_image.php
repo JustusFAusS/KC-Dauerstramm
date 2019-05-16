@@ -6,6 +6,7 @@ start_session();
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
 $errors = array();
+$success = array();
 //Welche Seite nach Erfolg aufgerufen werden soll
 $pathAfterSuccess = "location: /KCD/index.php";
 
@@ -76,7 +77,7 @@ if (isset($_POST['save_image'])) {
         			//Erfolgreich hochgeladen
 				//Speichern in der Datenbank
 				//Nutzer aus DB holen
-				$getUserIDQuery = "SELECT id from users where username = 'Lennart Peters';";
+				$getUserIDQuery = "SELECT id from users where username = '". $_SESSION['username'] ."';";
 				//Query ausführen und anschließend in ein Array umwandeln
 				$result = mysqli_query($db, $getUserIDQuery);
 				$user_id = mysqli_fetch_array($result,MYSQLI_ASSOC);
@@ -127,5 +128,53 @@ if (isset($_POST['comment_image'])) {
 
 }
 
+if (isset($_POST['delete_image'])) {
+    //Hier können images kommentiert werden
+    if (nutzer_angemeldet()) {
+            $getMatchedImages = "SELECT * from images where ImageID='" . $_GET['imageid'] . "';";
+		    //Query ausführen und anschließend in ein Array umwandeln
+		    $result = mysqli_query($db, $getMatchedImages);
+		    $found_images = mysqli_fetch_array($result,MYSQLI_ASSOC);
+            //Wurde eine Nutzer-ID gefunden?
+		    if (isset($found_images)) {
+                    //Aktuelle Nutzer-ID
+                    $actual_user_id = get_userid_by_username($_SESSION['username']);
+                    //Hat der Nutzer Admin-Rechte?
+                    $is_admin = checkAdminPermissions($actual_user_id,$db);
+                    if(($found_images['UploadedBy'] == $actual_user_id) || $is_admin)
+                    {
+                        // Hier kann das Bild nun entfernt werden
+                        // Es wird damit begonnen alle Kommentare zu löschen
+                        $del_comments_queue = "DELETE FROM imagecomments WHERE imageID = '". $found_images['ImageID'] . "';";
+                        if (mysqli_query($db, $del_comments_queue) == 1) {
+                            //Nun müssen die Ressourcen freigegeben werden
+                            if (unlink($_SERVER['DOCUMENT_ROOT'] . $found_images['ImageDir']) == 1)
+                            {
+                                //Nun muss das Bild aus der DB gänzlich entfernt werden
+                                $del_comments_queue = "DELETE FROM images WHERE ImageID = '". $found_images['ImageID'] . "';";
+                                if (mysqli_query($db, $del_comments_queue) == 1) {
+                                    array_push($success,"Das bild wurde erfolgreich gelöscht. Sie können diese Seite nun schließen");
+                                    //Setzen einer Erfolgsvariable, damit die Form den Button ausblenden kann
+                                    $delete_success = true;
+                                } else {
+                                    array_push($errors, "Fehler: Das Bild konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");
+                                }
+                            } else {
+                                array_push($errors, "Fehler: Ressourcen konnten nicht gelöscht werden. Bitte wenden Sie sich an Ihren Administrator");
+                            }
+                        } else {
+                            array_push($errors, "Fehler: Kommentare konnten nicht gelöscht werden. Bitte wenden Sie sich an Ihren Administrator");
+                        }
+                    } else {
+                        array_push($errors, "Fehler: Sie haben nicht die nötigen Rechte für diesen Vorgang!");
+                    }
+            } else {
+                array_push($errors, "Fehler: Das zu löschende Bild existiert nicht!");
+            }
+    } else {
+        array_push($errors, "Fehler: Sie sind nicht angemeldet");
+    }
+
+}
 
 ?>

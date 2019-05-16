@@ -16,6 +16,11 @@ $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 if ( nutzer_angemeldet() ){
 	//Hier werden alle Daten in einer Tabelle angezeigt
 
+    //Aktuelle Nutzer-ID
+    $actual_user_id = get_userid_by_username($_SESSION['username']);
+    //Hat der Nutzer Admin-Rechte?
+    $is_admin = checkAdminPermissions($actual_user_id,$db);
+
 	//Laden der Relevanten Daten
 	$query = "SELECT * FROM images ORDER BY UploadedAt DESC";
 	$result = mysqli_query($db, $query);
@@ -66,15 +71,44 @@ if ( nutzer_angemeldet() ){
                                 echo '</div>';
                             echo "</div>";
                         }
+                    
+                    echo '<div class="row">';
+                    echo "<div class='col-sm-10'>";
                     echo '<form action="/KCD/html/uploadImage/comment_image.php?imageid=' . $row['ImageID'] . '" method="post">';
                     echo "<button type='submit' class='btn btn-light ml-1' data-toggle='modal' data-target='#ModalImage" . $row['ImageID'] . "'>Kommentar verfassen</button>";
                     echo "</form>";
                     echo "</div>";
+                    echo "<div class='col-sm-2'>";
+                    //Wenn der Nutzer das Bild erstellt hat, dann kann er dieses Bild auch wieder löschen
+                    //Administratoren können das immer machen 
+                    if (($actual_user_id == $row['UploadedBy']) || $is_admin)
+                    {
+                        echo '<form action="/KCD/html/uploadImage/delete_image.php?imageid=' . $row['ImageID'] . '" method="post">';
+                        echo "<button type='submit' class='btn btn-danger mr-1 pull-right'>Löschen</button>";
+                        echo "</form>";
+                    }
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
 			    } else {
                     //Hier nochmal, da der Button in dem Rahmen bleiben soll. Aber nur, wenn kommentare existieren
+                    echo '<div class="row">';
+                    echo "<div class='col-sm-10'>";
                     echo '<form action="/KCD/html/uploadImage/comment_image.php?imageid=' . $row['ImageID'] . '" method="post">';
-                    echo "<button type='submit' class='btn btn-light ml-1'>Kommentar verfassen</button>";
+                    echo "<button type='submit' class='btn btn-light ml-1' data-toggle='modal' data-target='#ModalImage" . $row['ImageID'] . "'>Kommentar verfassen</button>";
                     echo "</form>";
+                    echo "</div>";
+                    echo "<div class='col-sm-2'>";
+                    //Wenn der Nutzer das Bild erstellt hat, dann kann er dieses Bild auch wieder löschen
+                    //Administratoren können das immer machen 
+                    if (($actual_user_id == $row['UploadedBy']) || $is_admin)
+                    {
+                        echo '<form action="/KCD/html/uploadImage/delete_image.php?imageid=' . $row['ImageID'] . '" method="post">';
+                        echo "<button type='submit' class='btn btn-danger mr-1 pull-right'>Löschen</button>";
+                        echo "</form>";
+                    }
+                    echo "</div>";
+                    echo "</div>";
                 }
             echo "</div>";
 		}

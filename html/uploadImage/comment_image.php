@@ -18,7 +18,7 @@
 				<h4 class="modal-title">Bild Kommentieren</h4>
 			</div>
 			<div class="modal-body">
-                <?php include('errors.php'); ?>
+                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 				<form action="/KCD/html/uploadImage/comment_image.php?imageid=<?php echo $_GET['imageid']; ?>" method="post">
 					<div class="form-group">
 						<textarea class="span5" rows="3" placeholder="Kommentar" required="required" style="min-width: 100%" name="comment_image_comment"></textarea>
