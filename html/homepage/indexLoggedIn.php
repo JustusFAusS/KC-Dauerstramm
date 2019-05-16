@@ -18,13 +18,12 @@ background-image: url('/KCD/resources/images/homepage/HomepageBild4.jpeg');
 background-size:auto 100% ;
 background-repeat: no-repeat;
  background-position: 95% center;
-
  height: 300;
 }
-
 </style>
   	<title>Homepage</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body id="body">
 
@@ -35,6 +34,7 @@ if (nutzer_angemeldet() == false){
 		header('location: /KCD/index.php');
   }  ?>
    <div id="whole_page">
+
 <?php include("header.php");?>
 
 
@@ -46,7 +46,7 @@ if (nutzer_angemeldet() == false){
 </div>
 
 
-
+<div class="container">
 <div class="row">
     <!-- Platzhalter-->
     <div class="col-sm-1"></div>
@@ -74,7 +74,8 @@ if (nutzer_angemeldet() == false){
 </div>
 
 </div>
-
+<div class="col-sm-1"></div>
+</div>
 </div>
 
 

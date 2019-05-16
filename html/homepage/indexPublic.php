@@ -27,6 +27,8 @@
           </from>
           </div>
         </div>
+
+        <div class="container">
         <div class="row">
             <!-- Platzhalter-->
             <div class="col-sm-1"></div>
@@ -57,7 +59,9 @@
             Sie es für sich.
         </div>
 </div>
+<div class="col-sm-1"></div>
 
+        </div>
         </div>
       <?php include("footer.php");?>
  </body>
