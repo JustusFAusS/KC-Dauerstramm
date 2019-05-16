@@ -27,6 +27,8 @@
           </from>
           </div>
         </div>
+
+        <div class="container">
         <div class="row">
             <!-- Platzhalter-->
             <div class="col-sm-1"></div>
@@ -58,9 +60,9 @@
         </div>
         <!-- Platzhalter-->
         <div class="col-sm-1"></div>
-        <!-- Linkes Menue. Etwas groesser als das rechte-->
     </div>
 
+        </div>
         </div>
       <?php include("footer.php");?>
  </body>
