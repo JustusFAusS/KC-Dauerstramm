@@ -39,7 +39,9 @@ if ( nutzer_angemeldet() ){
             
             //echo "<div class='img-thumbnail mt-3 mb-3'>";
             // Bild kann immmer eingefügt werden
-            echo "<div class='col-sm-4'><img src='" . $row["ImageDir"] . "'alt='Bild nicht verfügbar' class='img-thumbnail rounded'></div>";
+            echo "<div class='col-sm-4'><a href='" . $row["ImageDir"] . "'>";
+            echo "<img src='" . $row["ImageDir"] . "'alt='Bild nicht verfügbar' class='img-thumbnail rounded'>";
+            echo "</a></div>";
             //echo "</div>";
             if ($num_image % 3 == 2)
             {

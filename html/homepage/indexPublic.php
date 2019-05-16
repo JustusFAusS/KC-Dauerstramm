@@ -58,7 +58,9 @@
             Möchten Sie uns Hinweise, Kritik oder einfach nur Lob für diese Webseite geben? Dann behalten
             Sie es für sich.
         </div>
-<div class="col-sm-1"></div>
+        <!-- Platzhalter-->
+        <div class="col-sm-1"></div>
+    </div>
 
         </div>
         </div>
