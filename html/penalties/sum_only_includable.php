@@ -10,10 +10,10 @@
 
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
-start_session(); 
+start_session();
 $errors = array();
 //Welche Seite nach Erfolg aufgerufen werden soll
-$pathAfterSuccess = "location: /KCD/html/homepage/index.php";
+$pathAfterSuccess = "location: /KCD/index.php";
 
 // connect to the database
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
@@ -21,7 +21,7 @@ if(nutzer_angemeldet()) {
     //Nutzer-ID holen
     $user_id = get_userid_by_username($_SESSION['username']);
     $get_all_penalties_queue = "SELECT penalties.message,penalties.amount,userpenalties.ispayed,userpenalties.date FROM penalties INNER JOIN userpenalties ON userpenalties.penaltyID = penalties.penaltyID WHERE userpenalties.userID = " . $user_id . " ;";
-    //Zu errechnende Summen        
+    //Zu errechnende Summen
     $sum_payed_count = 0;
     $sum_unpayed_count = 0;
     $sum_total_count = 0;
@@ -40,8 +40,8 @@ if(nutzer_angemeldet()) {
             $l_amount = $row['amount'];
             $sum_total_count = $sum_total_count +1;
 
-            $l_penalty = array(  'message' => $row['message'], 
-                                'amount'   => $row['amount'], 
+            $l_penalty = array(  'message' => $row['message'],
+                                'amount'   => $row['amount'],
                                 'ispayed'  => $row['ispayed'],
                                 'date'  => $row['date']);
             if ($row['ispayed']) {
