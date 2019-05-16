@@ -32,9 +32,9 @@ if ( nutzer_angemeldet() ){
 			//echo "<tr>";
             echo "<div class='img-thumbnail mt-3 mb-3'>";
                 echo '<div class="row">';
-                    echo "<a href='" . $row["ImageDir"] . "'>";
-                    echo "<div class='col-sm-5'><img src='" . $row["ImageDir"] . "'alt='Bild nicht verfügbar' class='img-thumbnail rounded'></div>";
-                    echo "</a>";
+                    echo "<div class='col-sm-5'><a href='" . $row["ImageDir"] . "'>";
+                    echo "<img src='" . $row["ImageDir"] . "'alt='Bild nicht verfügbar' class='img-thumbnail rounded'>";
+                    echo "</a></div>";
                     echo "<div class='col-sm-7'>";
                         echo '<div class="row">';
                             echo "<div class='col-sm-12'><h3>" . $row["ImageTitle"] . "</h3></div>";
