@@ -40,7 +40,7 @@ if (isset($_POST['reg_user'])) {
     $key_found = mysqli_fetch_assoc($result_get_master);
 
     if (!($key_found)) { // key ist nicht richtig
-        array_push($errors, "Das Master-Passwort ist nicht gültig. Registrierung nicht möglich" . $password_master_hash);
+        array_push($errors, "Das Master-Passwort ist nicht gültig. Registrierung nicht möglich");
     }
 
   	// first check the database to make sure
