@@ -22,6 +22,8 @@ if ( nutzer_angemeldet() ){
 		//echo "<table border='0'><tbody>";
 		//Einzelne Zeilen einfügen
         $num_image = 0;
+        //Ob die Div der Row noch geöffnet ist (tritt auf, wenn weniger als 3 Bilder in der untersten Zeile sind
+        $div_opend;
         //Das erste Bild einer Zeile
         echo '<div class="row mb-3">';
 		while($row = mysqli_fetch_assoc($result)){
@@ -29,6 +31,7 @@ if ( nutzer_angemeldet() ){
             {
                 //Das erste Bild einer Zeile
                 echo '<div class="row mb-3">';
+                $div_opend = true;
             }
             
             //echo "<div class='img-thumbnail mt-3 mb-3'>";
@@ -41,9 +44,14 @@ if ( nutzer_angemeldet() ){
             {
                 //Das letzte Bild einer Zeile
                 echo "</div>";
+                $div_opend = false;
             }
             $num_image = $num_image + 1;
 		}
+        if ($div_opend)
+        {
+            echo "</div>";
+        }
 	} else {
 		//Es wurden keine Bilder gefunden
 		//Hier kann eine schönere Ausgabe erfolgen
