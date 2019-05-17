@@ -50,7 +50,7 @@ if(nutzer_angemeldet()) {
                 $sum_payed_amount = $sum_payed_amount + $l_amount;
                 array_push($arr_payed,$l_penalty);
             } else {
-                $sum_total_amount = $sum_total_amount - $l_amount;
+                $sum_total_amount = $sum_total_amount + $l_amount;
                 $sum_unpayed_count = $sum_unpayed_count + 1;
                 $sum_unpayed_amount = $sum_unpayed_amount + $l_amount;
                 array_push($arr_unpayed,$l_penalty);
