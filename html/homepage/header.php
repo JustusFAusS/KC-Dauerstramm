@@ -60,9 +60,9 @@
                     echo '<a class="dropdown-item" href="/KCD/html/penalties/show_penalties.php">Eigene Strafen</a>';
                     if (checkKassenwartPermissions($userID,$db))
                     {
-                        echo '<a class="dropdown-item" href="/KCD/html/penalties/edit_penalties.php">Strafen verwalten</a>';
-                        echo '<a class="dropdown-item" href="/KCD/html/penalties/add_penalty.php">Strafen erfassen</a>';
                         echo '<a class="dropdown-item" href="/KCD/html/penalties/create_penalty.php">Strafe erstellen</a>';
+                        echo '<a class="dropdown-item" href="/KCD/html/penalties/add_penalty.php">Strafen erfassen</a>';
+                        echo '<a class="dropdown-item" href="/KCD/html/penalties/edit_penalties.php">Strafen verwalten</a>';
                         echo '<a class="dropdown-item" href="/KCD/html/penalties/delete_penalty.php">Strafe löschen</a>';
                     }
                     echo "</div></li></ul>";
