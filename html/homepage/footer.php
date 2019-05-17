@@ -15,7 +15,7 @@
                         <h5 style="color:white">Links</h5>
                         <ul class="list-unstyled text-small">
                         <li><a class="text-muted" href="/KCD/index.php">Homepage</a></li>
-                        <li><a class="text-muted" href="/KCD/html/homepage/images.php">Bilder</a></li>
+                        <li><a class="text-muted" href="/KCD/html/uploadImage/images.php">Bilder</a></li>
                         </ul>
                     </div>
                     <div class="col-6 col-md">
