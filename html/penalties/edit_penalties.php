@@ -100,7 +100,7 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
                     <div class="col-sm-11">
                         <div class="bg-white p-2 mt-3">
                             <?php include("errors.php"); ?>
-                            <h1>Strafenübersicht:</h1>
+                            <h1>Strafen verwalten:</h1>
                         </div>
                     </div>
                 </div>

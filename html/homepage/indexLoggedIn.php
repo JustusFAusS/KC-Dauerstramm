@@ -56,9 +56,9 @@ if (nutzer_angemeldet() == false){
     <h2>Was ist neu?</h2>
     <?php
     // Anzeigen der neusten 5 Bilder aus dem Bilder-Feed
-    include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/image_feed_newest3ForHomepage.php");
+    include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/image_feed_newest3ForHomepage.php");
     ?>
-    <form action='/KCD/html/homepage/images.php' method="post">
+    <form action='/KCD/html/uploadImage/images.php' method="post">
     <input type="submit" name="btn_mehrAnzeigen" class="btn btn-primary" value="Mehr anzeigen">
   </from>
     </div>

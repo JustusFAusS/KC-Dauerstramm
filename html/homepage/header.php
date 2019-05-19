@@ -22,7 +22,7 @@
                         echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
                         echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>Bilder</a>";
                         echo "<div class='dropdown-menu'>";
-                        echo "<a class='dropdown-item' href='/KCD/html/homepage/images.php'>Bilder-Feed</a>";
+                        echo "<a class='dropdown-item' href='/KCD/html/uploadImage/images.php'>Bilder-Feed</a>";
                         echo "<a class='dropdown-item' href='/KCD/html/uploadImage/upload_image.php'>Bilder hochladen</a>";
                         echo "</div></li></ul>";
                     }
@@ -60,9 +60,9 @@
                     echo '<a class="dropdown-item" href="/KCD/html/penalties/show_penalties.php">Eigene Strafen</a>';
                     if (checkKassenwartPermissions($userID,$db))
                     {
-                        echo '<a class="dropdown-item" href="/KCD/html/penalties/edit_penalties.php">Strafen verwalten</a>';
-                        echo '<a class="dropdown-item" href="/KCD/html/penalties/add_penalty.php">Strafen einreichen</a>';
                         echo '<a class="dropdown-item" href="/KCD/html/penalties/create_penalty.php">Strafe erstellen</a>';
+                        echo '<a class="dropdown-item" href="/KCD/html/penalties/add_penalty.php">Strafen erfassen</a>';
+                        echo '<a class="dropdown-item" href="/KCD/html/penalties/edit_penalties.php">Strafen verwalten</a>';
                         echo '<a class="dropdown-item" href="/KCD/html/penalties/delete_penalty.php">Strafe löschen</a>';
                     }
                     echo "</div></li></ul>";
