@@ -38,16 +38,24 @@ if (isset($_POST['save_image'])) {
 	//Nutzer-Login Checken
 	//Nutzer angemeldet?
         if (isset($_SESSION['username'])) {
-		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    		if($check !== false) {
-        		//kein Error-Handling notwendig
-        		$uploadOk = 1;
-    		} else {
-                if ($uploadOk == 1) {
-        		    array_push($errors, "Die Datei ist kein gültiges Bild.");
-                }
-        		$uploadOk = 0;
-    		}
+            //File temporär speichern
+            $uploades_file = $_FILES["fileToUpload"]["tmp_name"];
+            if (file_exists($uploades_file))
+            {
+		        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        		if($check !== false) {
+            		//kein Error-Handling notwendig
+            		$uploadOk = 1;
+        		} else {
+                    if ($uploadOk == 1) {
+            		    array_push($errors, "Die Datei ist kein gültiges Bild.");
+                    }
+            		$uploadOk = 0;
+        		}
+            } else {
+                array_push($errors, "Die hochgeladenen Daten können nicht verarbeitet werden. Bitte versuchen Sie es erneut. (Speicherfehler)");
+                $uploadOk = 0;
+            }
 
 		//Existiert das Bild schon?
 		if (file_exists($target_file) && $uploadOk == 1) {
