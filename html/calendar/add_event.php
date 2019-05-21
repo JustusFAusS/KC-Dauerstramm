@@ -35,35 +35,21 @@
   						<i class="fa fa-envelope"></i>
   						<input type="text" name="message" class="form-control" placeholder="Beschreibung" required="required">
   					</div>
+            <div style="display:block; text-align:left; float:left;">
             <div class="form-group">
-  						<input type="submit" name="add_event" class="btn btn-primary btn-block btn-lg" value="Event Speichern">
+  						<input type="submit" style="display:block" name="add_event" class="btn btn-primary btn-block btn-lg" value="Event Speichern">
   					</div>
+          </div>
+          <div style="display:block; text-align:left; float:right;">
+            <div class="form-group">
+              <a style="display:block" class="btn btn-secondary btn-block btn-lg" href="/KCD/html/calendar/index.php">Abbrechen</a><!--geht das so??-->
+            </div>
+          </div>
   				</form>
   			</div>
   		</div>
       </div>
 
-
-    <!-- <h1>zukünftigen Termin hinzufügen:</h1>
-    <form action="add_event.php" method="post">
-            <?php //('errors.php');?>
-            <div class="input-group">
-                    <label>Titel des Termins</label>
-                    <input type="text" name="new_title" value="">
-            </div>
-            <div class="input-group">
-                    <label>Datum</label>
-                    <input type="text" name="new_message" value="">
-            </div>
-            <div class="input-group">
-                    <label>Beschreibung</label>
-                    <input type="text" name="new_message" value="">
-            </div>
-            <div class="input-group">
-                    <button type="submit" class="btn btn-outline-success" name="add_news">Speichern</but$
-            </div>
-    </form>
-  </div> -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
   </body>
 </html>
