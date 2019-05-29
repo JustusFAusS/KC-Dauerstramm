@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <script src="/KCD/html/bootstrap/bootstrap.bundle.js"></script>

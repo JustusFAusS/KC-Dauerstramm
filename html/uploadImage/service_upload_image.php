@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
 start_session();
@@ -101,7 +102,7 @@ if (isset($_POST['save_image'])) {
 					array_push($errors,"Fehler bei der Abfrage. Kein Nutzer gefunden.");
 				}
 			} else {
-        			array_push($errors,"Es ist ein unbekannter Fehler aufgetreten (IO-Fehler). Bitte versuchen Sie es erneut.");
+        			array_push($errors,"Es ist ein unbekannter Fehler aufgetreten (IO-Fehler). Bitte versuchen Sie es erneut. Genauere Fehleranalyse: " . $_FILES["fileToUpload"]["error"]);
     			}
         	}
 		//Nach erfolg an die Homepage verweisen
