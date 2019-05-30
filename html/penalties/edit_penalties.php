@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -9,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
 include("penalty_service.php");
 start_session();
 //Welche Seite nach Erfolg aufgerufen werden soll
@@ -89,7 +90,7 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
     <!-- Die ganze Seite ist eine Form -->
     <form action="edit_penalties.php" method="post" name="edit_penalty">
         <div id="whole_page">
-	        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+	        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
             <!-- Seitenränder werden durch den Container festgelegt-->
             <div class="container">
                 <!-- Erste Reihe. Wenn weitere hinzukommen können mehrere Kacheln erstellt werden-->
@@ -187,7 +188,7 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
                 </div>
         </form>
         </div>
-        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
  </body>
 </html>
 

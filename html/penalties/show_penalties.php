@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -9,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
 start_session();
 $errors = array();
 //Welche Seite nach Erfolg aufgerufen werden soll
@@ -85,7 +86,7 @@ if(nutzer_angemeldet()) {
  </head>
  <body id="body">
     <div id="whole_page">
-	    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+	    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
         <!-- Seitenränder werden durch den Container festgelegt-->
         <div class="container">
             <!-- Erste Reihe. Wenn weitere hinzukommen können mehrere Kacheln erstellt werden-->
@@ -191,6 +192,6 @@ if(nutzer_angemeldet()) {
                 <div class="col-sm-1"></div>
             </div>
         </div>
-        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
  </body>
 </html>

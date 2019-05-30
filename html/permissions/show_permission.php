@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -9,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php include_once('permission_service.php') ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php') ?>
 
 
 <?php
@@ -25,7 +26,7 @@
 </head>
 </head>
 <body>
-	  <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+	  <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
   <div class="container mt-3">
   <h2>Nutzerberechtigungen</h2>
   <p>Hier können die Nutzerberechtigungen verwaltet werden:</p>
@@ -90,6 +91,6 @@
 		</form>
 		</div>
 
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
 </body>
 </html>

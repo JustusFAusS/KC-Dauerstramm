@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -9,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
 start_session();
 $errors = array();
 //Welche Seite nach Erfolg aufgerufen werden soll

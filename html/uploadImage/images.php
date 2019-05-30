@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Includes Bootstrap-->
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +16,7 @@
  </head>
  <body id="body">
     <div id="whole_page">
-	    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+	    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
         <!-- Seitenränder werden durch den Container festgelegt-->
         <div class="container">
             <!-- Erste Reihe. Wenn weitere hinzukommen können mehrere Kacheln erstellt werden-->
@@ -56,7 +57,7 @@
             </div>
         </div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
  </body>
 </html>
 
