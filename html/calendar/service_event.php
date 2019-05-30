@@ -55,26 +55,14 @@ if (nutzer_angemeldet()) {
 	                    $is_admin = checkAdminPermissions($actual_user_id,$db);
 	                    if(($found_events['UploadedBy'] == $actual_user_id) || $is_admin)
 	                    {
-	                        // Hier kann das Bild nun entfernt werden
-
-	                                //Nun muss das Bild aus der DB gänzlich entfernt werden
-	                                $del_comments_queue = "DELETE FROM events WHERE EventID = '". $found_events['EventID'] . "';";
-	                                if (mysqli_query($db, $del_comments_queue) == 1) {
-																		// array_push($success,"Das Event wurde erfolgreich gelöscht.");
-																		  $delete_success = true;
-																			header($success_page);
-	                                }
-																	else {
-																		// array_push($errors, "Fehler: Das Event konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");
-																  }
-	                    } else {
-	                        // array_push($errors, "Fehler: Sie haben nicht die nötigen Rechte für diesen Vorgang!");
+                        // Hier kann das Bild nun entfernt werden
+                        $del_comments_queue = "DELETE FROM events WHERE EventID = '". $found_events['EventID'] . "';";
+                        if (mysqli_query($db, $del_comments_queue) == 1) {
+													  $delete_success = true;
+														header($success_page);
+                        }
 	                    }
-	            } else {
-	                // array_push($errors, "Fehler: Das zu löschende Event existiert nicht!");
 	            }
-	    } else {
-	        // array_push($errors, "Fehler: Sie sind nicht angemeldet");
 	    }
 
 	}
