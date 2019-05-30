@@ -83,7 +83,7 @@ if (isset($_POST['save_image'])) {
 		} else {
 			//Speichern des Bildes
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        			//Erfolgreich hochgeladen
+        		//Erfolgreich hochgeladen
 				//Speichern in der Datenbank
 				//Nutzer aus DB holen
 				$getUserIDQuery = "SELECT id from users where username = '". $_SESSION['username'] ."';";
@@ -98,16 +98,30 @@ if (isset($_POST['save_image'])) {
 					$query = "INSERT INTO images (ImageDir,ImageTitle,ImageComment,UploadedAt,UploadedBy) VALUES ('$target_dir_withoutRootFolder','$target_title','$target_comment',NOW(),'$full_id');";
 					mysqli_query($db, $query);
 					$_SESSION['success'] = "Das Bild wurde hochgeladen";
+                                        
 				} else {
 					array_push($errors,"Fehler bei der Abfrage. Kein Nutzer gefunden.");
 				}
 			} else {
-        			array_push($errors,"Es ist ein unbekannter Fehler aufgetreten (IO-Fehler). Bitte versuchen Sie es erneut. Genauere Fehleranalyse: " . $_FILES["fileToUpload"]["error"]);
+        			array_push($errors,"Es ist ein unbekannter Fehler aufgetreten (IO-Fehler). Bitte versuchen Sie es erneut. Genauere Fehleranalyse: " . $_FILES["fileToUpload"]["error"]);    
+                    if (!is_writeable($target_file)) {
+                        array_push($errors,"Zudem kann in das Verzeichnis nicht geschrieben werden...");
+                        array_push($errors,"Ziel:" . $target_file);
+                        array_push($errors,"Quelle:" . $_FILES["fileToUpload"]["tmp_name"]);
+                    }
+                    if(is_dir($target_dir)) {
+                        array_push($errors,"Der Übergebene Pfad ist unter Windows kein Ordner");
+                        array_push($errors,"Übergebener Pfad ist:" .$target_dir);
+                    }
+                    if(is_writable($target_dir)) {
+                        array_push($errors,"Ist ein Pfad. Leider hat der Server keine Berechtigung um in den Ordner zu schreiben [ARGH]");
+                        array_push($errors,"Übergebener Pfad ist:" .$target_dir);
+                    }
     			}
         	}
 		//Nach erfolg an die Homepage verweisen
 		if (count($errors) == 0) {
-			header($pathAfterSuccess);
+			//header($pathAfterSuccess);
 		}
 	} else {
 		array_push($errors, "Fehler: Nicht angemeldet!");
