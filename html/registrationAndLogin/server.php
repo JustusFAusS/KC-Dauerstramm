@@ -2,7 +2,7 @@
 session_start();
 
 //Includes von Funktionen
-include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/functions.php");
 
 // initializing variables
 $username = "";
@@ -187,7 +187,7 @@ if (isset($_POST['change_user'])) {
 }
 
 //Change User Informations
-// REGISTER USER 
+// REGISTER USER
 if (isset($_POST['change_master'])) {
     if (nutzer_angemeldet()) {
         if(checkAdminPermissions(get_userid_by_username($_SESSION['username']),$db) == true)
@@ -255,7 +255,7 @@ if (isset($_POST['change_user_pass'])) {
                         $queue_get_master = "SELECT * FROM Variables WHERE Name = 'MasterPass' AND currentvalue = '". $password_m_hash . "';";
                         $result = mysqli_query($db, $queue_get_master);
           	            $key = mysqli_fetch_assoc($result);
-                        
+
                         if ($key) { // key ist richtig
                             //Alles bis auf den Nutzer getestet
                           	$user_check_query = "SELECT * FROM users WHERE id='" . $user_id . "'";

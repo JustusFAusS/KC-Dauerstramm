@@ -6,7 +6,7 @@ session_start();
 //add_news		Fügt news hinzu							new_title,new_message
 
 //Funktionen importieren
-include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/functions.php");
 
 //Globale Variablen
 //Weiterleitung nach erfolg führt zu dieser Seite

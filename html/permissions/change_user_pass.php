@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php') ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/registrationAndLogin/server.php') ?>
 
 <?php
@@ -92,7 +92,7 @@
 </head>
 </head>
 <body>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -136,10 +136,10 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="#">Das zurücksetzen von Admin-Passwörtern ist hier aus sicherheitsgründen nicht gestattet.</a>
+				<a href="#">Das Zurücksetzen von Admin-Passwörtern ist hier aus Sicherheitsgründen nicht gestattet.</a>
 			</div>
 		</div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
 </body>
 </html>

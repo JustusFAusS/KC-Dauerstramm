@@ -15,7 +15,7 @@
  </head>
  <body id="body">
     <div id="whole_page">
-	    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php') ?>
+	    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php') ?>
         <!-- Seitenränder werden durch den Container festgelegt-->
 
         <div class="jumbotron" >
@@ -100,6 +100,6 @@ Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden 
 </div>
 
         </div>
-      <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php') ?>
+      <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php') ?>
  </body>
 </html>

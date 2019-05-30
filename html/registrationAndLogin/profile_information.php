@@ -10,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php include_once('server.php') ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php') ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -98,7 +98,7 @@
 		            header("location: /KCD/html/registrationAndLogin/login.php");
 	            }
             ?>
-            <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+            <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
             <div class="modal-dialog modal-login">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,7 +113,7 @@
 					        </div>
                             <div class="form-group">
 						        <i class="fa fa-envelope"></i>
-						        <input type="email" name="email" class="form-control" placeholder="<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
+						        <input type="email" name="email" class="form-control" placeholder="<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/functions.php");
                                                                                                          echo get_email_by_userid(get_userid_by_username($_SESSION['username'])); ?>">
 					        </div>
 					        <div class="form-group">
@@ -135,5 +135,5 @@
 			        </div>
                 </div>
             </div>
-            <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+            <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
     </body>

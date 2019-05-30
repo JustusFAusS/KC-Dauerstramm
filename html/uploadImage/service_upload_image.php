@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
 start_session();
 
 

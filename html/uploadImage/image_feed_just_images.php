@@ -1,7 +1,7 @@
 <?php
 //session_start();
 //Includes von Funktionen
-include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/functions.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/service_upload_image.php");
 //initialisierung von Variablen
 $userID = "";

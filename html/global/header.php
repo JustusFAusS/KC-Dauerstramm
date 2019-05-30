@@ -14,9 +14,9 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <?php 
+                <?php
                     //Includes von Funktionen
-	                include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+	                include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
                     start_session();
                     if (nutzer_angemeldet()) {
                         echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
@@ -30,7 +30,7 @@
             </li>
             <?php
                 //Includes von Funktionen
-	            include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+	            include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
                 start_session();
                 if (nutzer_angemeldet()) {
                     //Hier werden die Links zu den Administratoren und den Kassenwarten angezeigt
@@ -72,7 +72,7 @@
         <!-- Nutzerinterface (angemeldet etc)-->
         <?php
 	        //Includes von Funktionen
-	        include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+	        include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
             //Damit die aktuelle Session gefunden wurde
             start_session();
 		    if (nutzer_angemeldet()) {

@@ -10,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/registrationAndLogin/server.php') ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php') ?>
 
 <?php
 //Automatischer verweis auf die Homepage
@@ -92,7 +92,7 @@
 </head>
 </head>
 <body>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -119,10 +119,10 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="#">Jeder nutzer muss dieses Passwort bei einer Registreierung angeben</a>
+				<a href="#">Jeder Nutzer muss dieses Passwort bei einer Registreierung angeben</a>
 			</div>
 		</div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
 </body>
 </html>
