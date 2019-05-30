@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Strafenmanagement</title>
+  <title>Strafe erstellen</title>
   <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;

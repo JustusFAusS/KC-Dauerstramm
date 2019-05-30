@@ -41,12 +41,12 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
         while($row = mysqli_fetch_assoc($all_penalties_db_result)){
             $l_amount = $row['amount'];
             $sum_total_count = $sum_total_count +1;
-            $l_penalty = array(  'message' => $row['message'],
-                                'amount'   => $row['amount'],
-                                'ispayed'  => $row['ispayed'],
-                                'date'  => $row['date'],
-                                'user'  => $row['username'],
-                                'id'    => $row['userpenaltyid']);
+            $l_penalty = array(  'message' => htmlspecialchars($row['message'], ENT_QUOTES, 'UTF-8'),
+                                'amount'   => htmlspecialchars($row['amount'], ENT_QUOTES, 'UTF-8'),
+                                'ispayed'  => htmlspecialchars($row['ispayed'], ENT_QUOTES, 'UTF-8'),
+                                'date'  => htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8'),
+                                'user'  => htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8'),
+                                'id'    => htmlspecialchars($row['userpenaltyid'], ENT_QUOTES, 'UTF-8'));
             if ($row['ispayed']) {
                 $sum_total_amount = $sum_total_amount + $l_amount;
                 $sum_payed_count = $sum_payed_count + 1;
@@ -83,7 +83,7 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
 
 <html>
  <head>
-  	<title>Homepage</title>
+  	<title>Strafen verwalten</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
  </head>
  <body id="body">

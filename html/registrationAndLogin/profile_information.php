@@ -109,12 +109,12 @@
 				        <form action="profile_information.php" method="post">
 					        <div class="form-group">
 						        <i class="fa fa-user"></i>
-						        <input type="text" name="username" class="form-control" placeholder="<?php echo $_SESSION['username']; ?>">
+						        <input type="text" name="username" class="form-control" placeholder="<?php echo htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8'); ?>">
 					        </div>
                             <div class="form-group">
 						        <i class="fa fa-envelope"></i>
 						        <input type="email" name="email" class="form-control" placeholder="<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/functions.php");
-                                                                                                         echo get_email_by_userid(get_userid_by_username($_SESSION['username'])); ?>">
+                                                                                                         echo htmlspecialchars(get_email_by_userid(get_userid_by_username($_SESSION['username'])), ENT_QUOTES, 'UTF-8'); ?>">
 					        </div>
 					        <div class="form-group">
 						        <i class="fa fa-lock"></i>

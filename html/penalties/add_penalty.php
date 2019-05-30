@@ -194,7 +194,7 @@
                                                     }
                                                     while ($actu_penalty = mysqli_fetch_assoc($penalties))
                                                     {
-                                                        echo "<option onChange='add_penalty.submit()' value=" . $actu_penalty["penaltyID"] . ">" . $actu_penalty['message'] . "</option>";
+                                                        echo "<option onChange='add_penalty.submit()' value=" . htmlspecialchars($actu_penalty["penaltyID"], ENT_QUOTES, 'UTF-8') . ">" . $actu_penalty['message'] . "</option>";
                                                     }
                                                 }
                                             ?>
@@ -214,7 +214,7 @@
                                                 $tmp = "checked";
                                             }
                                             echo '<div class="img-thumbnail m-1"><div class="form-check"><label class="form-check-label">';
-                                            echo '<input type="checkbox" onChange="add_penalty.submit()" class="form-check-input" name="u_' . $counter . '" value="' . $actu_user['id']. '" ' . $tmp . '>' . $actu_user['username'] . "</input>";
+                                            echo '<input type="checkbox" onChange="add_penalty.submit()" class="form-check-input" name="u_' . $counter . '" value="' . $actu_user['id']. '" ' . $tmp . '>' . htmlspecialchars($actu_user['username'], ENT_QUOTES, 'UTF-8') . "</input>";
                                             echo '</div></div>';
                                             $counter = $counter +1;
                                         }

@@ -51,7 +51,7 @@
 												//hier werden alle Daten in einer Tabelle angezeigt
 
 											        //Laden der Relevanten Daten
-											        $query = "SELECT * FROM events ORDER BY datum ASC";
+											        $query = "SELECT * FROM events ORDER BY date ASC";
 												$result = mysqli_query($db, $query);
 												if ($result->num_rows > 0) {
 													//Es wurden einträge gefunden
@@ -63,16 +63,16 @@
 
 														echo '<li class="list-group-item">';
 															echo '<div style="display:block; text-align:left; float:left;"><h5>' . $row["Name"] . '</h5></div>';
-															echo '<div style="display:block; text-align:right;">' . $row["Datum"] . '</div>';
+															echo '<div style="display:block; text-align:right;">' . $row["Date"] . '</div>';
 															echo '<br> ';
-															echo '<div class="panel-body">' . $row["Beschreibung"] . '</div>';
+															echo '<div class="panel-body">' . $row["Description"] . '</div>';
 															if (($actual_user_id == $row['UploadedBy']) || $is_admin)
 					                    {
 					                        // echo '<form action="/KCD/html/calendar/delete_event.php?eventid=' . $row['EventID'] . '" method="post">';
 					                        // echo "<button type='submit' class='btn btn-danger mr-1 pull-right'>Löschen</button>";
 					                        // echo "</form>";
 																	echo '<!-- Button to Open the Modal -->
-																		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Löschen</button>
+																		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">Löschen</button>
 
 																	<!-- The Modal -->
 																	<div class="modal" id="myModal">

@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Passwort ändern</title>
   <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;
