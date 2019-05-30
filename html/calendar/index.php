@@ -93,7 +93,7 @@
 																	      <!-- Modal footer -->
 																	      <div class="modal-footer">
 																					<form action="/KCD/html/calendar/index.php?eventid=' . $row['EventID'] . '" method="post">
-																						<input type="submit" style="display:block" name="delete_event" class="btn btn-primary btn-block btn-lg" value="Termin Löschen">
+																						<input type="submit" style="display:block" name="delete_event" class="btn btn-primary btn-block btn-lg" value="Termin Löschen' . $row['EventID'] . '">
 																					</form>
 																						<button type="button" class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
 

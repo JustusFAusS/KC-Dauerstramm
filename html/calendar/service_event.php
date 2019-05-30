@@ -36,7 +36,7 @@ if (nutzer_angemeldet()) {
 
 		//Anzahl der Fehler prüfen
 		if (count($errors) == 0) {
-			$new_event_query = "INSERT INTO events (name,datum,beschreibung,uploadedby) VALUES ('$event_title','$newformat','$event_message','" . get_userid_by_username($_SESSION['username']) . "');";
+			$new_event_query = "INSERT INTO events (name,date,description,uploadedby) VALUES ('$event_title','$newformat','$event_message','" . get_userid_by_username($_SESSION['username']) . "');";
 			mysqli_query($db, $new_event_query);
 			//Daten eingetragen
 			header($success_page);
@@ -58,10 +58,10 @@ if (nutzer_angemeldet()) {
 	                    if(($found_events['UploadedBy'] == $actual_user_id) || $is_admin)
 	                    {
                         // Hier kann das Bild nun entfernt werden
-                        $del_comments_queue = "DELETE FROM events WHERE EventID = '". $found_events['EventID'] . "';";
+                        $del_comments_queue = "DELETE FROM events WHERE EventID = '". $_GET['eventid'] . "';";
                         if (mysqli_query($db, $del_comments_queue) == 1) {
 													  $delete_success = true;
-														array_push($success,"Das Event wurde erfolgreich gelöscht.");
+														array_push($success,"Das Event wurde erfolgreich gelöscht." . $_GET['eventid']);
 														// header($success_page);
                         }else {
 																array_push($errors, "Fehler: Das Event konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");
