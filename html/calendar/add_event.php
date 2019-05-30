@@ -13,7 +13,7 @@
   </head>
   <body>
     <?php include_once('service_event.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+    include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
 
     <div class="modal-dialog modal-login">
   		<div class="modal-content">
@@ -50,6 +50,6 @@
   		</div>
       </div>
 
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
   </body>
 </html>

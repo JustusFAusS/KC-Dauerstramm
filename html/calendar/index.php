@@ -14,7 +14,8 @@
 <body>
       <?php
 			include_once('service_event.php');
-			include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');
+			include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');
+			include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/notifications.php');
 			?>
 
 			<!-- Seitenränder werden durch den Container festgelegt-->
@@ -91,7 +92,7 @@
 
 																	      <!-- Modal footer -->
 																	      <div class="modal-footer">
-																					<form action="/KCD/html/calendar/service_event.php?eventid=' . $row['EventID'] . '" method="post">
+																					<form action="/KCD/html/calendar/index.php?eventid=' . $row['EventID'] . '" method="post">
 																						<input type="submit" style="display:block" name="delete_event" class="btn btn-primary btn-block btn-lg" value="Termin Löschen">
 																					</form>
 																						<button type="button" class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
@@ -116,6 +117,6 @@
 
 			</div>
 
-			<?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+			<?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
 </body>
 </html>

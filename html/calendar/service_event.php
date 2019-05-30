@@ -6,7 +6,8 @@ session_start();
 //add_event		Fügt event hinzu							new_title,new_event,new_message
 
 //Funktionen importieren
-include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/homepage/functions.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/functions.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php");
 
 //Globale Variablen
 //Weiterleitung nach erfolg führt zu dieser Seite
@@ -17,15 +18,16 @@ $no_login_page = 'location: html/registrationAndLogin/login.php';
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 //Hier werden die Fehler hinterlegt
 $errors = array();
+$success = array();
 
 
 //Nutzer angemeldet?
 if (nutzer_angemeldet()) {
 	if(isset($_POST['add_event'])){
 		//Methode zum hinzufügen gewählt
-		$event_title = mysqli_real_escape_string($db, $_POST['title']);
+		$event_title = mysqli_real_escape_string($db, htmlspecialchars($_POST['title']));
 		$event_date = mysqli_real_escape_string($db, $_POST['date']);
-		$event_message = mysqli_real_escape_string($db, $_POST['message']);
+		$event_message = mysqli_real_escape_string($db, htmlspecialchars($_POST['message']));
 		if (empty($event_title)) { array_push($errors,'Bitte geben Sie einen Titel der Nachricht an.'); }
 		$time = strtotime($event_date);
 		$newformat = date('Y-m-d',$time);
@@ -59,10 +61,19 @@ if (nutzer_angemeldet()) {
                         $del_comments_queue = "DELETE FROM events WHERE EventID = '". $found_events['EventID'] . "';";
                         if (mysqli_query($db, $del_comments_queue) == 1) {
 													  $delete_success = true;
-														header($success_page);
-                        }
-	                    }
+														array_push($success,"Das Event wurde erfolgreich gelöscht.");
+														// header($success_page);
+                        }else {
+																array_push($errors, "Fehler: Das Event konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");
+															}
+	                    }else {
+	                        array_push($errors, "Fehler: Sie haben nicht die nötigen Rechte für diesen Vorgang!");
+												}
+	            }else {
+	                array_push($errors, "Fehler: Das zu löschende Event existiert nicht!");
 	            }
+	    } else {
+	        array_push($errors, "Fehler: Sie sind nicht angemeldet");
 	    }
 
 	}
