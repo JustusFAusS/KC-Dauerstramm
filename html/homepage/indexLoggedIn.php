@@ -29,14 +29,14 @@ background-repeat: no-repeat;
 <body id="body">
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
 start_session();
 if (nutzer_angemeldet() == false){
 		header('location: /KCD/index.php');
   }  ?>
    <div id="whole_page">
 
-<?php include("header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/header.php");?>
 
 
   <div class="jumbotron" style="background-color: #e0cccc;">
@@ -82,6 +82,6 @@ if (nutzer_angemeldet() == false){
 
 
 
-      <?php include("footer.php");?>
+      <?php include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/footer.php");?>
  </body>
 </html>

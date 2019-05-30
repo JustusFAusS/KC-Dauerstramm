@@ -15,7 +15,7 @@
  </head>
  <body id="body">
     <div id="whole_page">
-	    <?php include("header.php");?>
+	    <?php include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/header.php");?>
         <!-- Seitenränder werden durch den Container festgelegt-->
 
         <div class="jumbotron" >
@@ -65,6 +65,6 @@
 
         </div>
         </div>
-      <?php include("footer.php");?>
+      <?php include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/footer.php");?>
  </body>
 </html>

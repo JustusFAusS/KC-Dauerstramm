@@ -2,7 +2,7 @@
 //session_start();
 
 //Includes von Funktionen
-include_once("functions.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/functions.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/uploadImage/service_upload_image.php");
 
 //initialisierung von Variablen
@@ -79,7 +79,7 @@ if ( nutzer_angemeldet() ){
                     echo "</div>";
                     echo "<div class='col-sm-2'>";
                     //Wenn der Nutzer das Bild erstellt hat, dann kann er dieses Bild auch wieder löschen
-                    //Administratoren können das immer machen 
+                    //Administratoren können das immer machen
                     if (($actual_user_id == $row['UploadedBy']) || $is_admin)
                     {
                         echo '<form action="/KCD/html/uploadImage/delete_image.php?imageid=' . $row['ImageID'] . '" method="post">';
@@ -99,7 +99,7 @@ if ( nutzer_angemeldet() ){
                     echo "</div>";
                     echo "<div class='col-sm-2'>";
                     //Wenn der Nutzer das Bild erstellt hat, dann kann er dieses Bild auch wieder löschen
-                    //Administratoren können das immer machen 
+                    //Administratoren können das immer machen
                     if (($actual_user_id == $row['UploadedBy']) || $is_admin)
                     {
                         echo '<form action="/KCD/html/uploadImage/delete_image.php?imageid=' . $row['ImageID'] . '" method="post">';

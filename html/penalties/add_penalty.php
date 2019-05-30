@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php') ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php') ?>
 
 <?php include('penalty_service.php') ?>
 <?php
@@ -154,7 +154,7 @@
  </head>
  <body id="body">
     <div id="whole_page">
-	    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+	    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
         <!-- Die komplette Seite ist eine Form -->
         <form action="add_penalty.php" method="post" name="add_penalty">
             <!-- Seitenränder werden durch den Container festgelegt-->
@@ -252,6 +252,6 @@
                 </div>
             </form>
         </div>
-        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
  </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
@@ -63,7 +63,7 @@ if (isset($_POST['create_penalty'])) {
     } else {
         array_push($errors,"Bitte melden Sie sich zunächst an");
     }
-} 
+}
 
 if(nutzer_angemeldet()) {
     //Nun muss überprüft werden, ob eine Strafe gelöscht oder bezahlt wird
@@ -81,7 +81,7 @@ if(nutzer_angemeldet()) {
         $pay_del_queue = "DELETE FROM userpenalties WHERE userpenaltyid = " . $_POST['b_del'] . ".;";
         if (mysqli_query($db, $pay_del_queue)==1) {
             //Hat alles geklappt
-            
+
         } else {
             array_push($errors,"Technischer Fehler bei der Datenbankabfrage.");
         }
@@ -90,7 +90,7 @@ if(nutzer_angemeldet()) {
         $pay_undel_queue = "UPDATE userpenalties SET ispayed = false WHERE userpenaltyid = " . $_POST['b_unpay'] . ".;";
         if (mysqli_query($db, $pay_undel_queue)==1) {
             //Hat alles geklappt
-            
+
         } else {
             array_push($errors,"Technischer Fehler bei der Datenbankabfrage.");
         }

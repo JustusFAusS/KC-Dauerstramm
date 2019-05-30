@@ -16,7 +16,7 @@
  </head>
  <body id="body">
     <div id="whole_page">
-	    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/header.php');?>
+	    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
         <!-- Seitenränder werden durch den Container festgelegt-->
         <div class="container">
             <!-- Erste Reihe. Wenn weitere hinzukommen können mehrere Kacheln erstellt werden-->
@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/homepage/footer.php');?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
  </body>
 </html>
 
