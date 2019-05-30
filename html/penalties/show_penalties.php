@@ -41,10 +41,10 @@ if(nutzer_angemeldet()) {
             $l_amount = $row['amount'];
             $sum_total_count = $sum_total_count +1;
 
-            $l_penalty = array(  'message' => $row['message'],
-                                'amount'   => $row['amount'],
-                                'ispayed'  => $row['ispayed'],
-                                'date'  => $row['date']);
+            $l_penalty = array(  'message' => htmlspecialchars($row['message'], ENT_QUOTES, 'UTF-8'),
+                                'amount'   => htmlspecialchars($row['amount'], ENT_QUOTES, 'UTF-8'),
+                                'ispayed'  => htmlspecialchars($row['ispayed'], ENT_QUOTES, 'UTF-8'),
+                                'date'  => htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8'));
             if ($row['ispayed']) {
                 $sum_total_amount = $sum_total_amount + $l_amount;
                 $sum_payed_count = $sum_payed_count + 1;

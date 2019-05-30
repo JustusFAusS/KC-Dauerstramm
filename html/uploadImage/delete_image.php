@@ -25,9 +25,9 @@
                 $found_images = mysqli_fetch_array($result,MYSQLI_ASSOC);
                 //Wurde eine Nutzer-ID gefunden?
                 if (isset($found_images)) {
-                    $img_title = $found_images["ImageTitle"];
-                    $img_comment = $found_images["ImageComment"];
-                    $img_path = $found_images["ImageDir"];
+                    $img_title = htmlspecialchars($found_images["ImageTitle"], ENT_QUOTES, 'UTF-8');
+                    $img_comment = htmlspecialchars($found_images["ImageComment"], ENT_QUOTES, 'UTF-8');
+                    $img_path = htmlspecialchars($found_images["ImageDir"], ENT_QUOTES, 'UTF-8');
                 } else {
                     array_push($errors, "Fehler: Das zu löschende Bild existiert nicht!");
                     $img_title = "Nicht definiert";
