@@ -40,7 +40,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Strafenmanagement</title>
+  <title>Strafe löschen</title>
   <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;

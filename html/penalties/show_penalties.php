@@ -81,7 +81,7 @@ if(nutzer_angemeldet()) {
 
 <html>
  <head>
-  	<title>Homepage</title>
+  	<title>Strafenübersicht</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
  </head>
  <body id="body">

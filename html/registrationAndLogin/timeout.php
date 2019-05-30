@@ -9,19 +9,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/registrationAndLogin/server.php') ?>
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php') ?>
 
 <?php
 //Automatischer verweis auf die Homepage
-	if (nutzer_angemeldet() == false){
+	if (nutzer_angemeldet()){
 		header('location: /KCD/index.php');
 	}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Master-Passwort ändern</title>
+  <title>Timeout</title>
   <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;
@@ -72,6 +71,14 @@
 		top: -5px;
 		right: -5px;
 	}
+	.modal-login .btn {
+		background: #00ce81;
+		border: none;
+		line-height: normal;
+	}
+	.modal-login .btn:hover, .modal-login .btn:focus {
+		background: #00bf78;
+	}
 	.modal-login .modal-footer {
 		background: #ecf0f1;
 		border-color: #dee4e7;
@@ -92,35 +99,41 @@
 </head>
 </head>
 <body>
+  <!--<div class="header">
+  	<h2>Login</h2>
+  </div>
+
+  <form method="post" action="login.php">
+  	<?php include('errors.php'); ?>
+  	<div class="input-group">
+  		<label>Nutzername</label>
+  		<input type="text" name="username" >
+  	</div>
+  	<div class="input-group">
+  		<label>Passwort</label>
+  		<input type="password" name="password">
+  	</div>
+  	<div class="input-group">
+  		<button type="submit" class="btn" name="login_user">Anmelden</button>
+  	</div>
+  	<p>
+  		Noch nicht registriert? <a href="register.php">Sign up</a>
+  	</p>
+  </form>-->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Masterpasswort setzen</h4>
+				<h4 class="modal-title">Timeout</h4>
 			</div>
-            <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
-			<div class="modal-body">
-				<form action="permission_set_master.php" method="post">
-					<div class="form-group">
-						<i class="fa fa-lock"></i>
-						<input type="password" name="password_old" class="form-control" placeholder="Altes Master-Passwort" required="required">
-					</div>
-                    <div class="form-group">
-						<i class="fa fa-lock"></i>
-						<input type="password" name="password_new_0" class="form-control" placeholder="Neues Master-Passwort" required="required">
-					</div>
-                    <div class="form-group">
-						<i class="fa fa-lock"></i>
-						<input type="password" name="password_new_1" class="form-control" placeholder="Master-Passwort bestätigen" required="required">
-					</div>
-					<div class="form-group">
-						<input type="submit" name="change_master" class="btn btn-warning btn-block btn-lg" value="Bestätigen">
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<a href="#">Jeder Nutzer muss dieses Passwort bei einer Registreierung angeben</a>
-			</div>
+                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
+			<div class="modal-body center">
+				<p class="text-justify"> Sie waren zu lange inaktiv. Aus Sichereitsgründen werden Sie nach 10 Minuten automatisch ausgeloggt. Bitte loggen Sie sich erneut an.</p>
+                <br>
+                <form action="/KCD/html/registrationAndLogin/login.php">
+                    <button type="submit" class="btn btn-block">zum Login</button>
+                </form>
+            </div>
 		</div>
     </div>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
