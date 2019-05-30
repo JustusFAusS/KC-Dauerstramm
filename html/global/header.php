@@ -35,7 +35,7 @@
                 if (nutzer_angemeldet()) {
                     //Hier werden die Links zu den Administratoren und den Kassenwarten angezeigt
                     //Das kann nur geschehen, wenn der Nutzer angemeldet ist
-                    $userID = get_userid_by_username($_SESSION['username']);
+                    $userID = get_userid_by_username(htmlspecialchars($_SESSION['username']), ENT_QUOTES, 'UTF-8');
                     //connect to the database
                     $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
                     //Nutzer angemeldet

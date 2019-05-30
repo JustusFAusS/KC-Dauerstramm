@@ -41,13 +41,13 @@ if ( nutzer_angemeldet() ){
                     echo "</a></div>";
                     echo "<div class='col-sm-7'>";
                         echo '<div class="row">';
-                            echo "<div class='col-sm-12'><h3>" . $row["ImageTitle"] . "</h3></div>";
+                            echo "<div class='col-sm-12'><h3>" . htmlspecialchars($row["ImageTitle"], ENT_QUOTES, 'UTF-8') . "</h3></div>";
                         echo "</div>";
                         echo '<div class="row">';
-                            echo "<div class='col-sm-12'>" .  $row["ImageComment"] . "</div>";
+                            echo "<div class='col-sm-12'>" .  htmlspecialchars($row["ImageComment"], ENT_QUOTES, 'UTF-8') . "</div>";
 	                    echo "</div>";
                         echo '<div class="row">';
-                            echo '<div class="col-sm-12"><p class="text-secondary">' . get_user_by_id($row["UploadedBy"]) . "</p></div>";
+                            echo '<div class="col-sm-12"><p class="text-secondary">' . htmlspecialchars(get_user_by_id($row["UploadedBy"]), ENT_QUOTES, 'UTF-8') . "</p></div>";
                         echo "</div>";
                     echo "</div>";
                 echo "</div>";
@@ -64,10 +64,10 @@ if ( nutzer_angemeldet() ){
 				        while($comment_row = mysqli_fetch_assoc($comments_result)){
                             echo "<div class='img-thumbnail m-1'>";
                                 echo "<div class='row'>";
-					                echo "<div class='col-sm-12'>" . $comment_row["message"] . "</div>";
+					                echo "<div class='col-sm-12'>" . htmlspecialchars($comment_row["message"], ENT_QUOTES, 'UTF-8') . "</div>";
                                 echo '</div>';
                                 echo "<div class='row'>";
-					                echo "<div class='col-sm-12'><p class='text-secondary'>" . get_user_by_id($comment_row["creationUserID"]) . "</p></div>";
+					                echo "<div class='col-sm-12'><p class='text-secondary'>" . htmlspecialchars(get_user_by_id($comment_row["creationUserID"]), ENT_QUOTES, 'UTF-8') . "</p></div>";
                                 echo '</div>';
                             echo "</div>";
                         }
