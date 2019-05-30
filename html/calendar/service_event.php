@@ -34,13 +34,50 @@ if (nutzer_angemeldet()) {
 
 		//Anzahl der Fehler prüfen
 		if (count($errors) == 0) {
-			$new_event_query = "INSERT INTO events (name,datum,beschreibung) VALUES ('$event_title','$newformat','$event_message');";
+			$new_event_query = "INSERT INTO events (name,datum,beschreibung,uploadedby) VALUES ('$event_title','$newformat','$event_message','" . get_userid_by_username($_SESSION['username']) . "');";
 			mysqli_query($db, $new_event_query);
 			//Daten eingetragen
 			header($success_page);
 		}
 	}
+	if (isset($_POST['delete_event'])) {
+	    //Hier können images kommentiert werden
+	    if (nutzer_angemeldet()) {
+	            $getMatchedEvents = "SELECT * from events where EventID='" . $_GET['eventid'] . "';";
+			    //Query ausführen und anschließend in ein Array umwandeln
+			    $result = mysqli_query($db, $getMatchedEvents);
+			    $found_events = mysqli_fetch_array($result,MYSQLI_ASSOC);
+	            //Wurde eine Nutzer-ID gefunden?
+			    if (isset($found_events)) {
+	                    //Aktuelle Nutzer-ID
+	                    $actual_user_id = get_userid_by_username($_SESSION['username']);
+	                    //Hat der Nutzer Admin-Rechte?
+	                    $is_admin = checkAdminPermissions($actual_user_id,$db);
+	                    if(($found_events['UploadedBy'] == $actual_user_id) || $is_admin)
+	                    {
+	                        // Hier kann das Bild nun entfernt werden
 
+	                                //Nun muss das Bild aus der DB gänzlich entfernt werden
+	                                $del_comments_queue = "DELETE FROM events WHERE EventID = '". $found_events['EventID'] . "';";
+	                                if (mysqli_query($db, $del_comments_queue) == 1) {
+																		// array_push($success,"Das Event wurde erfolgreich gelöscht.");
+																		  $delete_success = true;
+																			header($success_page);
+	                                }
+																	else {
+																		// array_push($errors, "Fehler: Das Event konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");
+																  }
+	                    } else {
+	                        // array_push($errors, "Fehler: Sie haben nicht die nötigen Rechte für diesen Vorgang!");
+	                    }
+	            } else {
+	                // array_push($errors, "Fehler: Das zu löschende Event existiert nicht!");
+	            }
+	    } else {
+	        // array_push($errors, "Fehler: Sie sind nicht angemeldet");
+	    }
+
+	}
 } else {
 	header($no_login_page);
 }
