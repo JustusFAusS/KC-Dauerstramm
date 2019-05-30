@@ -1,3 +1,5 @@
+<!-- Custom styles for this template -->
+<link href="sticky-footer.css" rel="stylesheet">
 <footer class="page-footer border-top bg-dark pt-5">
     <!--diese DIV verhindert einen Rand am rechten Bildschirm-->
     <div class="container-fluid">

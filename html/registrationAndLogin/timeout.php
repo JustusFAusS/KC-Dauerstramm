@@ -129,10 +129,11 @@
                 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 			<div class="modal-body center">
 				<p class="text-justify"> Sie waren zu lange inaktiv. Aus Sichereitsgründen werden Sie nach 10 Minuten automatisch ausgeloggt. Bitte loggen Sie sich erneut an.</p>
-                <br>
+                <p class="text-justify"> Wenn Sie noch kein Konto haben können Sie sich auch einfach <a href="register.php">Registrieren</a>. </p>
                 <form action="/KCD/html/registrationAndLogin/login.php">
                     <button type="submit" class="btn btn-block">zum Login</button>
                 </form>
+                <br>
             </div>
 		</div>
     </div>

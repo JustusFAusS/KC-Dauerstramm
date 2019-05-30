@@ -32,8 +32,11 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<p>Kommentare können nicht gelöscht werden</p>
+				Kommentare können nur mit dem Bild zusammen von dem Inhaber gelöscht werden.
 			</div>
+            <div class="modal-footer">
+                <p>Falls Sie ein Bild oder einen Kommentar für anstößig halten, dann Kontaktieren Sie einen Administrator. Dieser kann Bilder entfernen.</p>
+            </div>
 		</div>
     </div>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
