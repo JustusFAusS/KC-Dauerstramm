@@ -125,18 +125,18 @@
 	<div class="modal-dialog modal-login">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Member Login</h4>
+				<h4 class="modal-title">Nutzer-Login</h4>
 			</div>
                 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 			<div class="modal-body">
 				<form action="login.php" method="post">
 					<div class="form-group">
 						<i class="fa fa-user"></i>
-						<input type="text" name="username" class="form-control" placeholder="Username" required="required">
+						<input type="text" name="username" class="form-control" placeholder="Nutzername" required="required">
 					</div>
 					<div class="form-group">
 						<i class="fa fa-lock"></i>
-						<input type="password" name="password" class="form-control" placeholder="Password" required="required">
+						<input type="password" name="password" class="form-control" placeholder="Passwort" required="required">
 					</div>
 					<div class="form-group">
 						<input type="submit" name="login_user" class="btn btn-primary btn-block btn-lg" value="Login">
@@ -147,7 +147,7 @@
                 <a href="register.php">Noch kein Konto?</a>
 			</div>
             <div class="modal-footer">
-				<p>Passwort vergessen? Dann lassen Sie es sich von einem Administrator zurücksetzen. Aus sicherheitsgründen ist dies hier nicht möglich</p>
+				<p>Passwort vergessen? Dann lassen Sie es sich von einem Administrator zurücksetzen.</p>
             </div>
 		</div>
     </div>

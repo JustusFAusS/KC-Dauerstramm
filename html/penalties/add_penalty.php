@@ -166,7 +166,7 @@
                     <!-- Linkes Menue. Etwas groesser als das rechte-->
                     <div class="col-sm-11">
                         <div class="bg-white p-2 mt-3">
-                            <h1>Strafe Eintragen:</h1>
+                            <h1>Strafe eintragen:</h1>
                             <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
                         </div>
                     </div>

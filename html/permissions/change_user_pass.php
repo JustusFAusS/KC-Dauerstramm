@@ -136,7 +136,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="#">Das zurücksetzen von Admin-Passwörtern ist hier aus sicherheitsgründen nicht gestattet.</a>
+				<a href="#">Das Zurücksetzen von Admin-Passwörtern ist hier aus Sicherheitsgründen nicht gestattet.</a>
 			</div>
 		</div>
     </div>

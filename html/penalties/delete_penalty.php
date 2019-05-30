@@ -143,7 +143,7 @@
                                                      ?>
                     </div>
 					<div class="form-group">
-						<input type="submit" name="del_penalty" class="btn-warning btn-block btn-lg" value="Strafe Löschen">
+						<input type="submit" name="del_penalty" class="btn-warning btn-block btn-lg" value="Strafe löschen">
 					</div>
 				</form>
 			</div>

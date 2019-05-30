@@ -119,7 +119,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="#">Jeder nutzer muss dieses Passwort bei einer Registreierung angeben</a>
+				<a href="#">Jeder Nutzer muss dieses Passwort bei einer Registreierung angeben</a>
 			</div>
 		</div>
     </div>
