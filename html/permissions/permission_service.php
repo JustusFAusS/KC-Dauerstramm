@@ -15,6 +15,9 @@ if (isset($_POST['btn_permission'])) {
     if(nutzer_angemeldet()) {
       if (isset($_POST['btn_permission'])){
 
+        // Voraussetzung fuer die Anpassung der Berechtigungen ist, dass
+        // weiterhin mind. ein Amin angegeben ist
+        if(isset($_POST['Admin'])){
 
         // Zunaechst alle Datensaetze der Tabelle userpermissions loeschen
         $sqlDeleteAdmin = "DELETE FROM userpermissions WHERE permissionID =1";
@@ -54,6 +57,9 @@ if (isset($_POST['btn_permission'])) {
 
           array_push($success, "Berechtigungen wurden angepasst!");
       }
+    } else {
+      array_push($errors, "Es muss mindestens ein Administrator angegeben werden");
+    }
 
       }
   }
