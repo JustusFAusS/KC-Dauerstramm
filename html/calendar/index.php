@@ -72,10 +72,10 @@
 					                        // echo "<button type='submit' class='btn btn-danger mr-1 pull-right'>Löschen</button>";
 					                        // echo "</form>";
 																	echo '<!-- Button to Open the Modal -->
-																		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">Löschen</button>
+																		<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal' . $row['EventID'] . '">Löschen</button>
 
 																	<!-- The Modal -->
-																	<div class="modal" id="myModal">
+																	<div class="modal" id="myModal' . $row['EventID'] . '">
 																	  <div class="modal-dialog">
 																	    <div class="modal-content">
 
@@ -93,7 +93,7 @@
 																	      <!-- Modal footer -->
 																	      <div class="modal-footer">
 																					<form action="/KCD/html/calendar/index.php?eventid=' . $row['EventID'] . '" method="post">
-																						<input type="submit" style="display:block" name="delete_event" class="btn btn-primary btn-block btn-lg" value="Termin Löschen' . $row['EventID'] . '">
+																						<input type="submit" style="display:block" name="delete_event" class="btn btn-primary btn-block btn-lg" value="Termin Löschen">
 																					</form>
 																						<button type="button" class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
 

@@ -13,7 +13,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php");
 //Weiterleitung nach erfolg führt zu dieser Seite
 $success_page = 'location: /KCD/html/calendar/index.php';
 //Weiterleitung nach fehlendem Login führt zu dieser Seite
-$no_login_page = 'location: html/registrationAndLogin/login.php';
+$no_login_page = 'location: /KCD/html	/registrationAndLogin/login.php';
 //Datenbank
 $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 //Hier werden die Fehler hinterlegt
