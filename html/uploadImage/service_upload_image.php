@@ -50,6 +50,10 @@ function codeToMessage($code)
 // diese Variablen wird das Errors.php-Skript verwenden
 $errors = array();
 $success = array();
+if (isset($delete_success) == false)
+{
+    $delete_success = false;
+}
 //Welche Seite nach Erfolg aufgerufen werden soll
 $pathAfterSuccess = "location: /KCD/index.php";
 
@@ -109,7 +113,7 @@ if (isset($_POST['save_image'])) {
                 if ($_FILES['fileToUpload']['error'] == UPLOAD_ERR_INI_SIZE)
                 {
                     $max_upload = min(ini_get('post_max_size'), ini_get('upload_max_filesize'));
-                    array_push($errors, "Die Datei ist zu groß. Es können nur Bilder mit einer Größe unter " . $max_upload . "MB liegen");
+                    array_push($errors, "Die Datei ist zu groß. Es können nur Bilder mit einer Größe unter " . $max_upload . " liegen");
                 } else {
                     array_push($errors,  codeToMessage($_FILES['fileToUpload']['error']));
                 }
