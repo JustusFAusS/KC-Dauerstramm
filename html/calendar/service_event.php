@@ -35,7 +35,7 @@ if (nutzer_angemeldet()) {
 		if (empty($newformat)) {array_push($errors, 'Bitte geben Sie ein gültiges Datum an.');}
 		if (empty($event_message)) { array_push($errors,'Die eigentliche Nachricht ist leer. Bitte geben Sie einen Text an.'); }
 
-		if ($newformat = '1970-01-01') {array_push($errors, 'Bitte geben Sie ein gültiges Datum an.');}
+		// if ($newformat = '1970-01-01') {array_push($errors, 'Bitte geben Sie ein gültiges Datum an.');}
 		//Anzahl der Fehler prüfen
 		if (count($errors) == 0) {
 			$new_event_query = "INSERT INTO events (name,date,description,uploadedby) VALUES ('$event_title','$newformat','$event_message','" . get_userid_by_username($_SESSION['username']) . "');";

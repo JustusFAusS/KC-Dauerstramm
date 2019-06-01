@@ -30,7 +30,7 @@
   					</div>
             <div class="form-group">
   						<i class="fa fa-envelope"></i>
-  						<input type="text" name="date" class="form-control" placeholder="Datum" required="required">
+  						<input type="date" name="date" class="form-control" placeholder="Datum" required="required">
   					</div>
             <div class="form-group">
   						<i class="fa fa-envelope"></i>
