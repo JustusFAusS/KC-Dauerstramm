@@ -26,7 +26,7 @@
 
                         $session_timeout = 600;
                         if (!isset($_SESSION['last_visit'])) {
-                            //Nach dem ersten Aufruf einer Seite 
+                            //Nach dem ersten Aufruf einer Seite
                             $_SESSION['last_visit'] = time();
                         }
 
@@ -46,6 +46,17 @@
                     }
                 ?>
             </li>
+
+
+            <li class="nav-item">
+            <ul class='navbar-nav'><li class='nav-item dropdown'>
+            <a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>Termine</a>
+            <div class='dropdown-menu'>
+            <a class='dropdown-item' href='/KCD/html/calendar/index.php'>Terminübersicht</a>
+            <a class='dropdown-item' href='/KCD/html/calendar/add_event.php'>Termin hinzufügen</a>
+            </div></li></ul>
+            </li>
+
             <?php
                 //Includes von Funktionen
 	            include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');

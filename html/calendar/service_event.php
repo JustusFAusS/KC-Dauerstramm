@@ -12,6 +12,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php");
 //Globale Variablen
 //Weiterleitung nach erfolg führt zu dieser Seite
 $success_page = 'location: /KCD/html/calendar/index.php';
+$failure_page = 'location: /KCD/html/claendar/add_event.php';
 //Weiterleitung nach fehlendem Login führt zu dieser Seite
 $no_login_page = 'location: /KCD/html	/registrationAndLogin/login.php';
 //Datenbank
@@ -34,6 +35,7 @@ if (nutzer_angemeldet()) {
 		if (empty($newformat)) {array_push($errors, 'Bitte geben Sie ein gültiges Datum an.');}
 		if (empty($event_message)) { array_push($errors,'Die eigentliche Nachricht ist leer. Bitte geben Sie einen Text an.'); }
 
+		if ($newformat = '1970-01-01') {array_push($errors, 'Bitte geben Sie ein gültiges Datum an.');}
 		//Anzahl der Fehler prüfen
 		if (count($errors) == 0) {
 			$new_event_query = "INSERT INTO events (name,date,description,uploadedby) VALUES ('$event_title','$newformat','$event_message','" . get_userid_by_username($_SESSION['username']) . "');";
@@ -61,7 +63,7 @@ if (nutzer_angemeldet()) {
                         $del_comments_queue = "DELETE FROM events WHERE EventID = '". $_GET['eventid'] . "';";
                         if (mysqli_query($db, $del_comments_queue) == 1) {
 													  $delete_success = true;
-														array_push($success,"Das Event wurde erfolgreich gelöscht." . $_GET['eventid']);
+														array_push($success,"Das Event wurde erfolgreich gelöscht.");
 														// header($success_page);
                         }else {
 																array_push($errors, "Fehler: Das Event konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");

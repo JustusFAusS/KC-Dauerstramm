@@ -71,9 +71,8 @@ if (nutzer_angemeldet() == false){
 </div>
 <div class="bg-white p-2">
     <h2>Terminübersicht</h2>
-    Hier eine Terminübersicht
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/calendar/eventFeedNewest3.php");?>
 </div>
-
 </div>
 <div class="col-sm-1"></div>
 </div>
