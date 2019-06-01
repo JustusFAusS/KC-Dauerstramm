@@ -13,6 +13,38 @@ function endsWith($string, $endString)
     return (substr($string, -$len) === $endString); 
 }
 
+function codeToMessage($code) 
+    { 
+        switch ($code) { 
+            case UPLOAD_ERR_INI_SIZE: 
+                $message = "The uploaded file exceeds the upload_max_filesize directive in php.ini"; 
+                break; 
+            case UPLOAD_ERR_FORM_SIZE: 
+                $message = "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form"; 
+                break; 
+            case UPLOAD_ERR_PARTIAL: 
+                $message = "The uploaded file was only partially uploaded"; 
+                break; 
+            case UPLOAD_ERR_NO_FILE: 
+                $message = "No file was uploaded"; 
+                break; 
+            case UPLOAD_ERR_NO_TMP_DIR: 
+                $message = "Missing a temporary folder"; 
+                break; 
+            case UPLOAD_ERR_CANT_WRITE: 
+                $message = "Failed to write file to disk"; 
+                break; 
+            case UPLOAD_ERR_EXTENSION: 
+                $message = "File upload stopped by extension"; 
+                break; 
+
+            default: 
+                $message = "Unknown upload error (or no error)"; 
+                break; 
+        } 
+        return $message; 
+    } 
+
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
@@ -44,6 +76,7 @@ if (isset($_POST['save_image'])) {
 	//Hier wird einfach der Dateiname ausgelesen (mit Endung)
 	$target_file = $target_dir . $target_name . "." . $imageFileType;
     echo $target_file;
+    echo codeToMessage($_FILES['fileToUpload']['error']);
 
 	//Dieser Pfad wird in der DB hinterlegt werden. Damit die Datei nicht mit dem Server Root-Path korolliert fehlt dieser
 	//Er muss anschließend ermittelt werden.
@@ -71,6 +104,8 @@ if (isset($_POST['save_image'])) {
             		$uploadOk = 0;
         		}
             } else {
+                array_push($errors, "Fehlermanagement: uploades_file = " . $uploades_file);
+                array_push($errors,  codeToMessage($_FILES['fileToUpload']['error']));
                 array_push($errors, "Die hochgeladenen Daten können nicht verarbeitet werden. Bitte versuchen Sie es erneut. (Speicherfehler)");
                 $uploadOk = 0;
             }
