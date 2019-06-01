@@ -33,7 +33,7 @@
 						<input type="text" name="comment" class="form-control" placeholder="Kommentar" required="required" value="<?php
                         if(isset($target_comment)) {
                         echo $target_comment;
-                        }; ?>">
+                        } ?>">
 					</div>
 					<div class="form-group">
 						<input type="file" name="fileToUpload" id="fileToUpload">
