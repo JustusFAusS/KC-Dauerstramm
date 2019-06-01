@@ -32,7 +32,7 @@
 												<input type="submit" value="Event hinzufügen" class="btn btn-primary">
 											</form>
 										</div>
-										<div style="display:block; text-align:left;"><h1>Ausstehende Termine</h1></div>
+										<div style="display:block; text-align:left;"><h1>Ausstehende Termine </h1> Die nächsten 25</div>
 
 
 											<?php start_session();
@@ -51,16 +51,16 @@
 												//hier werden alle Daten in einer Tabelle angezeigt
 
 											        //Laden der Relevanten Daten
-											        $query = "SELECT * FROM events ORDER BY date ASC";
+											        $query = "SELECT * FROM events WHERE date >= CURDATE() ORDER BY date ASC LIMIT 25";
 												$result = mysqli_query($db, $query);
 												if ($result->num_rows > 0) {
 													//Es wurden einträge gefunden
 
 													echo '<ul class="list-group list-group-flush">';
 
+													$i = 0;
 													//Einzelne Events einfügen
-													while($row = mysqli_fetch_assoc($result)){
-
+													while(($row = mysqli_fetch_assoc($result))){
 														echo '<li class="list-group-item">';
 															echo '<div style="display:block; text-align:left; float:left;"><h5>' . $row["Name"] . '</h5></div>';
 															echo '<div style="display:block; text-align:right;">' . $row["Date"] . '</div>';
