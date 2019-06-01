@@ -146,7 +146,8 @@
             <div class="modal-footer">
                 <a href="register.php">Noch kein Konto?</a>
 			</div>
-            <div class="modal-footer">
+            <br>
+            <div class="modal-footer mt-1">
 				<p>Passwort vergessen? Dann lassen Sie es sich von einem Administrator zurücksetzen.</p>
             </div>
 		</div>

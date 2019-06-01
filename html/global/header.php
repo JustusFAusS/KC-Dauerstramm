@@ -19,6 +19,24 @@
 	                include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
                     start_session();
                     if (nutzer_angemeldet()) {
+                        //Hier wird abgefragt, wann der Nutzer das letzte mal die Seite gewechselt hat. Nach einem Festen Zeitintervall wird der Nutzer hier
+                        //ausgeloggt und zu der Öffentliche-Homepage-Page weitergeleitet
+                        //Zudem wurde dieser Timestamp beim erfolgreichen Login das erste mal gesetzt.
+                        //Das Timeout wird hier über die Variable session_timeout erstellt
+
+                        $session_timeout = 600;
+                        if (!isset($_SESSION['last_visit'])) {
+                            //Nach dem ersten Aufruf einer Seite 
+                            $_SESSION['last_visit'] = time();
+                        }
+
+                        if((time() - $_SESSION['last_visit']) > $session_timeout) {
+                            //Nutzer zu lange Inaktiv. Weiterleitung auf die Öffentliche-Homepage-Page
+                            session_destroy();
+                            header('location: /KCD/index.php');
+                        }
+
+
                         echo "<ul class='navbar-nav'><li class='nav-item dropdown'>";
                         echo "<a class='nav-link dropdown-toggle pr-4' href='' id='navbardrop' data-toggle='dropdown'>Bilder</a>";
                         echo "<div class='dropdown-menu'>";
