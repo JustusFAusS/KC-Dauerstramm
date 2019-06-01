@@ -20,11 +20,17 @@
 				<form action="upload_image.php" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<i class="fa fa-user"></i>
-						<input type="text" name="title" class="form-control" placeholder="Titel" required="required" >
+						<input type="text" name="title" class="form-control" placeholder="Titel" required="required" value="<?php
+                        if (isset($target_title)) {
+                            echo $target_title;
+                        } ?>">
 					</div>
                     <div class="form-group">
 						<i class="fa fa-envelope"></i>
-						<input type="text" name="comment" class="form-control" placeholder="Kommentar" required="required" >
+						<input type="text" name="comment" class="form-control" placeholder="Kommentar" required="required" value="<?php
+                        if(isset($target_comment)) {
+                        echo $target_comment;
+                        }; ?>">
 					</div>
 					<div class="form-group">
 						<input type="file" name="fileToUpload" id="fileToUpload">
