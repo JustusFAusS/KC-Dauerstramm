@@ -63,7 +63,7 @@ if (nutzer_angemeldet()) {
                         $del_comments_queue = "DELETE FROM events WHERE EventID = '". $_GET['eventid'] . "';";
                         if (mysqli_query($db, $del_comments_queue) == 1) {
 													  $delete_success = true;
-														array_push($success,"Das Event wurde erfolgreich gelöscht." . $_GET['eventid']);
+														array_push($success,"Das Event wurde erfolgreich gelöscht.");
 														// header($success_page);
                         }else {
 																array_push($errors, "Fehler: Das Event konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");
