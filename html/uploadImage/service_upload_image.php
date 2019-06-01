@@ -66,17 +66,12 @@ if (isset($_POST['save_image'])) {
         $Server_Root = $Server_Root . "/";
     }
 	$target_dir = $Server_Root . "KCD/resources/images/uploadedImages/";
-    echo $target_dir . " ";
 	$basename = basename($_FILES["fileToUpload"]["name"]);
 	//Hier wird ein zufälliger Hash generiert. Dadurch können gleiche Dateinamen öfter hochgeladen werden.
 	$target_name = md5(rand() . $basename);
 	$imageFileType = strtolower(pathinfo($basename,PATHINFO_EXTENSION));
-    echo $target_name . " ";
-    echo $imageFileType . " ";
 	//Hier wird einfach der Dateiname ausgelesen (mit Endung)
 	$target_file = $target_dir . $target_name . "." . $imageFileType;
-    echo $target_file;
-    echo codeToMessage($_FILES['fileToUpload']['error']);
 
 	//Dieser Pfad wird in der DB hinterlegt werden. Damit die Datei nicht mit dem Server Root-Path korolliert fehlt dieser
 	//Er muss anschließend ermittelt werden.
@@ -91,25 +86,35 @@ if (isset($_POST['save_image'])) {
         if (isset($_SESSION['username'])) {
             //File temporär speichern
             $uploades_file = $_FILES["fileToUpload"]["tmp_name"];
-            if (file_exists($uploades_file))
+            if ($_FILES['fileToUpload']['error'] == 0)
             {
-		        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        		if($check !== false) {
-            		//kein Error-Handling notwendig
-            		$uploadOk = 1;
-        		} else {
-                    if ($uploadOk == 1) {
-            		    array_push($errors, "Die Datei ist kein gültiges Bild.");
-                    }
-            		$uploadOk = 0;
-        		}
+                if (file_exists($uploades_file))
+                {
+		            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            		if($check !== false) {
+                		//kein Error-Handling notwendig
+                		$uploadOk = 1;
+            		} else {
+                        if ($uploadOk == 1) {
+                		    array_push($errors, "Die Datei ist kein gültiges Bild.");
+                        }
+                		$uploadOk = 0;
+            		}
+                } else {
+                    array_push($errors, "Die hochgeladenen Daten können nicht verarbeitet werden. Bitte versuchen Sie es erneut. (Dateifehler)");
+                    $uploadOk = 0;
+                }
             } else {
-                array_push($errors, "Fehlermanagement: uploades_file = " . $uploades_file);
-                array_push($errors,  codeToMessage($_FILES['fileToUpload']['error']));
-                array_push($errors, "Die hochgeladenen Daten können nicht verarbeitet werden. Bitte versuchen Sie es erneut. (Speicherfehler)");
+                array_push($errors, "Es ist ein Interner Fehler beim Upload des Files aufgetreten.");
+                if ($_FILES['fileToUpload']['error'] == UPLOAD_ERR_INI_SIZE)
+                {
+                    $max_upload = min(ini_get('post_max_size'), ini_get('upload_max_filesize'));
+                    array_push($errors, "Die Datei ist zu groß. Es können nur Bilder mit einer Größe unter " . $max_upload . "MB liegen");
+                } else {
+                    array_push($errors,  codeToMessage($_FILES['fileToUpload']['error']));
+                }
                 $uploadOk = 0;
             }
-
 		//Existiert das Bild schon?
 		if (file_exists($target_file) && $uploadOk == 1) {
 
@@ -173,7 +178,7 @@ if (isset($_POST['save_image'])) {
         	}
 		//Nach erfolg an die Homepage verweisen
 		if (count($errors) == 0) {
-			//header($pathAfterSuccess);
+			header($pathAfterSuccess);
 		}
 	} else {
 		array_push($errors, "Fehler: Nicht angemeldet!");
