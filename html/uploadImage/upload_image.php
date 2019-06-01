@@ -7,6 +7,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <html>
+<head>
+  <title>Bild hochladen</title>
+</head>
 <body>
     <?php include_once('service_upload_image.php') ?>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
