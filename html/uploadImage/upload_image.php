@@ -8,7 +8,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <html>
 <head>
-    <title>Bild hochladen</title>
+  <title>Bild hochladen</title>
 </head>
 <body>
     <?php include_once('service_upload_image.php') ?>
@@ -23,11 +23,17 @@
 				<form action="upload_image.php" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<i class="fa fa-user"></i>
-						<input type="text" name="title" class="form-control" placeholder="Titel" required="required" value="<?php echo $target_title; ?>">
+						<input type="text" name="title" class="form-control" placeholder="Titel" required="required" value="<?php
+                        if (isset($target_title)) {
+                            echo $target_title;
+                        } ?>">
 					</div>
                     <div class="form-group">
 						<i class="fa fa-envelope"></i>
-						<input type="text" name="comment" class="form-control" placeholder="Kommentar" required="required" value="<?php echo $target_comment; ?>">
+						<input type="text" name="comment" class="form-control" placeholder="Kommentar" required="required" value="<?php
+                        if(isset($target_comment)) {
+                        echo $target_comment;
+                        } ?>">
 					</div>
 					<div class="form-group">
 						<input type="file" name="fileToUpload" id="fileToUpload">

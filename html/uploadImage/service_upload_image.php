@@ -50,6 +50,10 @@ function codeToMessage($code)
 // diese Variablen wird das Errors.php-Skript verwenden
 $errors = array();
 $success = array();
+if (isset($delete_success) == false)
+{
+    $delete_success = false;
+}
 //Welche Seite nach Erfolg aufgerufen werden soll
 $pathAfterSuccess = "location: /KCD/index.php";
 
@@ -78,8 +82,8 @@ if (isset($_POST['save_image'])) {
 	$target_dir_withoutRootFolder = "/KCD/resources/images/uploadedImages/" . $target_name . "." . $imageFileType;
 
 	//Auslesen der Parameter
-	$target_title = $_POST['title'];
-	$target_comment = $_POST['comment'];
+	$target_title = mysqli_real_escape_string($db, $_POST['title']);
+	$target_comment = mysqli_real_escape_string($db, $_POST['comment']);
     $uploadOk = 1;
 	//Nutzer-Login Checken
 	//Nutzer angemeldet?
@@ -109,7 +113,7 @@ if (isset($_POST['save_image'])) {
                 if ($_FILES['fileToUpload']['error'] == UPLOAD_ERR_INI_SIZE)
                 {
                     $max_upload = min(ini_get('post_max_size'), ini_get('upload_max_filesize'));
-                    array_push($errors, "Die Datei ist zu groß. Es können nur Bilder mit einer Größe unter " . $max_upload . "MB liegen");
+                    array_push($errors, "Die Datei ist zu groß. Es können nur Bilder mit einer Größe unter " . $max_upload . " liegen");
                 } else {
                     array_push($errors,  codeToMessage($_FILES['fileToUpload']['error']));
                 }
@@ -195,7 +199,8 @@ if (isset($_POST['comment_image'])) {
 		    $found_images = mysqli_fetch_array($result,MYSQLI_ASSOC);
             //Wurde eine Nutzer-ID gefunden?
 		    if (isset($found_images)) {
-                $query = "INSERT INTO `imagecomments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $_POST["comment_image_comment"] . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
+								$comment = mysqli_real_escape_string($db, $_POST["comment_image_comment"]);
+                $query = "INSERT INTO `imagecomments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $comment . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
                 mysqli_query($db, $query);
                 header($pathAfterSuccess);
             } else {
