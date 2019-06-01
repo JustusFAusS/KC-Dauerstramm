@@ -51,7 +51,7 @@
 												//hier werden alle Daten in einer Tabelle angezeigt
 
 											        //Laden der Relevanten Daten
-											        $query = "SELECT * FROM events WHERE date >= CURDATE() ORDER BY date ASC LIMIT 25";
+															$query = "SELECT * FROM events WHERE date >= CURDATE() ORDER BY date ASC LIMIT 25";
 												$result = mysqli_query($db, $query);
 												if ($result->num_rows > 0) {
 													//Es wurden einträge gefunden

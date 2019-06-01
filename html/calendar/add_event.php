@@ -13,7 +13,8 @@
   </head>
   <body>
     <?php include_once('service_event.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
+    include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 
     <div class="modal-dialog modal-login">
   		<div class="modal-content">
