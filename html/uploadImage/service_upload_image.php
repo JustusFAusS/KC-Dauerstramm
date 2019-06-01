@@ -33,8 +33,8 @@ if (isset($_POST['save_image'])) {
 	$target_dir_withoutRootFolder = "/KCD/resources/images/uploadedImages/" . $target_name;
 
 	//Auslesen der Parameter
-	$target_title = $_POST['title'];
-	$target_comment = $_POST['comment'];
+	$target_title = mysqli_real_escape_string($db, $_POST['title']);
+	$target_comment = mysqli_real_escape_string($db, $_POST['comment']);
     $uploadOk = 1;
 	//Nutzer-Login Checken
 	//Nutzer angemeldet?
@@ -124,7 +124,8 @@ if (isset($_POST['comment_image'])) {
 		    $found_images = mysqli_fetch_array($result,MYSQLI_ASSOC);
             //Wurde eine Nutzer-ID gefunden?
 		    if (isset($found_images)) {
-                $query = "INSERT INTO `imagecomments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $_POST["comment_image_comment"] . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
+								$comment = mysqli_real_escape_string($db, $_POST["comment_image_comment"]);
+                $query = "INSERT INTO `imagecomments`(`imageID`, `message`, `creationdate`, `creationUserID`) VALUES ('" . $_GET['imageid'] . "','" . $comment . "',NOW(),'" . get_userid_by_username($_SESSION['username']) . "');";
                 mysqli_query($db, $query);
                 header($pathAfterSuccess);
             } else {

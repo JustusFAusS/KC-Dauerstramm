@@ -28,8 +28,8 @@ $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 
 if (isset($_POST['create_penalty'])) {
     if(nutzer_angemeldet()) {
-        $p_message = $_POST['p_message'];
-        $p_amount = $_POST['p_amount'];
+        $p_message = mysqli_real_escape_string($db,$_POST['p_message']);
+        $p_amount = mysqli_real_escape_string($db,$_POST['p_amount']);
         if(isset($p_message) && isset($p_amount)) {
             //Alle Variablen wurden gesetzt. Nun kann geprüft werden, ob diese Strafe schon existiert
             $check_message_exists_queue = "SELECT * FROM penalties WHERE message = '" . $p_message . "';";
