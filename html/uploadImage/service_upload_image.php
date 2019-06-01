@@ -3,6 +3,16 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/functions.php');
 start_session();
 
+//Funktionen, die hier verwendet werden
+function endsWith($string, $endString) 
+{ 
+    $len = strlen($endString); 
+    if ($len == 0) { 
+        return true; 
+    } 
+    return (substr($string, -$len) === $endString); 
+}
+
 
 // initializing variables
 // diese Variablen wird das Errors.php-Skript verwenden
@@ -16,21 +26,28 @@ $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 
 //Hier wird die Methode abgefragt
 if (isset($_POST['save_image'])) {
-	//Root-Pfad des Servers
-	$base_dir = __DIR__;
 	//Pfad des Bildes auf der Platte (nur zum speichern)
-	$target_dir = $_SERVER['DOCUMENT_ROOT'] . "KCD/resources/images/uploadedImages/";
+    $Server_Root = $_SERVER['DOCUMENT_ROOT'];
+    //Manchmal endet dieser Pfad auf einem Slash, manchmal nicht. Um diese Varianz auszugleichen, habe ich hier diese Methode eingefügt
+    if (endsWith($Server_Root, "/") == false)
+    {
+        $Server_Root = $Server_Root . "/";
+    }
+	$target_dir = $Server_Root . "KCD/resources/images/uploadedImages/";
+    echo $target_dir . " ";
 	$basename = basename($_FILES["fileToUpload"]["name"]);
 	//Hier wird ein zufälliger Hash generiert. Dadurch können gleiche Dateinamen öfter hochgeladen werden.
-	$target_name = md5(rand()) . $basename;
-	$target_file = $target_dir . $target_name;
+	$target_name = md5(rand() . $basename);
+	$imageFileType = strtolower(pathinfo($basename,PATHINFO_EXTENSION));
+    echo $target_name . " ";
+    echo $imageFileType . " ";
 	//Hier wird einfach der Dateiname ausgelesen (mit Endung)
-	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-	$target_file = $target_dir . $target_name;
+	$target_file = $target_dir . $target_name . "." . $imageFileType;
+    echo $target_file;
 
 	//Dieser Pfad wird in der DB hinterlegt werden. Damit die Datei nicht mit dem Server Root-Path korolliert fehlt dieser
 	//Er muss anschließend ermittelt werden.
-	$target_dir_withoutRootFolder = "/KCD/resources/images/uploadedImages/" . $target_name;
+	$target_dir_withoutRootFolder = "/KCD/resources/images/uploadedImages/" . $target_name . "." . $imageFileType;
 
 	//Auslesen der Parameter
 	$target_title = $_POST['title'];
