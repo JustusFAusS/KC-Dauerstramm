@@ -83,7 +83,7 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
 
 <html>
  <head>
-  	<title>Homepage</title>
+  	<title>Strafen verwalten</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
  </head>
  <body id="body">

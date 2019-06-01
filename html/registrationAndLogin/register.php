@@ -20,6 +20,7 @@
 ?>
 
 <head>
+    <title>Registrieren</title>
 <style type="text/css">
     body {
 		font-family: 'Varela Round', sans-serif;

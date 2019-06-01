@@ -8,6 +8,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <html>
+<head>
+    <title>Bild kommentieren</title>
+</head>
 <body>
     <?php include_once('service_upload_image.php') ?>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
@@ -29,8 +32,11 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<p>Kommentare können nicht gelöscht werden</p>
+				Kommentare können nur mit dem Bild zusammen von dem Inhaber gelöscht werden.
 			</div>
+            <div class="modal-footer">
+                <p>Falls Sie ein Bild oder einen Kommentar für anstößig halten, dann Kontaktieren Sie einen Administrator. Dieser kann Bilder entfernen.</p>
+            </div>
 		</div>
     </div>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
