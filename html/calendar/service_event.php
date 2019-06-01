@@ -3,7 +3,8 @@ session_start();
 
 //Diese Klasse behandelt alle Methoden zum editieren der Events
 //Methode		Beschreibung							Parameter
-//add_event		Fügt event hinzu							new_title,new_event,new_message
+//add_event		Fügt event hinzu					$event_title $newformat $event_message
+//delete_event Löscht ein Events				eventid
 
 //Funktionen importieren
 include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/functions.php");
@@ -21,7 +22,6 @@ $db = mysqli_connect('localhost', 'KCD', '56748', 'KCD');
 $errors = array();
 $success = array();
 
-
 //Nutzer angemeldet?
 if (nutzer_angemeldet()) {
 	if(isset($_POST['add_event'])){
@@ -35,7 +35,6 @@ if (nutzer_angemeldet()) {
 		if (empty($newformat)) {array_push($errors, 'Bitte geben Sie ein gültiges Datum an.');}
 		if (empty($event_message)) { array_push($errors,'Die eigentliche Nachricht ist leer. Bitte geben Sie einen Text an.'); }
 
-		// if ($newformat = '1970-01-01') {array_push($errors, 'Bitte geben Sie ein gültiges Datum an.');}
 		//Anzahl der Fehler prüfen
 		if (count($errors) == 0) {
 			$new_event_query = "INSERT INTO events (name,date,description,uploadedby) VALUES ('$event_title','$newformat','$event_message','" . get_userid_by_username($_SESSION['username']) . "');";
@@ -63,24 +62,22 @@ if (nutzer_angemeldet()) {
                         $del_comments_queue = "DELETE FROM events WHERE EventID = '". $_GET['eventid'] . "';";
                         if (mysqli_query($db, $del_comments_queue) == 1) {
 													  $delete_success = true;
-														array_push($success,"Das Event wurde erfolgreich gelöscht.");
+														array_push($success,"Der Termin wurde erfolgreich gelöscht.");
 														// header($success_page);
                         }else {
-																array_push($errors, "Fehler: Das Event konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");
+																array_push($errors, "Fehler: Der Termin konnte nicht aus der Datenbank gelöscht werden. Bitte wenden Sie sich an Ihren Administrator!");
 															}
 	                    }else {
 	                        array_push($errors, "Fehler: Sie haben nicht die nötigen Rechte für diesen Vorgang!");
 												}
 	            }else {
-	                array_push($errors, "Fehler: Das zu löschende Event existiert nicht!");
+	                array_push($errors, "Fehler: Der zu löschende Termin existiert nicht!");
 	            }
 	    } else {
 	        array_push($errors, "Fehler: Sie sind nicht angemeldet");
 	    }
-
 	}
 } else {
 	header($no_login_page);
 }
-
 ?>
