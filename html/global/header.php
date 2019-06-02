@@ -32,7 +32,7 @@
                         if((time() - $_SESSION['last_visit']) > $session_timeout) {
                             //Nutzer zu lange Inaktiv. Weiterleitung auf die Öffentliche-Homepage-Page
                             session_destroy();
-                            header('location: /KCD/index.php');
+                            header('location: /KCD/html/registrationAndLogin/timeout.php');
                         }
 
 
