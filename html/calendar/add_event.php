@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <link rel="stylesheet" href="/KCD/html/bootstrap/bootstrap.css">
 <script src="/KCD/html/bootstrap/bootstrap.bundle.js"></script>
 <script src="/KCD/html/bootstrap/bootstrap.bundle.min.js"></script>
@@ -5,17 +6,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!-- <html lang="en" dir="ltr"> -->
   <head>
-    <meta charset="utf-8">
+    <!-- <meta charset="utf-8"> -->
     <title>Termin hinzufügen</title>
   </head>
   <body>
-    <?php include_once('service_event.php');
+    <?php
+    include_once('service_event.php');
+    include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php");
     include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');
-    include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
+    ?>
 
+    <!-- Seitenränder werden durch den Container festgelegt-->
+    <div class="container">
     <div class="modal-dialog modal-login">
   		<div class="modal-content">
   			<div class="modal-header">
@@ -49,6 +53,7 @@
   				</form>
   			</div>
   		</div>
+      </div>
       </div>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
