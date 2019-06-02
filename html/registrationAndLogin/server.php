@@ -136,16 +136,13 @@ if (isset($_POST['change_user'])) {
         if (($password_1 != $password_2) && $change_pass) {
 		    array_push($errors, "Die Passwörter stimmen nicht überein.");
   	    }
-        echo $change_name;
         if (!($change_name))
         {
             //Wenn der Name nicht geändert werden soll muss er aus der DB eingelesen werden
             $username = $_SESSION['username'];
-            echo "gfkjdslf";
         }
         if (!($change_mail))
         {
-            echo "fjdskl";
             //Wenn die Mail nicht geändert werden soll muss er aus der DB eingelesen werden
             $email = get_email_by_userid(get_userid_by_username($_SESSION['username']));
         }
