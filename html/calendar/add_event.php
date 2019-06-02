@@ -13,10 +13,9 @@
   </head>
   <body>
     <?php include_once('service_event.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');?>
+    include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/header.php');
+    include($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 
-    <!-- Seitenränder werden durch den Container festgelegt-->
-    <div class="container">
     <div class="modal-dialog modal-login">
   		<div class="modal-content">
   			<div class="modal-header">
@@ -31,7 +30,7 @@
   					</div>
             <div class="form-group">
   						<i class="fa fa-envelope"></i>
-  						<input type="text" name="date" class="form-control" placeholder="Datum" required="required">
+  						<input type="date" name="date" class="form-control" placeholder="Datum" required="required">
   					</div>
             <div class="form-group">
   						<i class="fa fa-envelope"></i>
@@ -50,7 +49,6 @@
   				</form>
   			</div>
   		</div>
-      </div>
       </div>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/KCD/html/global/footer.php');?>
