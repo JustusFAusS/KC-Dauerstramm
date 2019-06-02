@@ -104,7 +104,6 @@
   </div>
 
   <form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
   	<div class="input-group">
   		<label>Nutzername</label>
   		<input type="text" name="username" >

@@ -96,7 +96,7 @@ if(nutzer_angemeldet()) {
                 <!-- Linkes Menue. Etwas groesser als das rechte-->
                 <div class="col-sm-11">
                     <div class="bg-white p-2 mt-3">
-                        <?php include("errors.php"); ?>
+                        <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
                         <h1>Strafenübersicht:</h1>
                     </div>
                 </div>
