@@ -100,7 +100,7 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
                     <!-- Linkes Menue. Etwas groesser als das rechte-->
                     <div class="col-sm-11">
                         <div class="bg-white p-2 mt-3">
-                            <?php include("errors.php"); ?>
+                            <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
                             <h1>Strafen verwalten:</h1>
                         </div>
                     </div>
@@ -195,6 +195,6 @@ if(nutzer_angemeldet() || checkKassenwartPermissions(get_userid_by_username($_SE
 <!-- Hier werden die Tooltips angezeigt-->
 <script>
 $(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip(); 
+  $('[data-toggle="tooltip"]').tooltip();
 });
 </script>

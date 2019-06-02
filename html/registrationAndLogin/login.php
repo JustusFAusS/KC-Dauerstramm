@@ -105,7 +105,6 @@
   </div>
 
   <form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
   	<div class="input-group">
   		<label>Nutzername</label>
   		<input type="text" name="username" >
@@ -127,9 +126,9 @@
 			<div class="modal-header">
 				<h4 class="modal-title">Nutzer-Login</h4>
 			</div>
-                <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 			<div class="modal-body">
 				<form action="login.php" method="post">
+					  	<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/KCD/html/global/notifications.php"); ?>
 					<div class="form-group">
 						<i class="fa fa-user"></i>
 						<input type="text" name="username" class="form-control" placeholder="Nutzername" required="required">

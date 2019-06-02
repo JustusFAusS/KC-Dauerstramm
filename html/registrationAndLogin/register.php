@@ -144,7 +144,6 @@
 </body>
 <!-- Alte form
 <form action="register.php" method="post">
-	<?php include('errors.php'); ?>
   	<div class="input-group">
   	  <label>Username</label>
   	  <input type="text" name="username" value="<?php echo $username; ?>">
